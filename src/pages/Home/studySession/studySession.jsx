@@ -1,6 +1,6 @@
 import React from 'react';
 
-const studySessionCard = () => {
+const studySession = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const studySessionCard = () => {
     );
 };
 
-export default studySessionCard;
+export default studySession;
