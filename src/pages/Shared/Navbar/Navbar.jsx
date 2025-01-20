@@ -36,7 +36,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`navbar fixed top-0 z-10 text-white py-4 px-14 transition-all duration-300 ${
+      className={`navbar fixed top-0 z-10 text-white py-4 md:px-14 transition-all duration-300 ${
         isScrolled ? "bg-gray-800 shadow-lg" : "bg-transparent"
       }`}
     >
@@ -66,7 +66,7 @@ const Navbar = () => {
           </ul>
         </div>
         <img src="../../../../public/logo.png" className="w-12" alt="" />
-        <h1 className="text-xl font-semibold ml-2">EduQuest</h1>
+        <h1 className="text-xl font-semibold ml-2 hidden md:flex">EduQuest</h1>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>

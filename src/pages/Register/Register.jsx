@@ -2,8 +2,22 @@ import React from "react";
 import { Link } from "react-router-dom";
 import img from "../../../public/pic/login.jpg";
 
-
 const Register = () => {
+
+
+  const handleRegister=(event)=>{
+    event.preventDefault();
+
+    const form = event.target;
+    const email = form.email.value;
+    const name = form.name.value;
+    const photoUrl = form.photo.value;
+    const password = form.password.value;
+    const role = form.role.value;
+    console.log(role, email);
+  }
+  
+
   return (
     <div>
       <div
@@ -18,7 +32,7 @@ const Register = () => {
             <div className="hero-content flex-col lg:flex-row-reverse">
               <div className="bg-emerald-900 text-white w-full max-w-sm shrink-0 shadow-2xl">
                 <h1 className="text-2xl font-semibold mt-7">Register Here</h1>
-                <form className="card-body">
+                <form onSubmit={handleRegister} className="card-body">
                   {/* Name Field */}
                   <div className="form-control">
                     <label className="label">
@@ -26,6 +40,7 @@ const Register = () => {
                     </label>
                     <input
                       type="text"
+                      name="name"
                       placeholder="Enter your name"
                       className="input input-bordered"
                       required
@@ -39,6 +54,7 @@ const Register = () => {
                     </label>
                     <input
                       type="email"
+                      name="email"
                       placeholder="Enter your email"
                       className="input input-bordered"
                       required
@@ -52,6 +68,7 @@ const Register = () => {
                     </label>
                     <input
                       type="text"
+                      name="photo"
                       placeholder="Enter photo URL or upload via imgbb"
                       className="input input-bordered"
                       required
@@ -65,6 +82,7 @@ const Register = () => {
                     </label>
                     <input
                       type="password"
+                      name="password"
                       placeholder="Create a password"
                       className="input input-bordered"
                       required
@@ -76,7 +94,7 @@ const Register = () => {
                     <label className="label">
                       <span className="label-text text-white">Role</span>
                     </label>
-                    <select className="select select-bordered w-full" required>
+                    <select className="select select-bordered w-full" name="role" required>
                       <option value="" disabled selected>
                         Select your role
                       </option>
@@ -88,7 +106,9 @@ const Register = () => {
 
                   {/* Submit Button */}
                   <div className="form-control mt-6">
-                    <button className="btn bg-slate-950 text-white">Register</button>
+                    <button className="btn bg-slate-950 text-white">
+                      Register
+                    </button>
                   </div>
 
                   {/* Link to Login */}
@@ -96,10 +116,7 @@ const Register = () => {
                     <span className="text-gray-400">
                       Already have an account?
                     </span>
-                    <Link
-                      to="/login"
-                      className="hover:underline font-semibold"
-                    >
+                    <Link to="/login" className="hover:underline font-semibold">
                       Login
                     </Link>
                   </div>
