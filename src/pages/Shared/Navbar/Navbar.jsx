@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const links = (
     <>
       <li>
@@ -17,7 +35,11 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar fixed z-10 text-white border-b-2 border-gray-400 py-4 px-14">
+    <div
+      className={`navbar fixed top-0 z-10 text-white py-4 px-14 transition-all duration-300 ${
+        isScrolled ? "bg-gray-800 shadow-lg" : "bg-transparent"
+      }`}
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
