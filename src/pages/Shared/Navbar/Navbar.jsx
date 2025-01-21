@@ -4,11 +4,13 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const {user,logOut} = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
-  const handleLogOut =()=>{
-logOut()
-  }
+
+
+  const handleLogOut = () => {
+    logOut();
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,13 +31,13 @@ logOut()
   const links = (
     <>
       <li>
-        <Link>Home</Link>
+        <Link to="/">Home</Link>
       </li>
       <li>
         <Link>Study Session</Link>
       </li>
       <li>
-        <Link>Dashboard</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </li>
     </>
   );
@@ -78,16 +80,27 @@ logOut()
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end ">
-        {
-          user?<><button onClick={handleLogOut} className="btn">Sign Out</button></> : <>  <Link
-          to="/login"
-          className="btn text-white bg-transparent border-none hover:border-b-2"
-        >
-          Log in
-        </Link>
-        <Link to='/register' className="btn text-white">Sign Up</Link></>
-        }
-      
+        {user ? (
+          <>
+            <img src={user?.photoURL} alt="User" className="w-14 rounded-full mr-2" />
+            <button onClick={handleLogOut} className="btn">
+              Sign Out
+            </button>
+          </>
+        ) : (
+          <>
+            {" "}
+            <Link
+              to="/login"
+              className="btn text-white bg-transparent border-none hover:border-b-2"
+            >
+              Log in
+            </Link>
+            <Link to="/register" className="btn text-white">
+              Sign Up
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

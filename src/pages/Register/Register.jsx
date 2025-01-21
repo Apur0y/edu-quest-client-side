@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../../../public/pic/login.jpg";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Register = () => {
+  const { createUser, profileInfo } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const {createUser} = useContext(AuthContext)
-
-  const handleRegister=(event)=>{
+  const handleRegister = (event) => {
     event.preventDefault();
 
     const form = event.target;
@@ -17,9 +17,15 @@ const Register = () => {
     const password = form.password.value;
     const role = form.role.value;
     console.log(role, email);
-createUser(email,password)
-  }
-  
+    createUser(email, password)
+      .then((res) => {
+        profileInfo({ displayName: name, photoURL: photoUrl });
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+  };
 
   return (
     <div>
@@ -97,7 +103,11 @@ createUser(email,password)
                     <label className="label">
                       <span className="label-text text-white">Role</span>
                     </label>
-                    <select className="select select-bordered w-full" name="role" required>
+                    <select
+                      className="select select-bordered w-full"
+                      name="role"
+                      required
+                    >
                       <option value="" disabled selected>
                         Select your role
                       </option>
