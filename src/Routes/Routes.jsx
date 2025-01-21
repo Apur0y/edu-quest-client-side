@@ -12,6 +12,13 @@ import CreateNotes from "../pages/Dashboard/StudentDash/CreateNotes";
 import BookedSession from "../pages/Dashboard/StudentDash/BookedSession";
 import ManageNotes from "../pages/Dashboard/StudentDash/ManageNotes";
 import Materials from "../pages/Dashboard/StudentDash/Materials";
+import CreateSession from "../pages/Dashboard/Tutor/CreateSession";
+import CreatedSession from "../pages/Dashboard/Tutor/CreatedSession";
+import UploadMaterials from "../pages/Dashboard/Tutor/UploadMaterials";
+import UploadedMaterials from "../pages/Dashboard/Tutor/UploadedMaterials";
+import ViewAllUser from "../pages/Dashboard/Admin/ViewAllUser";
+import ViewAllSession from "../pages/Dashboard/Admin/ViewAllSession";
+import ViewAllMaterials from "../pages/Dashboard/Admin/ViewAllMaterials";
 
   
   
@@ -54,6 +61,36 @@ import Materials from "../pages/Dashboard/StudentDash/Materials";
         {
           path:"materials",
           element:<Materials></Materials>
+        },
+
+        {
+          path:'createsession',
+          element:<CreateSession></CreateSession>
+        },
+        {
+          path:"createdsession",
+          element:<CreatedSession></CreatedSession>
+        },
+        {
+          path:"uploadmaterials",
+          element:<UploadMaterials></UploadMaterials>
+        },
+        {
+          path:"uploadedmaterials",
+          element:<UploadedMaterials></UploadedMaterials>
+        },
+
+        {
+          path:"viewalluser",
+          element:<ViewAllUser></ViewAllUser>
+        },
+        {
+          path:"viewallsession",
+          element:<ViewAllSession></ViewAllSession>
+        },
+        {
+          path:"viewallmaterials",
+          element:<ViewAllMaterials></ViewAllMaterials>
         }
       ]
 
