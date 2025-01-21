@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IoMdHome } from "react-icons/io";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import img from "../../public/pic/dashboard.jpg";
-import { FaCircleArrowRight } from "react-icons/fa6";
+import { FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6";
 
 const DashboardLayout = () => {
   const [admin, setAdmin] = useState(false);
@@ -80,7 +80,7 @@ const DashboardLayout = () => {
           {tutor ? (
             <ul className="menu text-white gap-5 ">
               <Link to="/">
-                <div className="flex text-white font-semibold m-5">
+                <div className="flex text-white font-semibold pr-6 md:pr-0 m-5">
                   <img
                     src="../../../../public/logo.png"
                     className="w-12"
@@ -199,11 +199,13 @@ const DashboardLayout = () => {
             height: "100%",
             zIndex: 1, // Keeps the overlay behind the child content
           }}
-        ></div>
+        ><button onClick={handleSidebar}>
+        {sidebar?       <FaCircleArrowRight className="text-white md:hidden" /> : <FaCircleArrowLeft />
+        
+        }
+               </button></div>
         <div style={{ position: "relative", zIndex: 2 }}>
-       <button onClick={handleSidebar}>
-       <FaCircleArrowRight className="text-blue-700" />
-       </button>
+       
 
           <Outlet />
         </div>

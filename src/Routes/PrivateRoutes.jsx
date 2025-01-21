@@ -7,7 +7,7 @@ const PrivateRoutes = ({children}) => {
     const {user,loading} = useAuth()
     const location = useLocation()
 
-    // if(loading) return <span className="loading loading-ring loading-lg"></span>
+    if(loading) return <span className="loading loading-ring loading-lg"></span>
     if(user) return children
 
     return (
