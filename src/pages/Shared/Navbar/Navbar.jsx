@@ -37,7 +37,7 @@ const Navbar = () => {
         <Link>Study Session</Link>
       </li>
       <li>
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/dashboard/bookedsession">Dashboard</Link>
       </li>
     </>
   );

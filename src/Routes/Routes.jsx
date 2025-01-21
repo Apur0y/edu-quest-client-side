@@ -6,9 +6,12 @@ import Main from "../Layout/Main";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
-import StudentDash from "../pages/Dashboard/StudentDash/StudentDash";
 import DashboardLayout from "../Layout/DashboardLayout";
 import PrivateRoutes from "./PrivateRoutes";
+import CreateNotes from "../pages/Dashboard/StudentDash/CreateNotes";
+import BookedSession from "../pages/Dashboard/StudentDash/BookedSession";
+import ManageNotes from "../pages/Dashboard/StudentDash/ManageNotes";
+import Materials from "../pages/Dashboard/StudentDash/Materials";
 
   
   
@@ -34,6 +37,25 @@ import PrivateRoutes from "./PrivateRoutes";
     },
     {
       path:"/dashboard",
-      element:<PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>
+      element:<PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
+      children:[
+        {
+          path:"createnote",
+          element:<CreateNotes></CreateNotes>
+        },
+        {
+          path:"bookedsession",
+          element:<BookedSession></BookedSession>
+        },
+        {
+          path:"managenote",
+          element:<ManageNotes></ManageNotes>
+        },
+        {
+          path:"materials",
+          element:<Materials></Materials>
+        }
+      ]
+
     }
   ]);
