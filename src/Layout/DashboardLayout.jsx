@@ -233,7 +233,7 @@ const DashboardLayout = () => {
             {sidebar ? (
               <FaCircleArrowRight className="text-white md:hidden" />
             ) : (
-              <FaCircleArrowLeft />
+              <FaCircleArrowLeft className="text-white md:hidden" />
             )}
           </button>
         </div>
