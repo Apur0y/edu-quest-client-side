@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
+import axios from 'axios';
 
 const CreateSession = () => {
 
@@ -13,7 +14,7 @@ const CreateSession = () => {
         registrationEndDate: '',
         classStartDate: '',
         classEndDate: '',
-        sessionDuration: '',
+        sessionDuration: 1,
         registrationFee: 0, // Default 0, only admin can modify
         status: 'pending', // Default pending
     });
@@ -26,7 +27,8 @@ const CreateSession = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('Form Data:', formData);
-        // Add logic to store the data or send it to a backend
+        axios.post("http://localhost:5000/sessions",formData)
+        .then(res=>console.log(res.data))
     };
 
     return (
@@ -141,10 +143,10 @@ const CreateSession = () => {
                 </div>
                 <div className="mb-4">
                     <label htmlFor="sessionDuration" className="block text-gray-700 font-medium mb-2">
-                        Session Duration
+                        Session Duration(hour)
                     </label>
                     <input
-                        type="text"
+                        type="number"
                         id="sessionDuration"
                         name="sessionDuration"
                         value={formData.sessionDuration}
