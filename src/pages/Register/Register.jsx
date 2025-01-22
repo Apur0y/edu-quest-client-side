@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import img from "../../../public/pic/login.jpg";
 import { AuthContext } from "../../Providers/AuthProvider";
+import axios from "axios";
 
 const Register = () => {
   const { createUser, profileInfo } = useContext(AuthContext);
@@ -19,8 +20,27 @@ const Register = () => {
     console.log(role, email);
     createUser(email, password)
       .then((res) => {
-        profileInfo({ displayName: name, photoURL: photoUrl });
-        navigate("/");
+        profileInfo({ displayName: name, photoURL: photoUrl })
+        .then(() => {
+          // Prepare user data to send to the backend
+          const userData = {
+            name,
+            email,
+            photoUrl,
+            role,
+          };
+
+          // Post user data to the backend
+          return axios.post("http://localhost:5000/users", userData);
+        })
+        .then(() => {
+          // Navigate after successful registration and data submission
+          navigate("/");
+        })
+        .catch((error) => {
+          console.log("Error updating profile or saving user data:", error);
+        });
+
       })
       .catch((error) => {
         console.log("Error", error);

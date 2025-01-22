@@ -19,6 +19,7 @@ import UploadedMaterials from "../pages/Dashboard/Tutor/UploadedMaterials";
 import ViewAllUser from "../pages/Dashboard/Admin/ViewAllUser";
 import ViewAllSession from "../pages/Dashboard/Admin/ViewAllSession";
 import ViewAllMaterials from "../pages/Dashboard/Admin/ViewAllMaterials";
+import LandingPage from "../pages/Dashboard/LandingPage";
 
   
   
@@ -91,6 +92,10 @@ import ViewAllMaterials from "../pages/Dashboard/Admin/ViewAllMaterials";
         {
           path:"viewallmaterials",
           element:<ViewAllMaterials></ViewAllMaterials>
+        },
+        {
+          path:"landingpage",
+          element:<LandingPage></LandingPage>
         }
       ]
 

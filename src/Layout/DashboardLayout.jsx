@@ -1,26 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoMdHome } from "react-icons/io";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import img from "../../public/pic/dashboard.jpg";
 import { FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6";
+import useAuth from "../hooks/useAuth";
+import axios from "axios";
 
 const DashboardLayout = () => {
+  const { user } = useAuth();
+  const [role, setRole] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:5000/users")
+    .then((res) => setRole(res.data));
+  }, []);
+  
+  const currentRole = role?.find((res) => res.email == user.email);
+  console.log(currentRole);
+  
   const [admin, setAdmin] = useState(false);
-  const [tutor, setTutor] = useState(true);
+  const [tutor, setTutor] = useState(false);
   const [student, setStudent] = useState(false);
 
   const [sidebar, setSidebar] = useState(true);
+ 
+  
+  useEffect(() => {
+    if (currentRole?.role === "student") {
+      setStudent(true);
+    }
+    if (currentRole?.role === "tutor") {
+      setTutor(true);
+    }
+    if (currentRole?.role === "admin") {
+      setAdmin(true);
+    }
+  }, [currentRole]);
+  
+
 
   const handleSidebar = () => {
     setSidebar(!sidebar);
   };
+
+
 
   return (
     <div className="flex">
       <div
         className={`w-64 ${
           sidebar ? "hidden" : "flex"
-        } min-h-screen bg-purple-600 md:flex justify-between flex-col`}
+        } min-h-screen bg-teal-500 md:flex justify-between flex-col`}
       >
         {/* Student */}
         <div>
@@ -199,14 +228,16 @@ const DashboardLayout = () => {
             height: "100%",
             zIndex: 1, // Keeps the overlay behind the child content
           }}
-        ><button onClick={handleSidebar}>
-        {sidebar?       <FaCircleArrowRight className="text-white md:hidden" /> : <FaCircleArrowLeft />
-        
-        }
-               </button></div>
+        >
+          <button onClick={handleSidebar}>
+            {sidebar ? (
+              <FaCircleArrowRight className="text-white md:hidden" />
+            ) : (
+              <FaCircleArrowLeft />
+            )}
+          </button>
+        </div>
         <div style={{ position: "relative", zIndex: 2 }}>
-       
-
           <Outlet />
         </div>
       </div>
