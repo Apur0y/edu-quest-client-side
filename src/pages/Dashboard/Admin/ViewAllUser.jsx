@@ -3,9 +3,10 @@ import axios from "axios";
 import React, { useState } from "react";
 
 const ViewAllUser = () => {
-  // State for search input
+  // State for search input and modal visibility
   const [searchTerm, setSearchTerm] = useState("");
-  const [user, setUser] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
   // Fetch users using React Query
   const {
@@ -16,6 +17,7 @@ const ViewAllUser = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/users");
+      if (!res.ok) throw new Error("Failed to fetch users");
       return res.json();
     },
   });
@@ -29,22 +31,24 @@ const ViewAllUser = () => {
   );
 
   const handleUserUpdate = (user) => {
-    setUser(user);
-    document.getElementById("my_modal_5").showModal();
+    setSelectedUser(user);
+    setModalVisible(true);
   };
 
-  const handleUpdateButton = (event) => {
+  const handleUpdateButton = async (event) => {
     event.preventDefault();
     const role = event.target.role.value;
-    console.log(role);
-    axios.put("http://localhost:5000/users", {
-      _id: user._id,
-      role: role
-    })
-    .then(res => console.log(res.data.message))
-    .catch(error => console.error("There was an error updating the user role!", error));
 
-    console.log("Click btn");
+    try {
+      const res = await axios.put(`http://localhost:5000/users/${selectedUser._id}`, {
+        role,
+      });
+      console.log(res.data.message);
+      // Close the modal and refresh data
+      setModalVisible(false);
+    } catch (error) {
+      console.error("Failed to update user:", error);
+    }
   };
 
   return (
@@ -75,10 +79,9 @@ const ViewAllUser = () => {
       <div className="w-full">
         {filteredUsers.map((user) => (
           <div
-            key={user.id}
+            key={user._id}
             className="flex items-center justify-between bg-transparent font-bold text-white shadow-sm p-4 border-b border-gray-100 w-full"
           >
-            {/* Photo */}
             <div className="flex-grow flex justify-center">
               <img
                 src={user.photoUrl}
@@ -86,25 +89,17 @@ const ViewAllUser = () => {
                 className="w-12 h-12 rounded-full"
               />
             </div>
-
-            {/* Name */}
             <div className="flex-grow text-center">
               <h3 className="text-lg font-medium">{user.name}</h3>
             </div>
-
-            {/* Email */}
             <div className="flex-grow text-center">
               <p className="text-white">{user.email}</p>
             </div>
-
-            {/* Role */}
             <div className="flex-grow text-center">
-              <p className="text-white rounded-full bg-pink-600 py-1  font-medium">
+              <p className="text-white rounded-full bg-pink-600 py-1 font-medium">
                 {user.role}
               </p>
             </div>
-
-            {/* Update Button */}
             <div className="flex-grow flex justify-center">
               <button
                 onClick={() => handleUserUpdate(user)}
@@ -116,51 +111,43 @@ const ViewAllUser = () => {
           </div>
         ))}
       </div>
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
 
-      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box bg-white">
-          <form onSubmit={(event) => handleUpdateButton(event)} method="dialog">
-            {/* if there is a button in form, it will close the modal */}
+      {/* Modal */}
+      {modalVisible && selectedUser && (
+        <div className="modal modal-open">
+          <div className="modal-box bg-white">
             <h1 className="text-black font-bold text-2xl text-center mb-5">
-              Name: {user.name}
+              Name: {selectedUser.name}
             </h1>
-
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-black font-bold">
-                  Change User Role:
-                </span>
-              </label>
-              <select
-                className="select select-bordered w-full text-white"
-                name="role"
-                defaultValue=""
-              >
-                <option value="" disabled>
-                  Select your role
-                </option>
-                <option value="student">Student</option>
-                <option value="tutor">Tutor</option>
-                <option value="admin">Admin</option>
-              </select>
-            </div>
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-              ✕
-            </button>
-            <button
-              className="btn bg-green-500 text-white text-center border-none"
-            >
-              Update
-            </button>
-
-            <div className="flex justify-center mt-5">
-              {/* <button className="btn bg-red-600 text-white border-none">Close</button> */}
-            </div>
-          </form>
-          <div className="modal-action"></div>
+            <form onSubmit={handleUpdateButton}>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text text-black font-bold">
+                    Change User Role:
+                  </span>
+                </label>
+                <select
+                  className="select select-bordered w-full"
+                  name="role"
+                  defaultValue={selectedUser.role}
+                >
+                  <option value="student">Student</option>
+                  <option value="tutor">Tutor</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+              <div className="modal-action">
+                <button type="button" onClick={() => setModalVisible(false)} className="btn">
+                  Close
+                </button>
+                <button type="submit" className="btn bg-green-500 text-white">
+                  Update
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </dialog>
+      )}
     </div>
   );
 };
