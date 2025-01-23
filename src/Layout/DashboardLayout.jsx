@@ -216,7 +216,7 @@ const DashboardLayout = () => {
           backgroundRepeat: "no-repeat",
           position: "relative", // Allows overlaying content
         }}
-        className="flex-1 hero min-h-screen"
+        className="flex-1  min-h-screen"
       >
         <div
           style={{

@@ -5,7 +5,6 @@ import Card from "../../Shared/Card/Card";
 
 const CreatedSession = () => {
   const { user } = useAuth();
-  const email = user.email;
 
   const {
     data: sessions,
