@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const CreateSession = () => {
 
@@ -21,14 +22,23 @@ const CreateSession = () => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData({ ...formData, [name]: name === "sessionDuration" ? Number(value): value });
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('Form Data:', formData);
         axios.post("http://localhost:5000/sessions",formData)
-        .then(res=>console.log(res.data))
+        .then(res=>{
+            
+            console.log(res.data)
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Session has been created",
+                showConfirmButton: false,
+                timer: 1500
+              });})
     };
 
     return (

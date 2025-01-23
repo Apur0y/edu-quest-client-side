@@ -15,7 +15,7 @@ const DashboardLayout = () => {
   }, []);
   
   const currentRole = role?.find((res) => res.email == user.email);
-  console.log(currentRole);
+
   
   const [admin, setAdmin] = useState(false);
   const [tutor, setTutor] = useState(false);
