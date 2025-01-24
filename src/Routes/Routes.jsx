@@ -20,6 +20,7 @@ import ViewAllUser from "../pages/Dashboard/Admin/ViewAllUser";
 import ViewAllSession from "../pages/Dashboard/Admin/ViewAllSession";
 import ViewAllMaterials from "../pages/Dashboard/Admin/ViewAllMaterials";
 import LandingPage from "../pages/Dashboard/LandingPage";
+import SessionDetailsCard from "../pages/Home/studySession/SessionDetailsCard";
 
   
   
@@ -40,6 +41,11 @@ import LandingPage from "../pages/Dashboard/LandingPage";
           path:"register",
           element:<Register></Register>
         },
+        {
+          path:"sessions/:id",
+          loader: ()=>fetch("http://localhost:5000/sessions"),
+          element: <SessionDetailsCard></SessionDetailsCard>
+        }
    
       ]
     },

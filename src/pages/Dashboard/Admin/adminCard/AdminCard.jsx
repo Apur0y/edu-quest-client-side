@@ -56,7 +56,7 @@ import React from 'react';
 
 const AdminCard = ({ session, onStatusChange }) => {
   return (
-    <div className="max-w-md mx-auto h-full w-96 bg-white shadow-lg rounded-lg">
+    <div className="max-w-md mx-auto h-full w-96 bg-green-300 shadow-lg rounded-lg">
       <div className="p-6 text-black">
         <h2 className="text-xl font-bold mb-4">{session.sessionTitle}</h2>
         <p>
@@ -85,6 +85,9 @@ const AdminCard = ({ session, onStatusChange }) => {
             onClick={() => onStatusChange(session)}
           >
             Change Status
+          </button>
+          <button className='btn bg-yellow-600 border-none text-white'>
+            Details
           </button>
         </div>
       </div>
