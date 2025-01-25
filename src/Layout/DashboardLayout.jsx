@@ -7,7 +7,7 @@ import useAuth from "../hooks/useAuth";
 import axios from "axios";
 
 const DashboardLayout = () => {
-  const { user,student, setStuden } = useAuth();
+  const { user,student, setStudent } = useAuth();
   const [role, setRole] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:5000/users")
