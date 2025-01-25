@@ -1,23 +1,30 @@
 import React, { useContext } from "react";
 import img from "../../../public/pic/login.jpg";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Providers/AuthProvider";
-const Login = () => {
+import { auth, AuthContext } from "../../Providers/AuthProvider";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
-  const {signIn} = useContext(AuthContext)
-  const location = useNavigate()
+const Login = () => {
+  const { signIn,setStudent } = useContext(AuthContext);
+  const location = useNavigate();
+  const provider = new GoogleAuthProvider();
 
   const handleLogin = (event) => {
     event.preventDefault();
-    const form= event.target;
-    const email=form.email.value;
-    const password=form.password.value;
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
     console.log(email, password);
-    signIn(email,password)
-    .then(res=>{
-      location('/')
-    })
-     
+    signIn(email, password).then((res) => {
+      location("/");
+    });
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithPopup(auth,provider);
+    setStudent(true)
   };
 
   return (
@@ -34,7 +41,7 @@ const Login = () => {
             <div className="hero-content flex-col lg:flex-row-reverse">
               <div className=" bg-emerald-900 text-white w-full max-w-sm shrink-0 shadow-2xl">
                 <h1 className="text-2xl font-semibold mt-7">Log In Here</h1>
-                <form onSubmit={handleLogin} className="card-body">
+                <form onSubmit={handleLogin} className=" px-8">
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text text-white">Email</span>
@@ -82,6 +89,20 @@ const Login = () => {
                     </Link>
                   </div>
                 </form>
+                <div className="divider">OR</div>
+                <div className="flex flex-col gap-5 w-10/12 mx-auto pb-4">
+                  <button
+                    onClick={handleGoogleSignIn}
+                    className="btn bg-slate-950 text-white"
+                  >
+                    <FcGoogle className="size-6" />
+                    Continue with Google
+                  </button>
+                  <button className="btn bg-slate-950 text-white">
+                    <FaGithub className="size-6" />
+                    Continue with Github
+                  </button>
+                </div>
               </div>
               <div className="text-center text-white border-l-2 pl-5 lg:text-left">
                 <h1 className="text-5xl font-bold">Login now!</h1>

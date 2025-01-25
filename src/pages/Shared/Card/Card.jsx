@@ -37,7 +37,7 @@ const Card = ({session,handleRequestSession}) => {
             <strong>Registration Fee:</strong> $0 (Default)
           </p>
           <p>
-            <strong>Status:</strong> <span className='py-1 px-3 bg-purple-600 font-semibold rounded-lg'>Pending</span>
+            <strong>Status:</strong> <span className='py-1 px-3 bg-purple-600 font-semibold rounded-lg'>{session.status}</span>
           </p>
 
           <button

@@ -1,97 +1,58 @@
-// import React from 'react';
-
-// const AdminCard = ({session}) => {
-//     return (
-//         <div className="max-w-md mx-auto h-full w-96 bg-white shadow-lg rounded-lg ">
-//         <div className="p-6 text-black">
-//           <h2 className="text-xl font-bold mb-4">Create Study Session</h2>
-
-//           <p>
-//             <strong>Session Title:</strong> Sample Study Session
-//           </p>
-//           <p>
-//             <strong>Tutor Name:</strong> {session.tutorName}
-//           </p>
-//           <p>
-//             <strong>Tutor Email:</strong> {session.tutorEmail}
-//           </p>
-//           <p>
-//             <strong>Description: {session.sessionDescription}</strong> 
-//           </p>
-//           <p>
-//             <strong>Registration Start Date:</strong> 2025-01-30
-//           </p>
-//           <p>
-//             <strong>Registration End Date:</strong> 2025-02-10
-//           </p>
-//           <p>
-//             <strong>Class Start Date:</strong> 2025-02-15
-//           </p>
-//           <p>
-//             <strong>Class End Date:</strong> 2025-02-25
-//           </p>
-//           <p>
-//             <strong>Session Duration:</strong> 10 Days
-//           </p>
-//           <p>
-//             <strong>Registration Fee:</strong> $0 (Default)
-//           </p>
-//           <p>
-//             <strong>Status:</strong> <span className='py-1 px-3 bg-purple-600 font-semibold rounded-lg'>Pending</span>
-//           </p>
-
-//           <div className='flex justify-between mt-8'>
-//             <button className='btn bg-red-600 border-none text-white'>Reject</button>
-//             <button className='btn bg-green-600 border-none text-white'>Approve</button>
-//           </div>
-//         </div>
-//       </div>
-//     );
-// };
-
-// export default AdminCard;
 
 
 import React from 'react';
 
 const AdminCard = ({ session, onStatusChange }) => {
   return (
-    <div className="max-w-md mx-auto h-full w-96 bg-green-300 shadow-lg rounded-lg">
-      <div className="p-6 text-black">
-        <h2 className="text-xl font-bold mb-4">{session.sessionTitle}</h2>
-        <p>
-          <strong>Tutor Name:</strong> {session.tutorName}
-        </p>
-        <p>
-          <strong>Email:</strong> {session.tutorEmail}
-        </p>
-        <p>
-          <strong>Status:</strong>{' '}
-          <span
-            className={`py-1 px-3 font-semibold rounded-lg ${
-              session.status === 'Accepted'
-                ? 'bg-green-600'
-                : session.status === 'Rejected'
-                ? 'bg-red-600'
-                : 'bg-purple-600'
-            }`}
-          >
-            {session.status}
-          </span>
-        </p>
-        <div className="flex justify-between mt-8">
-          <button
-            className="btn bg-blue-600 border-none text-white"
-            onClick={() => onStatusChange(session)}
-          >
-            Change Status
-          </button>
-          <button className='btn bg-yellow-600 border-none text-white'>
-            Details
-          </button>
-        </div>
-      </div>
+    <div className="max-w-md mx-auto h-full w-96 bg-white shadow-lg rounded-xl overflow-hidden border border-gray-200">
+  <div className="p-6 text-gray-800">
+    <h2 className="text-2xl font-semibold mb-4 text-center text-gray-900">
+      {session.sessionTitle}
+    </h2>
+    <div className="mb-4">
+      <p className="text-sm font-medium text-gray-500">
+        <strong className="block text-gray-700">Tutor Name:</strong> 
+        {session.tutorName}
+      </p>
     </div>
+    <div className="mb-4">
+      <p className="text-sm font-medium text-gray-500">
+        <strong className="block text-gray-700">Email:</strong> 
+        {session.tutorEmail}
+      </p>
+    </div>
+    <div className="mb-6">
+      <p className="text-sm font-medium text-gray-500">
+        <strong className="block text-gray-700">Status:</strong> 
+        <span
+          className={`inline-block py-1 px-3 text-sm font-medium rounded-lg text-white ${
+            session.status === 'Accepted'
+              ? 'bg-green-500'
+              : session.status === 'Rejected'
+              ? 'bg-red-500'
+              : 'bg-purple-500'
+          }`}
+        >
+          {session.status}
+        </span>
+      </p>
+    </div>
+    <div className="flex justify-between items-center mt-8 space-x-4">
+      <button
+        className="w-1/2 py-2 px-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-200"
+        onClick={() => onStatusChange(session)}
+      >
+        Change Status
+      </button>
+      <button
+        className="w-1/2 py-2 px-4 bg-yellow-500 text-white font-medium rounded-lg hover:bg-yellow-600 transition-all duration-200"
+      >
+        Details
+      </button>
+    </div>
+  </div>
+</div>
+
   );
 };
 

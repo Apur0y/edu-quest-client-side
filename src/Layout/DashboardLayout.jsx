@@ -7,7 +7,7 @@ import useAuth from "../hooks/useAuth";
 import axios from "axios";
 
 const DashboardLayout = () => {
-  const { user } = useAuth();
+  const { user,student, setStuden } = useAuth();
   const [role, setRole] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:5000/users")
@@ -19,7 +19,6 @@ const DashboardLayout = () => {
   
   const [admin, setAdmin] = useState(false);
   const [tutor, setTutor] = useState(false);
-  const [student, setStudent] = useState(false);
 
   const [sidebar, setSidebar] = useState(true);
  
@@ -47,7 +46,7 @@ const DashboardLayout = () => {
   return (
     <div className="flex">
       <div
-        className={`w-64 ${
+        className={`w-64  ${
           sidebar ? "hidden" : "flex"
         } min-h-screen bg-teal-500 md:flex justify-between flex-col`}
       >

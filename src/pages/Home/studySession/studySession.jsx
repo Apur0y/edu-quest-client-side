@@ -20,7 +20,7 @@ const StudySession = () => {
   });
 
   if (isLoading) {
-    return <div>Loading....</div>;
+    return <div className="text-center">Loading....</div>;
   }
 
   if(isError){
@@ -39,7 +39,7 @@ const StudySession = () => {
 
     <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-5">
     {
-        sessions.map(session=><StudyCard session={session}></StudyCard>)
+        sessions.slice(0, 6).map((session)=><StudyCard key={session._id} session={session}></StudyCard>)
     }
     </div>
  
