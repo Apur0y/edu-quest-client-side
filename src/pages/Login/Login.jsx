@@ -4,12 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth, AuthContext } from "../../Providers/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const Login = () => {
   const { signIn,setStudent } = useContext(AuthContext);
   const location = useNavigate();
   const provider = new GoogleAuthProvider();
+  const gprovider = new GithubAuthProvider();
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -26,6 +27,11 @@ const Login = () => {
     signInWithPopup(auth,provider);
     setStudent(true)
   };
+
+  const handleGithubSignIn = ()=>{
+    signInWithPopup(auth, gprovider)
+    setStudent(true)
+  }
 
   return (
     <div>
@@ -98,7 +104,7 @@ const Login = () => {
                     <FcGoogle className="size-6" />
                     Continue with Google
                   </button>
-                  <button className="btn bg-slate-950 text-white">
+                  <button onClick={handleGithubSignIn} className="btn bg-slate-950 text-white">
                     <FaGithub className="size-6" />
                     Continue with Github
                   </button>

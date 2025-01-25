@@ -7,7 +7,7 @@ const StudyCard = ({ session }) => {
 
 
   return (
-    <div className="max-w-md mx-auto w-80 bg-white shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
+    <div className="max-w-md mx-auto w-80 bg-green-50 shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
       <div className="p-6">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">
           {session.sessionTitle}
