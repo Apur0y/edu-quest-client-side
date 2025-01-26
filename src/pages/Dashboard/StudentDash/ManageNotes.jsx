@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const ManageNotes = () => {
   const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [editingNote, setEditingNote] = useState(null);
-  const [updatedNote, setUpdatedNote] = useState({ title: "", description: "" });
+  const [updatedNote, setUpdatedNote] = useState({
+    title: "",
+    description: "",
+  });
 
   // Fetch all notes when the component mounts
   useEffect(() => {
@@ -22,30 +26,52 @@ const ManageNotes = () => {
 
     fetchNotes();
   }, []);
-console.log(notes);
+  console.log(notes);
   // Delete note function
-  const deleteNote = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/notes/${id}`);
-      setNotes((prevNotes) => prevNotes.filter((note) => note._id !== id));
-    } catch (error) {
-      console.error("Error deleting note:", error);
-    }
+
+  const deleteNote =  (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+         axios.delete(`http://localhost:5000/notes/${id}`)
+          .then(res=>{
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your note has been deleted.",
+              icon: "success"
+            });console.log(res.data);
+            
+          })
+    
+      }
+    });
+    
   };
 
   // Update note function
   const updateNote = async () => {
-    if (!updatedNote.title.trim() || !updatedNote.description.trim()) {
-      alert("Title and Description cannot be empty!");
-      return;
-    }
+
 
     try {
-      await axios.put(`http://localhost:5000/notes/${editingNote._id}`, updatedNote);
+      await axios.put(
+        `http://localhost:5000/notes/${editingNote._id}`,
+        updatedNote
+      );
       setNotes((prevNotes) =>
         prevNotes.map((note) =>
           note._id === editingNote._id
-            ? { ...note, title: updatedNote.title, description: updatedNote.description }
+            ? {
+                ...note,
+                title: updatedNote.title,
+                description: updatedNote.description,
+              }
             : note
         )
       );
@@ -60,23 +86,30 @@ console.log(notes);
   }
 
   return (
-    <div className="max-w-4xl mx-auto mt-10">
-      <h1 className="text-3xl font-bold text-gray-800 text-center mb-8">Manage Your Notes</h1>
+    <div className="max-w-4xl mx-auto mt-10 w-11/12">
+      <h1 className="text-3xl font-bold text-white underline text-center mb-8">
+        Manage Your Notes
+      </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {notes.map((note) => (
           <div
             key={note._id}
-            className="p-6 bg-white shadow-md rounded-lg border border-gray-200"
+            className="p-6 flex flex-col justify-between bg-white shadow-md rounded-lg border border-gray-200"
           >
-            <h2 className="text-xl font-semibold text-gray-800 mb-2">{note.title}</h2>
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">
+              {note.title}
+            </h2>
             <p className="text-gray-600 mb-4">{note.description}</p>
-            <div className="flex justify-between">
+            <div className="flex flex-col md:flex-row gap-2 justify-between">
               <button
                 className="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all"
                 onClick={() => {
                   setEditingNote(note);
-                  setUpdatedNote({ title: note.title, description: note.description });
+                  setUpdatedNote({
+                    title: note.title,
+                    description: note.description,
+                  });
                 }}
               >
                 Update
@@ -98,7 +131,9 @@ console.log(notes);
           <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-lg">
             <h2 className="text-2xl font-bold mb-4">Update Note</h2>
             <div className="mb-4">
-              <label className="block text-gray-700 font-bold mb-2">Title</label>
+              <label className="block text-gray-700 font-bold mb-2">
+                Title
+              </label>
               <input
                 type="text"
                 value={updatedNote.title}
@@ -109,11 +144,16 @@ console.log(notes);
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 font-bold mb-2">Description</label>
+              <label className="block text-gray-700 font-bold mb-2">
+                Description
+              </label>
               <textarea
                 value={updatedNote.description}
                 onChange={(e) =>
-                  setUpdatedNote((prev) => ({ ...prev, description: e.target.value }))
+                  setUpdatedNote((prev) => ({
+                    ...prev,
+                    description: e.target.value,
+                  }))
                 }
                 rows={5}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
