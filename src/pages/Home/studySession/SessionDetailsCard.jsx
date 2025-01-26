@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 
 const SessionDetailsCard = () => {
@@ -9,24 +10,24 @@ const SessionDetailsCard = () => {
   const { id } = useParams();
   const sessions = useLoaderData();
   const session = sessions.find((session) => session._id === id);
+console.log(id, session,sessions);
 
-  // const {data:users} =useQuery({
-  //   queryKey:["userData"],
-  //   queryFn: async ()=>{
-  //     const res =await axios.get("http://localhost:5000/users")
-  //     return res.data
-  //   }
-  // })
-  // console.log(user.role)
 
   const isGoing = new Date() < new Date(session.registrationEndDate) 
 
   const handleBookNow = (session) => {
     console.log(session);
-    const {_id, ...postSession} =session 
+    const {_id, ...others} =session 
+    const postSession = {...others, sessionID:_id}
     axios
       .post("http://localhost:5000/booked", postSession)
-      .then((res) => console.log(res.data));
+      .then((res) => {
+        Swal.fire({
+          title: "Booked",
+          text: "Your Session in Booked",
+          icon: "success"
+        });
+        console.log(res.data)});
   };
 
 

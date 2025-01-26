@@ -21,6 +21,7 @@ import ViewAllSession from "../pages/Dashboard/Admin/ViewAllSession";
 import ViewAllMaterials from "../pages/Dashboard/Admin/ViewAllMaterials";
 import LandingPage from "../pages/Dashboard/LandingPage";
 import SessionDetailsCard from "../pages/Home/studySession/SessionDetailsCard";
+import StudentDetailsCard from "../pages/Dashboard/StudentDash/StudentCard/StudentCard";
 
   
   
@@ -102,7 +103,14 @@ import SessionDetailsCard from "../pages/Home/studySession/SessionDetailsCard";
         {
           path:"landingpage",
           element:<LandingPage></LandingPage>
+        },
+        {
+          path: "dashboard/booked/:id",
+          loader: ({ params }) =>
+            fetch(`http://localhost:5000/booked/${params.id}`),
+          element: <StudentDetailsCard></StudentDetailsCard>,
         }
+        
       ]
 
     }

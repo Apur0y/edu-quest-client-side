@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const CreateNotes = ({ userEmail }) => {
 
@@ -28,6 +29,11 @@ const CreateNotes = ({ userEmail }) => {
 
     axios.post("http://localhost:5000/notes",formData)
     .then((res)=>{
+              Swal.fire({
+                title: "Note successful",
+                text: "Your note is added",
+                icon: "success"
+              });
         console.log(res.data)
     })
 

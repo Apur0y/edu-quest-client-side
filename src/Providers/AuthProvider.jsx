@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from "../firebase/firebase.init";
+import { useQuery } from "@tanstack/react-query";
 
 
 
@@ -12,6 +13,15 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [student, setStudent] = useState(false);
+
+    const {data:allUsers} =useQuery({
+    queryKey:["userData"],
+    queryFn: async ()=>{
+      const res =await axios.get("http://localhost:5000/users")
+      return res.data
+    }
+  })
+
 
 
 const createUser = (email,password)=>{
@@ -44,6 +54,8 @@ const profileInfo = (updatedData) => {
         console.log(currentUser);
     })
 
+    
+
     return ()=>{
         return unsubscribe()
     }
@@ -59,7 +71,8 @@ const profileInfo = (updatedData) => {
     profileInfo,
     googleSign,
     student,
-    setStudent
+    setStudent,
+    allUsers
   };
 
   return (

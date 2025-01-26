@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React from 'react';
 import StudyCard from '../../Home/studySession/StudyCard';
+import BookedCard from './StudentCard/BookedCard';
 
 const BookedSession = () => {
 
@@ -24,14 +25,15 @@ const BookedSession = () => {
 
 
     console.log(bookedSession);
+  
 
     return (
-        <div className='grid grid-cols-3 gap-5 my-14'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-14'>
            {
             bookedSession.map(session=>(
             
         
-              <StudyCard session={session}></StudyCard>
+              <BookedCard session={session}></BookedCard>
          
             )
           

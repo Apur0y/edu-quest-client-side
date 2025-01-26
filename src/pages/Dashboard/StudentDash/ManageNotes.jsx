@@ -22,7 +22,7 @@ const ManageNotes = () => {
 
     fetchNotes();
   }, []);
-
+console.log(notes);
   // Delete note function
   const deleteNote = async (id) => {
     try {
