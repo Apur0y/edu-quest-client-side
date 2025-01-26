@@ -5,7 +5,7 @@ import StudyCard from '../../Home/studySession/StudyCard';
 
 const BookedSession = () => {
 
-    const {data:bookedSession, isLoading, isError} = useQuery({
+    const {data:bookedSession, isLoading, isError,error} = useQuery({
         queryKey:["bookedsession"],
         queryFn: async ()=>{
             const res = await axios.get('http://localhost:5000/booked')
@@ -28,7 +28,14 @@ const BookedSession = () => {
     return (
         <div className='grid grid-cols-3 gap-5 my-14'>
            {
-            bookedSession.map(session=><StudyCard session={session}></StudyCard>)
+            bookedSession.map(session=>(
+            
+        
+              <StudyCard session={session}></StudyCard>
+         
+            )
+          
+          )
            }
         </div>
     );
