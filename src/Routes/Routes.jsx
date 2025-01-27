@@ -45,7 +45,7 @@ import StudentDetailsCard from "../pages/Dashboard/StudentDash/StudentCard/Stude
         {
           path:"sessions/:id",
           loader: ()=>fetch("http://localhost:5000/sessions"),
-          element: <SessionDetailsCard></SessionDetailsCard>
+          element: <PrivateRoutes><SessionDetailsCard></SessionDetailsCard></PrivateRoutes>
         }
    
       ]

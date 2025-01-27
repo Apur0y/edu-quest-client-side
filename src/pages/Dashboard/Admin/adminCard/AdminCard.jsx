@@ -1,16 +1,45 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import UpdateModal from "./UpdateModal";
 
-const AdminCard = ({ session, onStatusChange, handleStatusUpdate }) => {
+const AdminCard = ({ session, handleStatusUpdate }) => {
   const [status, setStatus] = useState(session.status === "Accepted");
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:5000/sessions/${id}`).then((res) => {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Session has been deleted.",
+            icon: "success",
+          });
+          console.log(res.data);
+        });
+      }
+    });
+  };
+
+  const handleSessionUpdate = (sessions) => {
+    document.getElementById("my_modal_5").showModal()
+  };
 
   // Optionally, if `session` prop can change, sync the state when it does
   useEffect(() => {
     setStatus(session.status === "Accepted");
   }, [session.status]);
-  
 
   return (
-    <div className="max-w-md mx-auto h-full w-96 bg-white shadow-lg rounded-xl overflow-hidden border border-gray-200">
+    <div className="max-w-md mx-auto h-full w-11/12 bg-white shadow-lg rounded-xl overflow-hidden border border-gray-200">
       <div className="p-6 text-gray-800">
         <h2 className="text-2xl font-semibold mb-4 text-center text-gray-900">
           {session.sessionTitle}
@@ -49,12 +78,12 @@ const AdminCard = ({ session, onStatusChange, handleStatusUpdate }) => {
               {" "}
               <button
                 className="w-1/2 py-2 px-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-200"
-                onClick={() => onStatusChange(session)}
+                onClick={() => handleSessionUpdate(session)}
               >
                 Update
               </button>
               <button
-                onClick={() => handleStatusUpdate("Rejected")}
+                onClick={() => handleDelete(session._id)}
                 className="w-1/2 py-2 px-4 bg-red-500 text-white font-medium rounded-lg hover:bg-yellow-600 transition-all duration-200"
               >
                 Delete
@@ -76,6 +105,19 @@ const AdminCard = ({ session, onStatusChange, handleStatusUpdate }) => {
           )}
         </div>
       </div>
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <div className="modal-action">
+            <form action="">
+            <UpdateModal></UpdateModal>
+            <button>CLose</button>
+
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };

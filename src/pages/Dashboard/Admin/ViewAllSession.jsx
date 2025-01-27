@@ -5,11 +5,13 @@ import AdminCard from "./adminCard/adminCard";
 const ViewAllSession = () => {
   const queryClient = useQueryClient();
   const [selectedSession, setSelectedSession] = useState(null); // Modal state
-  const [isFree, setIsFree] = useState(true); // Session type state
-  const [amount, setAmount] = useState(0); // Amount state
 
   // Fetch all sessions
-  const { data: sessions = [], isLoading, isError } = useQuery({
+  const {
+    data: sessions = [],
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["sessions"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/sessions?filter=Rejected");
@@ -18,13 +20,13 @@ const ViewAllSession = () => {
     },
   });
 
-  // Mutation for updating session status and payment details
+  // Mutation for updating session status
   const updateSessionStatus = useMutation({
-    mutationFn: async ({ sessionId, status, isFree, amount }) => {
+    mutationFn: async ({ sessionId, status }) => {
       const res = await fetch(`http://localhost:5000/sessions/${sessionId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status, isFree, amount }),
+        body: JSON.stringify({ status }),
       });
       if (!res.ok) throw new Error("Failed to update status");
       return res.json();
@@ -45,12 +47,11 @@ const ViewAllSession = () => {
   });
 
   const handleStatusUpdate = (status) => {
+    document.getElementById("my_modal_5").showModal()
     if (!selectedSession) return;
     updateSessionStatus.mutate({
       sessionId: selectedSession._id,
       status,
-      isFree,
-      amount: isFree ? 0 : amount,
     });
   };
 
@@ -58,7 +59,7 @@ const ViewAllSession = () => {
   if (isError) return <p>Failed to load sessions</p>;
 
   return (
-    <div className="grid grid-cols-3 gap-4 my-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-6">
       {sessions.map((session) => (
         <AdminCard
           key={session._id}
@@ -66,8 +67,6 @@ const ViewAllSession = () => {
           handleStatusUpdate={handleStatusUpdate}
           onStatusChange={(session) => {
             setSelectedSession(session);
-            setIsFree(true); // Default to "Free" when opening the modal
-            setAmount(0); // Reset amount
           }}
         />
       ))}
@@ -85,47 +84,6 @@ const ViewAllSession = () => {
               </span>
             </p>
 
-            {/* Radio Buttons for Free/Paid */}
-            <div className="my-4">
-              <label className="flex items-center mb-2">
-                <input
-                  type="radio"
-                  name="sessionType"
-                  value="free"
-                  checked={isFree}
-                  onChange={() => setIsFree(true)}
-                  className="mr-2"
-                />
-                Free
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="sessionType"
-                  value="paid"
-                  checked={!isFree}
-                  onChange={() => setIsFree(false)}
-                  className="mr-2"
-                />
-                Paid
-              </label>
-            </div>
-
-            {/* Amount Input */}
-            {!isFree && (
-              <div className="my-4">
-                <label className="block text-gray-700 font-bold mb-2">
-                  Amount (in USD)
-                </label>
-                <input
-                  type="number"
-                  value={amount}
-                  onChange={(e) => setAmount(Number(e.target.value))}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-            )}
-
             <div className="modal-action">
               <button
                 className="btn bg-gray-500"
@@ -134,19 +92,38 @@ const ViewAllSession = () => {
                 Cancel
               </button>
               <button
-                className="btn bg-green-600"
+                className="btn bg-green-600 text-white"
                 onClick={() => handleStatusUpdate("Accepted")}
               >
                 Accept
               </button>
               <button
-                className="btn bg-red-600"
+                className="btn bg-red-600 text-white"
                 onClick={() => handleStatusUpdate("Rejected")}
               >
                 Reject
               </button>
             </div>
           </div>
+          {/* Open the modal using document.getElementById('ID').showModal() method */}
+         
+          <dialog
+            id="my_modal_5"
+            className="modal modal-bottom sm:modal-middle"
+          >
+            <div className="modal-box">
+              <h3 className="font-bold text-lg">Hello!</h3>
+              <p className="py-4">
+                Press ESC key or click the button below to close
+              </p>
+              <div className="modal-action">
+                <form method="dialog">
+                  {/* if there is a button in form, it will close the modal */}
+                  <button className="btn">Close</button>
+                </form>
+              </div>
+            </div>
+          </dialog>
         </div>
       )}
     </div>

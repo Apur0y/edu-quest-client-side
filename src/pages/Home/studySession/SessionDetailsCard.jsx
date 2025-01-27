@@ -24,7 +24,7 @@ console.log(id, session,sessions);
       .then((res) => {
         Swal.fire({
           title: "Booked",
-          text: "Your Session in Booked",
+          text: "Your Session in Booked.",
           icon: "success"
         });
         console.log(res.data)});
