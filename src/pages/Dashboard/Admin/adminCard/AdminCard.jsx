@@ -109,10 +109,10 @@ const AdminCard = ({ session, handleStatusUpdate }) => {
 
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
+         <button>CLose</button>
           <div className="modal-action">
             <form action="">
-            <UpdateModal></UpdateModal>
-            <button>CLose</button>
+                       <UpdateModal ></UpdateModal>
 
             </form>
           </div>

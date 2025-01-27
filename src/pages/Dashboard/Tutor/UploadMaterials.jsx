@@ -63,7 +63,7 @@ const UploadMaterials = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formDataToSend = new FormData();
-        formDataToSend.append('title', formData.title);
+        formDataToSend.append('title', formData.sessionTitle);
         formDataToSend.append('sessionId', formData.sessionId);
         formDataToSend.append('tutorEmail', formData.tutorEmail);
         formDataToSend.append('image', formData.image);
@@ -126,7 +126,7 @@ const UploadMaterials = () => {
                                 <input 
                                     type="text" 
                                     name="title"
-                                    value={formData.title}
+                                    value={formData.sessionTitle}
                                     onChange={handleInputChange}
                                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-300" 
                                     placeholder="Material Title"

@@ -27,13 +27,19 @@ const CreatedSession = () => {
   );
   console.log(tutorSessions);
 
-  const handleRequestSession=()=>{
-console.log("Do it latter")
-  }
+  const handleRequestSession = (session) => {
+    console.log("Do it latter",session);
+  };
 
   return (
     <div className="grid grid-cols-3 gap-5">
-      {tutorSessions.map((session) => <Card key={session._id} session={session} handleRequestSession={handleRequestSession}></Card>)}
+      {tutorSessions.map((session) => (
+        <Card
+          key={session._id}
+          session={session}
+          handleRequestSession={handleRequestSession}
+        ></Card>
+      ))}
     </div>
   );
 };
