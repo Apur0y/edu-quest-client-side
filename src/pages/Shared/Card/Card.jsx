@@ -2,7 +2,7 @@ import React from 'react';
 
 const Card = ({session,handleRequestSession}) => {
     return (
-        <div className="max-w-md mx-auto h-full w-96 bg-green-500 shadow-lg rounded-lg ">
+        <div className="max-w-md mx-auto h-full w-72 bg-green-100 shadow-lg rounded-lg ">
         <div className="p-6 text-black">
           <h2 className="text-xl font-bold mb-4">{session.sessionTitle}</h2>
 
@@ -42,14 +42,22 @@ const Card = ({session,handleRequestSession}) => {
               <strong className="text-black">Registration Fee:</strong>{" "}
               {session.registrationFee}
             </p>
+            <p className="text-black">
+              <strong className="text-black">Registration Fee:</strong>{" "}
+              {session.status}
+            </p>
         
 
-          <button
-            onClick={()=>handleRequestSession(session)}
-            className="mt-6 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-          >
-            Request Session Creation
-          </button>
+       {
+        session.status== "Rejected"?    <button
+        onClick={()=>handleRequestSession(session)}
+        className="mt-6 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+      >
+       Send Request
+      </button>
+      :
+      <></>
+       }
         </div>
       </div>
     );

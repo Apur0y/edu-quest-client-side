@@ -17,7 +17,7 @@ const CreateSession = () => {
         classEndDate: '',
         sessionDuration: 1,
         registrationFee: 0, // Default 0, only admin can modify
-        status: 'pending', // Default pending
+        status: 'Pending', // Default pending
     });
 
     const handleInputChange = (event) => {

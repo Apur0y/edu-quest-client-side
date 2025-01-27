@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAuth from "../../../hooks/useAuth";
 import Card from "../../Shared/Card/Card";
+import axios from "axios";
 
 const CreatedSession = () => {
   const { user } = useAuth();
@@ -28,11 +29,15 @@ const CreatedSession = () => {
   console.log(tutorSessions);
 
   const handleRequestSession = (session) => {
-    console.log("Do it latter",session);
+    const updatedStatus = { status: "Pending" };
+    axios.put(`http://localhost:5000/sessions/${session._id}`,updatedStatus)
+    .then(res=>{
+      console.log(res.data);
+    })
   };
 
   return (
-    <div className="grid grid-cols-3 gap-5">
+    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 w-11/12 my-6 mx-auto">
       {tutorSessions.map((session) => (
         <Card
           key={session._id}
