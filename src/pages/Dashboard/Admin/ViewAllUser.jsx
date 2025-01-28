@@ -16,7 +16,7 @@ const ViewAllUser = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/users");
+      const res = await axios.get("https://eduquest-server-side.vercel.app/users");
       return res.data;
     },
   });
@@ -44,7 +44,7 @@ const ViewAllUser = () => {
     const role = event.target.role.value;
 
     try {
-      const res = await axios.put(`http://localhost:5000/users/${selectedUser._id}`, {
+      const res = await axios.put(`https://eduquest-server-side.vercel.app/users/${selectedUser._id}`, {
         role,
       });
       console.log(res.data.message);

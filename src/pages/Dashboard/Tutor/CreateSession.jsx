@@ -28,7 +28,7 @@ const CreateSession = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('Form Data:', formData);
-        axios.post("http://localhost:5000/sessions",formData)
+        axios.post("https://eduquest-server-side.vercel.app/sessions",formData)
         .then(res=>{
             
             console.log(res.data)

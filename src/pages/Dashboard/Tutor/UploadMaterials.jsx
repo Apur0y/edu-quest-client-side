@@ -9,7 +9,7 @@ const UploadMaterials = () => {
         queryKey: ["approvedSession"],
         queryFn: async () => {
             const result = await axios.get(
-                "http://localhost:5000/sessions?filter=Rejected"
+                "https://eduquest-server-side.vercel.app/sessions?filter=Rejected"
             );
             return result.data;
         },
@@ -70,7 +70,7 @@ const UploadMaterials = () => {
         formDataToSend.append('link', formData.link);
 
         try {
-            const response = await axios.post('http://localhost:5000/materials', formDataToSend, {
+            const response = await axios.post('https://eduquest-server-side.vercel.app/materials', formDataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

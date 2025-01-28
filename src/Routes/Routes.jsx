@@ -21,6 +21,8 @@ import ViewAllSession from "../pages/Dashboard/Admin/ViewAllSession";
 import ViewAllMaterials from "../pages/Dashboard/Admin/ViewAllMaterials";
 import LandingPage from "../pages/Dashboard/LandingPage";
 import SessionDetailsCard from "../pages/Home/studySession/SessionDetailsCard";
+import Payment from "../pages/Home/studySession/Payment";
+import BookedCard from "../pages/Dashboard/StudentDash/StudentCard/BookedCard";
 import StudentDetailsCard from "../pages/Dashboard/StudentDash/StudentCard/StudentCard";
 
   
@@ -44,8 +46,12 @@ import StudentDetailsCard from "../pages/Dashboard/StudentDash/StudentCard/Stude
         },
         {
           path:"sessions/:id",
-          loader: ()=>fetch("http://localhost:5000/sessions"),
+          loader: ()=>fetch("https://eduquest-server-side.vercel.app/sessions"),
           element: <PrivateRoutes><SessionDetailsCard></SessionDetailsCard></PrivateRoutes>
+        },
+        {
+          path:"/payment",
+          element: <Payment></Payment>
         }
    
       ]
@@ -105,12 +111,12 @@ import StudentDetailsCard from "../pages/Dashboard/StudentDash/StudentCard/Stude
           element:<LandingPage></LandingPage>
         },
         {
-          path: "dashboard/booked/:id",
+          path: "bookedsession/:id",
           loader: ({ params }) =>
-            fetch(`http://localhost:5000/booked/${params.id}`),
-          element: <StudentDetailsCard></StudentDetailsCard>,
+            fetch(`https://eduquest-server-side.vercel.app/booked/${params.id}`),
+          element: <StudentDetailsCard></StudentDetailsCard>
         }
-        
+    
       ]
 
     }

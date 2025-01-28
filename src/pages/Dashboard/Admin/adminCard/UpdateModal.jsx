@@ -28,7 +28,7 @@ const UpdateModal = ({ onClose }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('Form Data:', formData);
-        axios.put("http://localhost:5000/sessions", formData)
+        axios.put("https://eduquest-server-side.vercel.app/sessions", formData)
             .then(res => {
                 console.log(res.data);
                 Swal.fire({

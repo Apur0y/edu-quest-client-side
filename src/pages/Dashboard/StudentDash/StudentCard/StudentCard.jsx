@@ -1,22 +1,12 @@
 import React from "react";
+import { useLoaderData, useParams } from "react-router-dom";
 
 const StudentDetailsCard = () => {
 
     const { id } = useParams();
-    const sessions = useLoaderData();
-    const session = sessions.find((session) => session._id === id);
-  console.log(id, session,sessions);
-  
-  
-    // const isGoing = new Date() < new Date(session.registrationEndDate) 
-  
-    // const handleBookNow = (session) => {
-    //   console.log(session);
-    //   const {_id, ...postSession} =session 
-    //   axios
-    //     .post("http://localhost:5000/booked", postSession)
-    //     .then((res) => console.log(res.data));
-    // };
+    const session = useLoaderData();
+    // const session = sessions.find((session) => session._id === id);
+
   
 
   return (

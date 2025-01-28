@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
     const {data:allUsers} =useQuery({
     queryKey:["userData"],
     queryFn: async ()=>{
-      const res =await axios.get("http://localhost:5000/users")
+      const res =await axios.get("https://eduquest-server-side.vercel.app/users")
       return res.data
     }
   })
@@ -55,7 +55,7 @@ const profileInfo = (updatedData) => {
         if(currentUser){
          
           const userInfo = {email: currentUser.email};
-          axios.post('http://localhost:5000/jwt', userInfo)
+          axios.post('https://eduquest-server-side.vercel.app/jwt', userInfo)
           .then(res=>{
             if(res.data.token){
               localStorage.setItem('access-token', res.data.token)

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { useAsyncValue, useLoaderData, useParams } from "react-router-dom";
+import { useAsyncValue, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
@@ -9,27 +9,41 @@ const SessionDetailsCard = () => {
   
   const { id } = useParams();
   const sessions = useLoaderData();
+  const navigate = useNavigate()
   const session = sessions.find((session) => session._id === id);
 
 
   const {user,allUsers} = useAuth();
   const currentUser= allUsers.find(res=>res.email == user.email)
 
-  const isGoing = (new Date() < new Date(session.registrationEndDate)) && 
-  (currentUser.role === "admin" && currentUser.role === "tutor");
+  const isGoing = 
+  new Date() < new Date(session.registrationEndDate) && 
+  currentUser.role === "student";
+
 
   const handleBookNow = (session) => {
-    console.log(session);
+
     const { _id, ...others } = session;
-    const postSession = { ...others, sessionID: _id };
-    axios.post("http://localhost:5000/booked", postSession).then((res) => {
-      Swal.fire({
-        title: "Booked",
-        text: "Your Session in Booked.",
-        icon: "success",
+    const postSession = { ...others, sessionID: _id,studentEmail: user.email };
+
+
+    if(session.registrationFee > 0){
+      navigate("/payment",{ state: {session} });
+
+
+    }
+    else{
+      axios.post("https://eduquest-server-side.vercel.app/booked", postSession).then((res) => {
+        Swal.fire({
+          title: "Booked",
+          text: "Your Session in Booked.",
+          icon: "success",
+        });
+        console.log(res.data);
       });
-      console.log(res.data);
-    });
+    }
+
+
   };
 
   return (

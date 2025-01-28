@@ -15,7 +15,7 @@ const ManageNotes = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/notes");
+        const response = await axios.get("https://eduquest-server-side.vercel.app/notes");
         setNotes(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -40,7 +40,7 @@ const ManageNotes = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-         axios.delete(`http://localhost:5000/notes/${id}`)
+         axios.delete(`https://eduquest-server-side.vercel.app/notes/${id}`)
           .then(res=>{
             Swal.fire({
               title: "Deleted!",
@@ -61,7 +61,7 @@ const ManageNotes = () => {
 
     try {
       await axios.put(
-        `http://localhost:5000/notes/${editingNote._id}`,
+        `https://eduquest-server-side.vercel.app/notes/${editingNote._id}`,
         updatedNote
       );
       setNotes((prevNotes) =>

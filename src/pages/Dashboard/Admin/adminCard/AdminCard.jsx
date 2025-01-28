@@ -17,7 +17,7 @@ const AdminCard = ({ session, handleStatusUpdate }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/sessions/${id}`).then((res) => {
+        axios.delete(`https://eduquest-server-side.vercel.app/sessions/${id}`).then((res) => {
           Swal.fire({
             title: "Deleted!",
             text: "Session has been deleted.",

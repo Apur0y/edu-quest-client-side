@@ -13,7 +13,7 @@ const StudySession = () => {
     queryKey: ["bookedSessions"],
     queryFn: async () => {
       const res = await axios.get(
-        "http://localhost:5000/sessions?filter=Rejected"
+        "https://eduquest-server-side.vercel.app/sessions?filter=Rejected"
       );
       return res.data;
     },

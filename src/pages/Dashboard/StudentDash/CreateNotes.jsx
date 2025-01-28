@@ -27,7 +27,7 @@ const CreateNotes = ({ userEmail }) => {
     const { title, description } = formData;
 
 
-    axios.post("http://localhost:5000/notes",formData)
+    axios.post("https://eduquest-server-side.vercel.app/notes",formData)
     .then((res)=>{
               Swal.fire({
                 title: "Note successful",

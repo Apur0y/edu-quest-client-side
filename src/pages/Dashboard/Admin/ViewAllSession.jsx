@@ -14,7 +14,7 @@ const ViewAllSession = () => {
   } = useQuery({
     queryKey: ["sessions"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/sessions?filter=Rejected");
+      const res = await fetch("https://eduquest-server-side.vercel.app/sessions?filter=Rejected");
       if (!res.ok) throw new Error("Failed to fetch sessions");
       return res.json();
     },
@@ -23,7 +23,7 @@ const ViewAllSession = () => {
   // Mutation for updating session status
   const updateSessionStatus = useMutation({
     mutationFn: async ({ sessionId, status }) => {
-      const res = await fetch(`http://localhost:5000/sessions/${sessionId}`, {
+      const res = await fetch(`https://eduquest-server-side.vercel.app/sessions/${sessionId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status }),

@@ -10,7 +10,7 @@ const DashboardLayout = () => {
   const { user,student, setStudent } = useAuth();
   const [role, setRole] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/users")
+    axios.get("https://eduquest-server-side.vercel.app/users")
     .then((res) => setRole(res.data));
   }, []);
   

@@ -31,7 +31,7 @@ const Register = () => {
           };
 
           // Post user data to the backend
-          return axios.post("http://localhost:5000/users", userData);
+          return axios.post("https://eduquest-server-side.vercel.app/users", userData);
         })
         .then(() => {
           // Navigate after successful registration and data submission

@@ -10,7 +10,7 @@ const MaterialsList = () => {
   } = useQuery({
     queryKey: ["materials"],
     queryFn: async () => {
-      const response = await axios.get("http://localhost:5000/materials");
+      const response = await axios.get("https://eduquest-server-side.vercel.app/materials");
       return response.data;
     },
   });

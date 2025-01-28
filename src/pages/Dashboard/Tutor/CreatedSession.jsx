@@ -14,7 +14,7 @@ const CreatedSession = () => {
   } = useQuery({
     queryKey: ["sessions"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/sessions");
+      const res = await fetch("https://eduquest-server-side.vercel.app/sessions");
       return res.json();
     },
   });
@@ -30,7 +30,7 @@ const CreatedSession = () => {
 
   const handleRequestSession = (session) => {
     const updatedStatus = { status: "Pending" };
-    axios.put(`http://localhost:5000/sessions/${session._id}`,updatedStatus)
+    axios.put(`https://eduquest-server-side.vercel.app/sessions/${session._id}`,updatedStatus)
     .then(res=>{
       console.log(res.data);
     })

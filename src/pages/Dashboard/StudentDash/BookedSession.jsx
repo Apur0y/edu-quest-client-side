@@ -9,11 +9,12 @@ const BookedSession = () => {
     const {data:bookedSession, isLoading, isError,error} = useQuery({
         queryKey:["bookedsession"],
         queryFn: async ()=>{
-            const res = await axios.get('http://localhost:5000/booked')
+            const res = await axios.get('https://eduquest-server-side.vercel.app/booked')
             return res.data
         }
     })
 
+    // const bookedSession = bookedSessions.filter(session=>session.)
     
   if (isLoading) {
     return <div className="text-center">Loading....</div>;
@@ -28,7 +29,7 @@ const BookedSession = () => {
   
 
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-14'>
+        <div className='grid w-11/12 mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-14'>
            {
             bookedSession.map(session=>(
             
