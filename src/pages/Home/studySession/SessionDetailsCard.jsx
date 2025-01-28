@@ -1,36 +1,36 @@
 import axios from "axios";
 import React from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useAsyncValue, useLoaderData, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-
+import useAuth from "../../../hooks/useAuth";
 
 const SessionDetailsCard = () => {
-
+  
   const { id } = useParams();
   const sessions = useLoaderData();
   const session = sessions.find((session) => session._id === id);
-console.log(id, session,sessions);
 
 
-  const isGoing = new Date() < new Date(session.registrationEndDate) 
+  const {user,allUsers} = useAuth();
+  const currentUser= allUsers.find(res=>res.email == user.email)
+
+  const isGoing = (new Date() < new Date(session.registrationEndDate)) && 
+  (currentUser.role === "admin" && currentUser.role === "tutor");
 
   const handleBookNow = (session) => {
     console.log(session);
-    const {_id, ...others} =session 
-    const postSession = {...others, sessionID:_id}
-    axios
-      .post("http://localhost:5000/booked", postSession)
-      .then((res) => {
-        Swal.fire({
-          title: "Booked",
-          text: "Your Session in Booked.",
-          icon: "success"
-        });
-        console.log(res.data)});
+    const { _id, ...others } = session;
+    const postSession = { ...others, sessionID: _id };
+    axios.post("http://localhost:5000/booked", postSession).then((res) => {
+      Swal.fire({
+        title: "Booked",
+        text: "Your Session in Booked.",
+        icon: "success",
+      });
+      console.log(res.data);
+    });
   };
-
-
 
   return (
     <div className="flex items-center justify-center min-h-screen my-24 md:mt-16 w-11/12 mx-auto">
@@ -88,9 +88,11 @@ console.log(id, session,sessions);
           <div className="flex justify-end mt-6">
             <button
               onClick={() => handleBookNow(session)}
-              className={`px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md ${isGoing? "hover:bg-green-600" : "bg-slate-500"}  transition-all`}
-            disabled={!isGoing}
-           >
+              className={`px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md ${
+                isGoing ? "hover:bg-green-600" : "bg-slate-500"
+              }  transition-all`}
+              disabled={!isGoing}
+            >
               Book Now
             </button>
           </div>

@@ -3,7 +3,7 @@ import axios from "axios";
 
 const MaterialsList = () => {
   const {
-    data: materials = [],
+    data: materials,
     isLoading,
     isError,
     error,

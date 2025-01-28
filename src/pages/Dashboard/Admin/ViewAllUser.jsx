@@ -16,11 +16,15 @@ const ViewAllUser = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users");
-      if (!res.ok) throw new Error("Failed to fetch users");
-      return res.json();
+      const res = await axios.get("http://localhost:5000/users");
+      return res.data;
     },
   });
+  // ,{
+  //   headers:{
+  //     authorization: `Bearer ${localStorage.getItem('access-token')}`
+  //   }
+  // }
 
   if (isLoading) return <p>Loading users...</p>;
   if (isError) return <p>Failed to load users</p>;
