@@ -3,7 +3,7 @@ import axios from "axios";
 import React from "react";
 import StudyCard from "./StudyCard";
 
-const StudySession = () => {
+const StudySession = ({all}) => {
   const {
     data: sessions,
     isLoading,
@@ -27,7 +27,7 @@ const StudySession = () => {
     return <div>Error Occur:{error.message}</div>
   }
 
-  console.log(sessions);
+  
 
 
   
@@ -39,6 +39,9 @@ const StudySession = () => {
 
     <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-5">
     {
+
+     all? sessions.map((session)=><StudyCard key={session._id} session={session}></StudyCard>):
+
         sessions.slice(0, 6).map((session)=><StudyCard key={session._id} session={session}></StudyCard>)
     }
     </div>

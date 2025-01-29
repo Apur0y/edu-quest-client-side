@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
+import Swal from 'sweetalert2';
 
 const UploadMaterials = () => {
     const { user } = useAuth();
@@ -74,7 +75,14 @@ const UploadMaterials = () => {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
-            });
+            })
+             Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Materials Uploaded",
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
             console.log('Upload Successful:', response.data);
             handleCloseModal();
         } catch (error) {

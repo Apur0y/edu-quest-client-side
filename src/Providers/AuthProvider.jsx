@@ -68,7 +68,7 @@ const profileInfo = (updatedData) => {
 
         }
         setLoading(false)
-        console.log(currentUser);
+      ;
     })
 
     

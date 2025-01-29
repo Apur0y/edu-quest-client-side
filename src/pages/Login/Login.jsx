@@ -17,7 +17,7 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+
     signIn(email, password).then((res) => {
       location("/");
     });
@@ -28,10 +28,20 @@ const Login = () => {
     setStudent(true)
   };
 
-  const handleGithubSignIn = ()=>{
+  const handleGithubSignIn = () => {
     signInWithPopup(auth, gprovider)
-    setStudent(true)
-  }
+      .then((result) => {
+        // User successfully signed in
+        console.log("GitHub User:", result.user);
+        setStudent(true);
+        location("/"); // Redirect after successful login
+      })
+      .catch((error) => {
+        console.error("GitHub Login Error:", error);
+        Swal.fire("Error!", "GitHub login failed.", "error");
+      });
+  };
+  
 
   return (
     <div>

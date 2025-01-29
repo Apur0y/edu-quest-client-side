@@ -42,7 +42,7 @@ const CreateSession = () => {
     };
 
     return (
-        <div className="bg-white p-8 rounded-lg shadow-md my-6 max-w-lg mx-auto">
+        <div className="bg-white p-8 w-11/12 rounded-lg shadow-md my-6 max-w-lg mx-auto">
             <h2 className="text-2xl font-bold mb-6 text-gray-800">Create Study Session</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">

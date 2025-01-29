@@ -3,6 +3,7 @@ import React from "react";
 import useAuth from "../../../hooks/useAuth";
 import Card from "../../Shared/Card/Card";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const CreatedSession = () => {
   const { user } = useAuth();
@@ -21,17 +22,23 @@ const CreatedSession = () => {
 
   if (isLoading) return <p>Loading sessions...</p>;
   if (isError) return <p>Failed to load sessions</p>;
-  console.log(sessions);
 
   const tutorSessions = sessions.filter(
     (session) => session.tutorEmail == user.email
   );
-  console.log(tutorSessions);
+ 
 
   const handleRequestSession = (session) => {
     const updatedStatus = { status: "Pending" };
     axios.put(`https://eduquest-server-side.vercel.app/sessions/${session._id}`,updatedStatus)
     .then(res=>{
+       Swal.fire({
+                      position: "center",
+                      icon: "success",
+                      title: "Request sended",
+                      showConfirmButton: false,
+                      timer: 1500
+                    });
       console.log(res.data);
     })
   };

@@ -23,10 +23,10 @@ const AllTutors = () => {
   if (isError) {
    return <div>Error: </div>;
   }
-  console.log(users);
+
 
   const tutors = users?.filter((user) => user.role === "tutor");
-  console.log(tutors);
+
 
   return( 
   <div className=" w-11/12 mx-auto my-9">

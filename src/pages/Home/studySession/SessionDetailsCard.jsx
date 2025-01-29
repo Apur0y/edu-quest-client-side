@@ -1,53 +1,60 @@
 import axios from "axios";
 import React from "react";
-import { useAsyncValue, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import { CiStar } from "react-icons/ci";
+import { FaStar } from "react-icons/fa";
 
 const SessionDetailsCard = () => {
-  
   const { id } = useParams();
   const sessions = useLoaderData();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const { data: reviews = [] } = useQuery({
+    queryKey: ["reviews"],
+    queryFn: async () => {
+      const result = await axios.get(
+        "https://eduquest-server-side.vercel.app/reviews"
+      );
+      return result.data;
+    },
+  });
+
   const session = sessions.find((session) => session._id === id);
+  console.log(session._id);
 
+  const filteredReviews = reviews.filter((res) => res.sessionID === session._id);
+  console.log(filteredReviews);
 
-  const {user,allUsers} = useAuth();
-  const currentUser= allUsers.find(res=>res.email == user.email)
+  const { user, allUsers } = useAuth();
+  const currentUser = allUsers.find((res) => res.email === user.email);
 
-  const isGoing = 
-  new Date() < new Date(session.registrationEndDate) && 
-  currentUser.role === "student";
-
+  const isGoing =
+    new Date() < new Date(session.registrationEndDate) &&
+    currentUser?.role === "student";
 
   const handleBookNow = (session) => {
-
     const { _id, ...others } = session;
-    const postSession = { ...others, sessionID: _id,studentEmail: user.email };
+    const postSession = { ...others, sessionID: _id, studentEmail: user.email };
 
-
-    if(session.registrationFee > 0){
-      navigate("/payment",{ state: {session} });
-
-
-    }
-    else{
+    if (session.registrationFee > 0) {
+      navigate("/payment", { state: { session } });
+    } else {
       axios.post("https://eduquest-server-side.vercel.app/booked", postSession).then((res) => {
         Swal.fire({
           title: "Booked",
-          text: "Your Session in Booked.",
+          text: "Your session is booked.",
           icon: "success",
         });
         console.log(res.data);
       });
     }
-
-
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen my-24 md:mt-16 w-11/12 mx-auto">
+    <div className="flex flex-col items-center justify-center min-h-screen my-24 md:mt-16 w-11/12 mx-auto">
       <div className="max-w-lg w-full bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
         <div className="bg-green-500 text-white text-center p-6">
           <h2 className="text-2xl underline font-bold">Session Details</h2>
@@ -104,11 +111,40 @@ const SessionDetailsCard = () => {
               onClick={() => handleBookNow(session)}
               className={`px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md ${
                 isGoing ? "hover:bg-green-600" : "bg-slate-500"
-              }  transition-all`}
+              } transition-all`}
               disabled={!isGoing}
             >
               Book Now
             </button>
+          </div>
+
+          {/* Reviews Section */}
+          <div className="mt-8">
+            <h3 className="text-lg font-semibold text-gray-700 underline">
+              Reviews
+            </h3>
+            {filteredReviews.length > 0 ? (
+              <div className="mt-4 space-y-4">
+                {filteredReviews.map((res, index) => (
+                  <div
+                    key={index}
+                    className="p-4 border border-gray-300 rounded-lg shadow-md"
+                  >
+                    <p className="text-gray-800">
+                      <strong>Review:</strong>
+                      {res.text}
+                    </p>
+                    <p className="text-gray-600 flex">
+                      <strong>Rating:</strong><FaStar className="my-auto mr-1 ml-2 text-yellow-400"/> {res.rating} / 5
+                    </p>
+              
+
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-500 mt-2">No reviews yet.</p>
+            )}
           </div>
         </div>
       </div>
@@ -117,3 +153,4 @@ const SessionDetailsCard = () => {
 };
 
 export default SessionDetailsCard;
+  

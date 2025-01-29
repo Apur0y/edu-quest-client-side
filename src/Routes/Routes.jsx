@@ -24,6 +24,8 @@ import SessionDetailsCard from "../pages/Home/studySession/SessionDetailsCard";
 import Payment from "../pages/Home/studySession/Payment";
 import BookedCard from "../pages/Dashboard/StudentDash/StudentCard/BookedCard";
 import StudentDetailsCard from "../pages/Dashboard/StudentDash/StudentCard/StudentCard";
+import MaterialsCard from "../pages/Dashboard/StudentDash/StudentCard/MaterialsCard";
+import AllSession from "../pages/AllSessions/AllSession";
 
   
   
@@ -52,6 +54,10 @@ import StudentDetailsCard from "../pages/Dashboard/StudentDash/StudentCard/Stude
         {
           path:"/payment",
           element: <Payment></Payment>
+        },
+        {
+          path:"/allsession",
+          element:<AllSession></AllSession>
         }
    
       ]
@@ -115,6 +121,12 @@ import StudentDetailsCard from "../pages/Dashboard/StudentDash/StudentCard/Stude
           loader: ({ params }) =>
             fetch(`https://eduquest-server-side.vercel.app/booked/${params.id}`),
           element: <StudentDetailsCard></StudentDetailsCard>
+        },
+        {
+          path: "materials/:id",
+          loader: ({ params }) =>
+            fetch(`https://eduquest-server-side.vercel.app/booked/${params.id}`),
+          element: <MaterialsCard></MaterialsCard>
         }
     
       ]

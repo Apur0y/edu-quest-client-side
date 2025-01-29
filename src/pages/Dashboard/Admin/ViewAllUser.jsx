@@ -47,7 +47,7 @@ const ViewAllUser = () => {
       const res = await axios.put(`https://eduquest-server-side.vercel.app/users/${selectedUser._id}`, {
         role,
       });
-      console.log(res.data.message);
+
       // Close the modal and refresh data
       setModalVisible(false);
     } catch (error) {

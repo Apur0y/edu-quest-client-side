@@ -35,6 +35,10 @@ const Navbar = () => {
       </li>
   
       <li>
+        <Link to="/allsession">All Session</Link>
+      </li>
+  
+      <li>
         <Link to="/dashboard/landingpage">Dashboard</Link>
       </li>
     </>

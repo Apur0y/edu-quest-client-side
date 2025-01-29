@@ -1,9 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import useAuth from "../../../hooks/useAuth";
 
 const MaterialsList = () => {
+
+  const {user} = useAuth()
+
   const {
-    data: materials,
+    data: allmaterials,
     isLoading,
     isError,
     error,
@@ -14,7 +18,7 @@ const MaterialsList = () => {
       return response.data;
     },
   });
-  console.log(materials);
+  
   if (isLoading) {
     return <p>Loading materials...</p>;
   }
@@ -23,10 +27,13 @@ const MaterialsList = () => {
     return <p>Error fetching materials: {error.message}</p>;
   }
 
+  const materials = allmaterials.filter(res=>res.tutorEmail === user?.email )
+
+
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Uploaded Materials</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <h1 className="text-2xl text-center text-white font-bold mb-4">Uploaded Materials</h1>
+      <div className="grid  w-11/12 mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {materials.map((material) => (
           <div
             key={material._id}

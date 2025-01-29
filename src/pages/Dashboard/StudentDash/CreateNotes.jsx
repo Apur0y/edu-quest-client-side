@@ -38,7 +38,7 @@ const CreateNotes = ({ userEmail }) => {
     })
 
     // Submit logic here (e.g., API call)
-    console.log("Form submitted:", formData);
+
     setError(""); // Clear errors on successful submission
 
     // Reset form
@@ -53,7 +53,7 @@ const CreateNotes = ({ userEmail }) => {
 
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-6 bg-green-50 shadow-lg rounded-lg border border-gray-200">
+    <div className="max-w-2xl w-11/12 mx-auto mt-10 p-6 bg-green-50 shadow-lg rounded-lg border border-gray-200">
       <h1 className="text-3xl font-bold text-gray-800 text-center mb-6">
         Create Your Note
       </h1>

@@ -3,10 +3,11 @@ import axios from 'axios';
 import React from 'react';
 import StudyCard from '../../Home/studySession/StudyCard';
 import BookedCard from './StudentCard/BookedCard';
+import useAuth from '../../../hooks/useAuth';
 
 const BookedSession = () => {
-
-    const {data:bookedSession, isLoading, isError,error} = useQuery({
+const {user} = useAuth()
+    const {data:bookedSessions, isLoading, isError,error} = useQuery({
         queryKey:["bookedsession"],
         queryFn: async ()=>{
             const res = await axios.get('https://eduquest-server-side.vercel.app/booked')
@@ -24,8 +25,9 @@ const BookedSession = () => {
     return <div>Error Occur:{error.message}</div>
   }
 
+  const bookedSession = bookedSessions.filter(res=>res.studentEmail === user?.email)
 
-    console.log(bookedSession);
+
   
 
     return (
@@ -34,7 +36,7 @@ const BookedSession = () => {
             bookedSession.map(session=>(
             
         
-              <BookedCard session={session}></BookedCard>
+              <BookedCard session={session} buttonName={"View Details"} ></BookedCard>
          
             )
           

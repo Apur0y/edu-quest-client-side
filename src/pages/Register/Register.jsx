@@ -17,7 +17,7 @@ const Register = () => {
     const photoUrl = form.photo.value;
     const password = form.password.value;
     const role = form.role.value;
-    console.log(role, email);
+    
     createUser(email, password)
       .then((res) => {
         profileInfo({ displayName: name, photoURL: photoUrl })

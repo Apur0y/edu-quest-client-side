@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import UpdateModal from "./UpdateModal";
 
-const AdminCard = ({ session, handleStatusUpdate }) => {
+const AdminCard = ({ session, handleStatusUpdate, onStatusChange }) => {
   const [status, setStatus] = useState(session.status === "Accepted");
 
   const handleDelete = (id) => {
@@ -17,20 +16,19 @@ const AdminCard = ({ session, handleStatusUpdate }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`https://eduquest-server-side.vercel.app/sessions/${id}`).then((res) => {
-          Swal.fire({
-            title: "Deleted!",
-            text: "Session has been deleted.",
-            icon: "success",
-          });
-          console.log(res.data);
-        });
+        axios
+          .delete(`http://localhost:5000/sessions/${id}`)
+          .then((res) => {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Session has been deleted.",
+              icon: "success",
+            });
+            console.log(res.data);
+          })
+          .catch((err) => console.error("Failed to delete session:", err));
       }
     });
-  };
-
-  const handleSessionUpdate = (sessions) => {
-    document.getElementById("my_modal_5").showModal()
   };
 
   // Optionally, if `session` prop can change, sync the state when it does
@@ -73,51 +71,20 @@ const AdminCard = ({ session, handleStatusUpdate }) => {
           </p>
         </div>
         <div className="flex justify-between items-center mt-8 space-x-4">
-          {status ? (
-            <>
-              {" "}
-              <button
-                className="w-1/2 py-2 px-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-200"
-                onClick={() => handleSessionUpdate(session)}
-              >
-                Update
-              </button>
-              <button
-                onClick={() => handleDelete(session._id)}
-                className="w-1/2 py-2 px-4 bg-red-500 text-white font-medium rounded-lg hover:bg-yellow-600 transition-all duration-200"
-              >
-                Delete
-              </button>
-            </>
-          ) : (
-            <>
-              {" "}
-              <button
-                className="w-1/2 py-2 px-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-200"
-                onClick={() => onStatusChange(session)}
-              >
-                Change Status
-              </button>
-              <button className="w-1/2 py-2 px-4 bg-yellow-500 text-white font-medium rounded-lg hover:bg-yellow-600 transition-all duration-200">
-                Details
-              </button>
-            </>
-          )}
+          <button
+            className="w-1/2 py-2 px-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-200"
+            onClick={() => onStatusChange(session)}
+          >
+            Change Status
+          </button>
+          <button
+            onClick={() => handleDelete(session._id)}
+            className="w-1/2 py-2 px-4 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition-all duration-200"
+          >
+            Delete
+          </button>
         </div>
       </div>
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
-
-      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
-         <button>CLose</button>
-          <div className="modal-action">
-            <form action="">
-                       <UpdateModal ></UpdateModal>
-
-            </form>
-          </div>
-        </div>
-      </dialog>
     </div>
   );
 };

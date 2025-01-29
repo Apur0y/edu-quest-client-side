@@ -2,15 +2,17 @@ import axios from "axios";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 const Payment = () => {
+  const {user}=useAuth()
   const location = useLocation();
   const navigate = useNavigate()
 
   const { session} = location.state || {}; // Safely access state
   const { _id, ...others } = session;
 
-  const postSession = { ...others, sessionID: _id };
+  const postSession = { ...others, sessionID: _id,studentEmail: user.email };
   const handlePayPalPayment = () => {
     Swal.fire({
       title: "Payment Successful",
