@@ -34,6 +34,7 @@ const UploadMaterials = () => {
         setSelectedSession(session);
         setFormData({
             ...formData,
+            title :session.sessionTitle,
             sessionId: session._id,
             tutorEmail: session.tutorEmail,
         });
@@ -69,6 +70,7 @@ const UploadMaterials = () => {
         formDataToSend.append('tutorEmail', formData.tutorEmail);
         formDataToSend.append('image', formData.image);
         formDataToSend.append('link', formData.link);
+        console.log(formData.sessionTitle);
 
         try {
             const response = await axios.post('https://eduquest-server-side.vercel.app/materials', formDataToSend, {
