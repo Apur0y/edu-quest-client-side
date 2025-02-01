@@ -48,7 +48,7 @@ const UploadMaterials = () => {
             title: '',
             sessionId: '',
             tutorEmail: '',
-            image: null,
+            image: '',
             link: '',
         });
     };

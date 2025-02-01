@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useState } from "react";
+import useAxiosSecure from "../../../hooks/useSecure";
 
 const ViewAllUser = () => {
   // State for search input and modal visibility
@@ -8,6 +9,7 @@ const ViewAllUser = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
+  const axiosSecure = useAxiosSecure()
   // Fetch users using React Query
   const {
     data: users = [],
@@ -16,7 +18,7 @@ const ViewAllUser = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axios.get("https://eduquest-server-side.vercel.app/users");
+      const res = await axiosSecure.get("/users");
       return res.data;
     },
   });
@@ -56,11 +58,11 @@ const ViewAllUser = () => {
   };
 
   return (
-    <div className="w-full">
-      <h1 className="text-4xl font-bold text-center mb-6">All Users</h1>
+    <div className="w-11/12 mx-auto">
+      <h1 className="text-4xl font-bold text-white text-center mb-6">All Users</h1>
 
       {/* Search Bar */}
-      <div className="mb-6 ml-6">
+      <div className="mb-6 ml-6 mx-auto">
         <input
           type="text"
           placeholder="Search by name"
