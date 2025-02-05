@@ -2,8 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import StudyCard from "./StudyCard";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const StudySession = ({all}) => {
+  const axiosPublic = useAxiosPublic()
   const {
     data: sessions,
     isLoading,
@@ -12,8 +14,8 @@ const StudySession = ({all}) => {
   } = useQuery({
     queryKey: ["bookedSessions"],
     queryFn: async () => {
-      const res = await axios.get(
-        "https://eduquest-server-side.vercel.app/sessions?filter=Rejected"
+      const res = await axiosPublic.get(
+        "/sessions?filter=Rejected"
       );
       return res.data;
     },

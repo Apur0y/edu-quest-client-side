@@ -2,8 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import TutorCard from "./TutorCard";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const AllTutors = () => {
+
+  const axiosPublic= useAxiosPublic()
+
   const {
     data: users,
     isLoading,
@@ -11,7 +15,7 @@ const AllTutors = () => {
   } = useQuery({
     queryKey: ["AllTutors"],
     queryFn: async () => {
-      const res = await axios.get("https://eduquest-server-side.vercel.app/users");
+      const res = await axiosPublic.get("/users");
       return res.data;
     },
   });
