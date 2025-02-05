@@ -3,13 +3,15 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useSecure";
 
 const ViewAllMaterials = () => {
+  const axiosSecure = useAxiosSecure()
   const { data: materials, isLoading, isError } = useQuery({
     queryKey: ["materials"],
     queryFn: async () => {
-      const result = await axios.get(
-        "https://eduquest-server-side.vercel.app/materials"
+      const result = await axiosSecure.get(
+        "/materials"
       );
       return result.data;
     },

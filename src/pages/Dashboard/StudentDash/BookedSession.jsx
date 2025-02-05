@@ -4,13 +4,16 @@ import React from 'react';
 import StudyCard from '../../Home/studySession/StudyCard';
 import BookedCard from './StudentCard/BookedCard';
 import useAuth from '../../../hooks/useAuth';
+import useAxiosSecure from '../../../hooks/useSecure';
 
 const BookedSession = () => {
+
+  const axiosSecure = useAxiosSecure()
 const {user} = useAuth()
     const {data:bookedSessions, isLoading, isError,error} = useQuery({
         queryKey:["bookedsession"],
         queryFn: async ()=>{
-            const res = await axios.get('https://eduquest-server-side.vercel.app/booked')
+            const res = await axiosSecure.get('/booked')
             return res.data
         }
     })

@@ -3,13 +3,15 @@ import axios from 'axios';
 import React from 'react';
 import useAuth from '../../../hooks/useAuth';
 import BookedCard from './StudentCard/BookedCard';
+import useAxiosSecure from '../../../hooks/useSecure';
 
 const Materials = () => {
 
+  const axiosSecure = useAxiosSecure()
     const {data:materials} = useQuery({
         queryKey:["materials"],
         queryFn:async()=>{
-            const result = await axios.get("https://eduquest-server-side.vercel.app/materials")
+            const result = await axiosSecure.get("/materials")
             return result.data
         }
     })
@@ -18,7 +20,7 @@ const Materials = () => {
     const {data:bookedSessions, isLoading, isError,error} = useQuery({
         queryKey:["bookedsession"],
         queryFn: async ()=>{
-            const res = await axios.get('https://eduquest-server-side.vercel.app/booked')
+            const res = await axiosSecure.get('/booked')
             return res.data
         }
     })

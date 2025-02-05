@@ -4,9 +4,11 @@ import useAuth from "../../../hooks/useAuth";
 import Card from "../../Shared/Card/Card";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useSecure";
 
 const CreatedSession = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure()
 
   const {
     data: sessions,
@@ -15,8 +17,8 @@ const CreatedSession = () => {
   } = useQuery({
     queryKey: ["sessions"],
     queryFn: async () => {
-      const res = await fetch("https://eduquest-server-side.vercel.app/sessions");
-      return res.json();
+      const res = await axiosSecure.get("/sessions");
+      return res.data;
     },
   });
 

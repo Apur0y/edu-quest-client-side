@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useSecure";
 
 const ManageNotes = () => {
+
+  const axiosSecure = useAxiosSecure()
+
   const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [editingNote, setEditingNote] = useState(null);
@@ -15,7 +19,7 @@ const ManageNotes = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await axios.get("https://eduquest-server-side.vercel.app/notes");
+        const response = await axiosSecure.get("/notes");
         setNotes(response.data);
         setIsLoading(false);
       } catch (error) {

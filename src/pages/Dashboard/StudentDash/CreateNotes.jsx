@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useSecure";
 
 const CreateNotes = ({ userEmail }) => {
+
+  const axiosSecure = useAxiosSecure()
 
     const {user} = useAuth();
   const [formData, setFormData] = useState({
@@ -27,7 +30,7 @@ const CreateNotes = ({ userEmail }) => {
     const { title, description } = formData;
 
 
-    axios.post("https://eduquest-server-side.vercel.app/notes",formData)
+    axiosSecure.post("/notes",formData)
     .then((res)=>{
               Swal.fire({
                 title: "Note successful",
