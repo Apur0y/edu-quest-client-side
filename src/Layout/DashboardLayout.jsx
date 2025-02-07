@@ -7,22 +7,21 @@ import useAuth from "../hooks/useAuth";
 import axios from "axios";
 
 const DashboardLayout = () => {
-  const { user,student, setStudent } = useAuth();
+  const { user, student, setStudent } = useAuth();
   const [role, setRole] = useState([]);
   useEffect(() => {
-    axios.get("https://eduquest-server-side.vercel.app/users")
-    .then((res) => setRole(res.data));
+    axios
+      .get("https://eduquest-server-side.vercel.app/users")
+      .then((res) => setRole(res.data));
   }, []);
-  
+
   const currentRole = role?.find((res) => res.email == user.email);
 
-  
   const [admin, setAdmin] = useState(false);
   const [tutor, setTutor] = useState(false);
 
   const [sidebar, setSidebar] = useState(true);
- 
-  
+
   useEffect(() => {
     if (currentRole?.role === "student") {
       setStudent(true);
@@ -34,36 +33,35 @@ const DashboardLayout = () => {
       setAdmin(true);
     }
   }, [currentRole]);
-  
-
 
   const handleSidebar = () => {
     setSidebar(!sidebar);
   };
 
-
-
   return (
     <div className="flex">
       <div
-        className={`w-64  ${
+        className={`w-64 ${
           sidebar ? "hidden" : "flex"
-        } min-h-screen bg-teal-500 md:flex justify-between flex-col`}
+        } min-h-screen bg-teal-500 md:flex flex-col`}
       >
-        {/* Student */}
-        <div>
-          {student ? (
-            <ul className="menu text-white gap-5 ">
-              <Link to="/">
-                <div className="flex text-white font-semibold m-5">
-                  <img
-                    src="../../../../public/logo.png"
-                    className="w-12"
-                    alt=""
-                  />
-                  <h1 className="text-xl ">EduQuest</h1>
-                </div>
-              </Link>
+      <div className="fixed w-64">
+          {/* Logo Section */}
+          <Link to="/">
+          <div className="flex text-white font-semibold m-5">
+            <img
+              src="../../../../public/logo.png"
+              className="w-12"
+              alt="Logo"
+            />
+            <h1 className="text-xl">EduQuest</h1>
+          </div>
+        </Link>
+
+        {/* Menu Items - Stays at the Top */}
+        <div className="flex-grow">
+          {student && (
+            <ul className="menu text-white gap-5">
               <li>
                 <NavLink
                   className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
@@ -97,26 +95,10 @@ const DashboardLayout = () => {
                 </NavLink>
               </li>
             </ul>
-          ) : (
-            <></>
           )}
-        </div>
 
-        {/* Tutor */}
-
-        <div>
-          {tutor ? (
-            <ul className="menu text-white gap-5 ">
-              <Link to="/">
-                <div className="flex text-white font-semibold pr-6 md:pr-0 m-5">
-                  <img
-                    src="../../../../public/logo.png"
-                    className="w-12"
-                    alt=""
-                  />
-                  <h1 className="text-xl ">EduQuest</h1>
-                </div>
-              </Link>
+          {tutor && (
+            <ul className="menu text-white gap-5">
               <li>
                 <NavLink
                   className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
@@ -130,7 +112,7 @@ const DashboardLayout = () => {
                   className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
                   to="createdsession"
                 >
-                  All Session
+                  All Sessions
                 </NavLink>
               </li>
               <li>
@@ -150,31 +132,16 @@ const DashboardLayout = () => {
                 </NavLink>
               </li>
             </ul>
-          ) : (
-            <></>
           )}
-        </div>
 
-        {/* Admin */}
-        <div>
-          {admin ? (
-            <ul className="menu text-white gap-5 ">
-              <Link to="/">
-                <div className="flex text-white font-semibold m-5">
-                  <img
-                    src="../../../../public/logo.png"
-                    className="w-12"
-                    alt=""
-                  />
-                  <h1 className="text-xl ">EduQuest</h1>
-                </div>
-              </Link>
+          {admin && (
+            <ul className="menu text-white gap-5">
               <li>
                 <NavLink
                   className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
                   to="viewalluser"
                 >
-                  View all users
+                  View All Users
                 </NavLink>
               </li>
               <li>
@@ -182,7 +149,7 @@ const DashboardLayout = () => {
                   className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
                   to="viewallsession"
                 >
-                  View all study session
+                  View All Sessions
                 </NavLink>
               </li>
               <li>
@@ -190,21 +157,23 @@ const DashboardLayout = () => {
                   className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
                   to="viewallmaterials"
                 >
-                  View all materials
+                  View All Materials
                 </NavLink>
               </li>
             </ul>
-          ) : (
-            <></>
           )}
         </div>
 
-        <NavLink
+      </div>
+        {/* Home Button - Stays at the Bottom */}
+      <div className="fixed bottom-0 w-full">
+      <NavLink
           className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold flex mb-6"
           to="/"
         >
-          <IoMdHome className="my-auto size-6 mr-3" /> Home
+          <IoMdHome className="my-auto size-6 mr-3 " /> Home
         </NavLink>
+      </div>
       </div>
 
       <div

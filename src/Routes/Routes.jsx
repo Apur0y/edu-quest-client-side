@@ -26,6 +26,7 @@ import BookedCard from "../pages/Dashboard/StudentDash/StudentCard/BookedCard";
 import StudentDetailsCard from "../pages/Dashboard/StudentDash/StudentCard/StudentCard";
 import MaterialsCard from "../pages/Dashboard/StudentDash/StudentCard/MaterialsCard";
 import AllSession from "../pages/AllSessions/AllSession";
+import ErrorPage from "../pages/Error";
 
   
   
@@ -58,6 +59,10 @@ import AllSession from "../pages/AllSessions/AllSession";
         {
           path:"/allsession",
           element:<AllSession></AllSession>
+        },
+        {
+          path:'/*',
+          element:<ErrorPage></ErrorPage>
         }
    
       ]
