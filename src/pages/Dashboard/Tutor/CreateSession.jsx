@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../hooks/useSecure';
 
 const CreateSession = () => {
 
+    const axiosSecure = useAxiosSecure();
     const {user} = useAuth()
     const [formData, setFormData] = useState({
         sessionTitle: '',
@@ -28,7 +30,7 @@ const CreateSession = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('Form Data:', formData);
-        axios.post("https://eduquest-server-side.vercel.app/sessions",formData)
+        axiosSecure.post("/sessions",formData)
         .then(res=>{
             
             console.log(res.data)

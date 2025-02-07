@@ -3,14 +3,17 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../hooks/useSecure';
 
 const UploadMaterials = () => {
+    const axiosSecure= useAxiosSecure();
+
     const { user } = useAuth();
     const { data: approvedSessions = [] } = useQuery({
         queryKey: ["approvedSession"],
         queryFn: async () => {
-            const result = await axios.get(
-                "https://eduquest-server-side.vercel.app/sessions?filter=Rejected"
+            const result = await axiosSecure.get(
+                "/sessions?filter=Rejected"
             );
             return result.data;
         },
@@ -73,11 +76,7 @@ const UploadMaterials = () => {
         console.log(formData.sessionTitle);
 
         try {
-            const response = await axios.post('https://eduquest-server-side.vercel.app/materials', formDataToSend, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            })
+            const response = await axiosSecure.post('/materials', formDataToSend)
              Swal.fire({
                             position: "center",
                             icon: "success",

@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
+import useAxiosSecure from "../../../hooks/useSecure";
 
 const ViewAllSession = () => {
   const [selectedSession, setSelectedSession] = useState(null); // Modal state
@@ -25,12 +26,12 @@ const ViewAllSession = () => {
   });
 
   const sessions = allSessions.filter((res) => res.status !== "Rejected");
-
+const axiosSecure=useAxiosSecure();
   // Update session status
   const handleStatusUpdate = async (id, status) => {
     try {
 
-      await axios.put(`http://localhost:5000/sessions/${id}`, { status });
+      await axiosSecure.put(`/sessions/${id}`, { status });
       Swal.fire("Success!", `Session status updated to ${status}`, "success");
       queryClient.invalidateQueries(["sessions"]);
     } catch (error) {
@@ -42,7 +43,7 @@ const ViewAllSession = () => {
   // Update session fee
   const handleFeeUpdate = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/sessions/${id}`, {
+      await axiosSecure.put(`/sessions/${id}`, {
         status: "Approved",
         isFree,
         amount: isFree ? 0 : sessionFee,
@@ -68,8 +69,8 @@ const ViewAllSession = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
-          .delete(`http://localhost:5000/sessions/${id}`)
+        axiosSecure
+          .delete(`/sessions/${id}`)
           .then(() => {
             Swal.fire("Deleted!", "Session has been deleted.", "success");
             queryClient.invalidateQueries(["sessions"]);

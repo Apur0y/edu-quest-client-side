@@ -29,7 +29,7 @@ const ViewAllMaterials = () => {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios
+          axiosSecure
             .delete(`http://localhost:5000/materials/${id}`)
             .then((res) => {
               Swal.fire({

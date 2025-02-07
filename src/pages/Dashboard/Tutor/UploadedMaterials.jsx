@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useSecure";
 
 const MaterialsList = () => {
 
-  const {user} = useAuth()
+  const {user} = useAuth();
+  const axiosSecure = useAxiosSecure();
 
   const {
     data: allmaterials,
@@ -14,7 +16,7 @@ const MaterialsList = () => {
   } = useQuery({
     queryKey: ["materials"],
     queryFn: async () => {
-      const response = await axios.get("https://eduquest-server-side.vercel.app/materials");
+      const response = await axiosSecure.get("/materials");
       return response.data;
     },
   });

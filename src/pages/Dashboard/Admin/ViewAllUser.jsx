@@ -46,7 +46,7 @@ const ViewAllUser = () => {
     const role = event.target.role.value;
 
     try {
-      const res = await axios.put(`https://eduquest-server-side.vercel.app/users/${selectedUser._id}`, {
+      const res = await axiosSecure.put(`/users/${selectedUser._id}`, {
         role,
       });
 
