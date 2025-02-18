@@ -7,15 +7,15 @@ const StudyCard = ({ session }) => {
 
 
   return (
-    <div className="max-w-md mx-auto w-80 bg-green-50 shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
+    <div className="max-w-md mx-auto w-80 bg-neutral-900 text-white shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
       <div className="p-6 flex flex-col justify-between ">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+        <h2 className="text-2xl font-semibold  mb-4">
           {session.sessionTitle}
         </h2>
-        <p className="text-gray-600 mb-2">
+        <p className=" mb-2">
           <span className="font-medium">Tutor Name:</span> {session.tutorName}
         </p>
-        <p className="text-gray-600 mb-4">
+        <p className=" mb-4">
           <span className="font-medium">Description:</span> {session.sessionDescription}
         </p>
         <div className="flex items-center justify-between">

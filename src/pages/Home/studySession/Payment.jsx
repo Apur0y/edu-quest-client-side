@@ -13,6 +13,15 @@ const Payment = () => {
   const { _id, ...others } = session;
 
   const postSession = { ...others, sessionID: _id,studentEmail: user.email };
+
+  const handleSSLPayment=()=>{
+    console.log("ssl com", postSession);
+
+    axios.post('http://localhost:5000/create-ssl-payment', postSession)
+    .then((res)=>console.log(res.data))
+
+  }
+
   const handlePayPalPayment = () => {
     Swal.fire({
       title: "Payment Successful",
@@ -79,6 +88,12 @@ const Payment = () => {
         </div>
 
         <div className="space-y-4">
+        <button
+            onClick={handleSSLPayment}
+            className="w-full px-5 py-3 bg-yellow-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-green-700 transition-all"
+          >
+            Go to SSLcommerce
+          </button>
           <button
             onClick={handlePayPalPayment}
             className="w-full px-5 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-all"
@@ -91,6 +106,7 @@ const Payment = () => {
           >
             Pay with Google Pay
           </button>
+      
         </div>
 
         <p className="mt-6 text-sm text-gray-500 text-center">
