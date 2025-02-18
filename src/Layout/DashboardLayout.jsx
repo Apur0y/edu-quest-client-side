@@ -21,6 +21,7 @@ const DashboardLayout = () => {
   const [tutor, setTutor] = useState(false);
 
   const [sidebar, setSidebar] = useState(true);
+  const [active, setActive] = useState(true);
 
   useEffect(() => {
     if (currentRole?.role === "student") {
@@ -43,15 +44,15 @@ const DashboardLayout = () => {
       <div
         className={`w-64 ${
           sidebar ? "hidden" : "flex"
-        } min-h-screen bg-teal-500 md:flex flex-col`}
+        } min-h-screen bg-slate-700  md:flex flex-col`}
       >
       <div className="fixed w-64">
           {/* Logo Section */}
           <Link to="/">
-          <div className="flex text-white font-semibold m-5">
+          <div className=" flex flex-col justify-center items-center gap-5 mt6 text-white font-semibold m-5">
             <img
               src="../../../../public/logo.png"
-              className="w-12"
+              className="w-20"
               alt="Logo"
             />
             <h1 className="text-xl">EduQuest</h1>
@@ -64,7 +65,15 @@ const DashboardLayout = () => {
             <ul className="menu text-white gap-5">
               <li>
                 <NavLink
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
+                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
+                  to="profile"
+                >
+                  Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                   to="bookedsession"
                 >
                   Booked Session
@@ -72,7 +81,7 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <NavLink
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
+                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                   to="createnote"
                 >
                   Create Notes
@@ -80,7 +89,7 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <NavLink
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
+                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                   to="managenote"
                 >
                   Manage Notes
@@ -88,7 +97,7 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <NavLink
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
+                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                   to="materials"
                 >
                   All Materials
@@ -101,7 +110,7 @@ const DashboardLayout = () => {
             <ul className="menu text-white gap-5">
               <li>
                 <NavLink
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
+                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                   to="createsession"
                 >
                   Create Session
@@ -109,7 +118,7 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <NavLink
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
+                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                   to="createdsession"
                 >
                   All Sessions
@@ -117,7 +126,7 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <NavLink
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
+                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                   to="uploadmaterials"
                 >
                   Upload Materials
@@ -125,7 +134,7 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <NavLink
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
+                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                   to="uploadedmaterials"
                 >
                   View All Materials
@@ -138,7 +147,7 @@ const DashboardLayout = () => {
             <ul className="menu text-white gap-5">
               <li>
                 <NavLink
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
+                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                   to="viewalluser"
                 >
                   View All Users
@@ -146,7 +155,7 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <NavLink
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
+                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                   to="viewallsession"
                 >
                   View All Sessions
@@ -154,7 +163,7 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <NavLink
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold"
+                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                   to="viewallmaterials"
                 >
                   View All Materials
@@ -168,7 +177,7 @@ const DashboardLayout = () => {
         {/* Home Button - Stays at the Bottom */}
       <div className="fixed bottom-0 w-full">
       <NavLink
-          className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 font-semibold flex mb-6"
+          className=" hover:bg-green-600 text-white px-4 py-2 font-semibold flex mb-6"
           to="/"
         >
           <IoMdHome className="my-auto size-6 mr-3 " /> Home
@@ -184,11 +193,11 @@ const DashboardLayout = () => {
           backgroundRepeat: "no-repeat",
           position: "relative", // Allows overlaying content
         }}
-        className="flex-1  min-h-screen"
+        className="flex-1  min-h-screen bg-zinc-500 backdrop-blur-xl"
       >
         <div
           style={{
-            backgroundColor: "rgba(0, 0, 0, 0.35)", // Adjust opacity here
+            backgroundColor: "rgba(72, 77, 87, 0.90)", // Adjust opacity herergb(72, 77, 87)
             position: "absolute",
             top: 0,
             left: 0,

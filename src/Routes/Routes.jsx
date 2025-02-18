@@ -27,6 +27,7 @@ import StudentDetailsCard from "../pages/Dashboard/StudentDash/StudentCard/Stude
 import MaterialsCard from "../pages/Dashboard/StudentDash/StudentCard/MaterialsCard";
 import AllSession from "../pages/AllSessions/AllSession";
 import ErrorPage from "../pages/Error";
+import Profile from "../pages/Dashboard/Profile/Profile";
 
   
   
@@ -71,6 +72,11 @@ import ErrorPage from "../pages/Error";
       path:"/dashboard",
       element:<PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
       children:[
+        {
+          path:"profile",
+          element:<Profile></Profile>
+
+        },
         {
           path:"createnote",
           element:<CreateNotes></CreateNotes>

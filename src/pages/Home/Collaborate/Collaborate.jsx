@@ -4,10 +4,10 @@ const Collaborate = () => {
   return (
     <div>
       <div
-        className="hero min-h-screen"
+        className="hero min-h-screen "
         style={{
           backgroundImage:
-            "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
+            "url(/collab.jpg)",
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
@@ -18,11 +18,11 @@ const Collaborate = () => {
               We make a good learning platform collaborate with the best. Together make the learning more delightful.
             </p>
             
-            <div>
-                <img src="" alt="" />
-                <img src="" alt="" />
-                <img src="" alt="" />
-                <img src="" alt="" />
+            <div className="flex justify-between mt-12">
+                <img src="/c1.png" alt="" className="h-28 rounded-lg"/>
+                <img src="/khan2.jpg" alt="" className="h-28 rounded-lg"/>
+                <img src="/cou2.png" alt="" className="h-28 rounded-lg"/>
+                <img src="/c3.png" alt="" className="h-28 rounded-lg"/>
             </div>
           </div>
         </div>
