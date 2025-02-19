@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useState } from "react";
 import useAxiosSecure from "../../../hooks/useSecure";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const ViewAllUser = () => {
   // State for search input and modal visibility
@@ -9,7 +10,7 @@ const ViewAllUser = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosPublic()
   // Fetch users using React Query
   const {
     data: users = [],

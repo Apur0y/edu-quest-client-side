@@ -4,9 +4,10 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useSecure";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const ViewAllMaterials = () => {
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosPublic()
   const { data: materials, isLoading, isError } = useQuery({
     queryKey: ["materials"],
     queryFn: async () => {

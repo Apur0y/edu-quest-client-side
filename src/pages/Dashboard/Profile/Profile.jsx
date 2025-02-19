@@ -1,40 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useSecure";
 import { useQuery } from "@tanstack/react-query";
 import { LuBookOpenCheck } from "react-icons/lu";
+import StudentStat from "./studentStat";
+import axios from "axios";
+import AdminStat from "./AdminStat";
+import TutorStat from "./tutorStat";
 
 const Profile = () => {
   const { user } = useAuth();
+ const [role, setRole] = useState([]);
 
-  const axiosSecure = useAxiosSecure();
+  useEffect(() => {
+    axios
+      .get("https://eduquest-server-side.vercel.app/users")
+      .then((res) => setRole(res.data));
+  }, []);
 
-  const {
-    data: bookedSessions,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["bookedsession"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/booked");
-      return res.data;
-    },
-  });
+  const currentRole = role?.find((res) => res.email == user.email);
 
-  // const bookedSession = bookedSessions.filter(session=>session.)
-
-  if (isLoading) {
-    return <div className="text-center">Loading....</div>;
-  }
-
-  if (isError) {
-    return <div>Error Occur:{error.message}</div>;
-  }
-
-  const bookedSession = bookedSessions.filter(
-    (res) => res.studentEmail === user?.email
-  );
 
   return (
     <div className="w-11/12 max-w-3xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
@@ -63,16 +48,23 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="mt-20 flex justify-center gap-6 mx-auto items-center">
-        <h1 className="text-2xl flex font-bold text-black">
-          <LuBookOpenCheck className="my-auto mr-2 text-green-600 size-9" />
-          Booked sessions :
-        </h1>
 
-        <div className="w-24 h-24 flex items-center justify-center rounded-full border-4 border-green-500 shadow-md text-3xl font-bold text-black">
-          {bookedSession?.length}
-        </div>
+      <div>
+        {
+           currentRole?.role == 'student'? <><StudentStat></StudentStat></> : <>
+           {
+            currentRole?.role == 'admin'? <><AdminStat></AdminStat></> : <>
+            {
+              currentRole?.role=='tutor'?<><TutorStat></TutorStat></>:<></>
+            }
+            </>
+           }
+           
+           </>
+        }
       </div>
+
+   
     </div>
   );
 };

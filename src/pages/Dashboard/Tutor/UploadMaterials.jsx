@@ -4,9 +4,10 @@ import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useSecure';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
 
 const UploadMaterials = () => {
-    const axiosSecure= useAxiosSecure();
+    const axiosSecure= useAxiosPublic();
 
     const { user } = useAuth();
     const { data: approvedSessions = [] } = useQuery({

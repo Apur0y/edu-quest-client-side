@@ -13,7 +13,7 @@ const Collaborate = () => {
         <div className="hero-overlay bg-opacity-60"></div>
         <div className=" text-neutral-content text-center">
           <div className="">
-            <h1 className="mb-2 text-5xl text-white font-bold">Collaborate with Platforms</h1>
+            <h1 className="mb-2 text-5xl text-white font-bold">Collaborating with Platforms</h1>
             <p className="mb-5 text-white">
               We make a good learning platform collaborate with the best. Together make the learning more delightful.
             </p>

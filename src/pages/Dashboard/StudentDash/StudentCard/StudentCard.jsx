@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import useAuth from "../../../../hooks/useAuth";
 
 const StudentDetailsCard = () => {
   const { id } = useParams();
   const session = useLoaderData();
-  
+  const {user} = useAuth()
   // State to manage reviews
   const [reviews, setReviews] = useState([]);
 
@@ -22,6 +23,9 @@ const StudentDetailsCard = () => {
     }
 
     const newReview = {
+      photo: user.photoURL,
+      name: user.displayName,
+      email:user.email,
       text: reviewText,
       rating: parseInt(rating),
       id: Date.now(),

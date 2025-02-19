@@ -9,6 +9,7 @@ import axios from "axios";
 const DashboardLayout = () => {
   const { user, student, setStudent } = useAuth();
   const [role, setRole] = useState([]);
+
   useEffect(() => {
     axios
       .get("https://eduquest-server-side.vercel.app/users")
@@ -46,143 +47,158 @@ const DashboardLayout = () => {
           sidebar ? "hidden" : "flex"
         } min-h-screen bg-slate-700  md:flex flex-col`}
       >
-      <div className="fixed w-64">
+        <div className="fixed w-64">
           {/* Logo Section */}
           <Link to="/">
-          <div className=" flex flex-col justify-center items-center gap-5 mt6 text-white font-semibold m-5">
-            <img
-              src="../../../../public/logo.png"
-              className="w-20"
-              alt="Logo"
-            />
-            <h1 className="text-xl">EduQuest</h1>
+            <div className=" flex flex-col justify-center items-center gap-5 mt6 text-white font-semibold m-5">
+              <img
+                src="../../../../public/logo.png"
+                className="w-20"
+                alt="Logo"
+              />
+              <h1 className="text-xl">EduQuest</h1>
+            </div>
+          </Link>
+
+          {/* Menu Items - Stays at the Top */}
+          <div className="flex-grow">
+            {student && (
+              <ul className="menu text-white gap-5">
+                <li>
+                  <NavLink
+                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
+                    to="profile"
+                  >
+                    Profile
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
+                    to="bookedsession"
+                  >
+                    Booked Session
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
+                    to="createnote"
+                  >
+                    Create Notes
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
+                    to="managenote"
+                  >
+                    Manage Notes
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
+                    to="materials"
+                  >
+                    All Materials
+                  </NavLink>
+                </li>
+              </ul>
+            )}
+
+            {tutor && (
+              <ul className="menu text-white gap-5">
+                  <li>
+                  <NavLink
+                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
+                    to="profile"
+                  >
+                    Profile
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
+                    to="createsession"
+                  >
+                    Create Session
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
+                    to="createdsession"
+                  >
+                    All Sessions
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
+                    to="uploadmaterials"
+                  >
+                    Upload Materials
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
+                    to="uploadedmaterials"
+                  >
+                    View All Materials
+                  </NavLink>
+                </li>
+              </ul>
+            )}
+
+            {admin && (
+              <ul className="menu text-white gap-5">
+                  <li>
+                  <NavLink
+                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
+                    to="profile"
+                  >
+                    Profile
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
+                    to="viewalluser"
+                  >
+                    View All Users
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
+                    to="viewallsession"
+                  >
+                    View All Sessions
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
+                    to="viewallmaterials"
+                  >
+                    View All Materials
+                  </NavLink>
+                </li>
+              </ul>
+            )}
           </div>
-        </Link>
-
-        {/* Menu Items - Stays at the Top */}
-        <div className="flex-grow">
-          {student && (
-            <ul className="menu text-white gap-5">
-              <li>
-                <NavLink
-                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                  to="profile"
-                >
-                  Profile
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                  to="bookedsession"
-                >
-                  Booked Session
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                  to="createnote"
-                >
-                  Create Notes
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                  to="managenote"
-                >
-                  Manage Notes
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                  to="materials"
-                >
-                  All Materials
-                </NavLink>
-              </li>
-            </ul>
-          )}
-
-          {tutor && (
-            <ul className="menu text-white gap-5">
-              <li>
-                <NavLink
-                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                  to="createsession"
-                >
-                  Create Session
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                  to="createdsession"
-                >
-                  All Sessions
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                  to="uploadmaterials"
-                >
-                  Upload Materials
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                  to="uploadedmaterials"
-                >
-                  View All Materials
-                </NavLink>
-              </li>
-            </ul>
-          )}
-
-          {admin && (
-            <ul className="menu text-white gap-5">
-              <li>
-                <NavLink
-                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                  to="viewalluser"
-                >
-                  View All Users
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                  to="viewallsession"
-                >
-                  View All Sessions
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                  to="viewallmaterials"
-                >
-                  View All Materials
-                </NavLink>
-              </li>
-            </ul>
-          )}
         </div>
-
-      </div>
         {/* Home Button - Stays at the Bottom */}
-      <div className="fixed bottom-0 w-full">
-      <NavLink
-          className=" hover:bg-green-600 text-white px-4 py-2 font-semibold flex mb-6"
-          to="/"
-        >
-          <IoMdHome className="my-auto size-6 mr-3 " /> Home
-        </NavLink>
-      </div>
+        <div className="fixed bottom-0 w-full">
+          <NavLink
+            className=" hover:bg-green-600 text-white px-4 py-2 font-semibold flex mb-6"
+            to="/"
+          >
+            <IoMdHome className="my-auto size-6 mr-3 " /> Home
+          </NavLink>
+        </div>
       </div>
 
       <div

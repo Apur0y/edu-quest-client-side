@@ -5,10 +5,11 @@ import Card from "../../Shared/Card/Card";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useSecure";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const CreatedSession = () => {
   const { user } = useAuth();
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosPublic()
 
   const {
     data: sessions,

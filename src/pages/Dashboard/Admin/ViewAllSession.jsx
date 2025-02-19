@@ -98,22 +98,22 @@ const axiosSecure=useAxiosSecure();
       {sessions.map((session) => (
         <div
           key={session._id}
-          className="max-w-md mx-auto h-full w-11/12 bg-white shadow-lg rounded-xl overflow-hidden border border-gray-200"
+          className="max-w-md mx-auto h-full w-11/12 bg-white shadow-lg rounded-xl  border border-gray-200"
         >
           <div className="p-6 text-gray-800">
             <h2 className="text-2xl font-semibold mb-4 text-center text-gray-900">
               {session.sessionTitle}
             </h2>
             <p className="text-sm font-medium text-gray-500 mb-4">
-              <strong className="block text-gray-700">Tutor Name:</strong>
+              <strong className="block ">Tutor Name:</strong>
               {session.tutorName}
             </p>
             <p className="text-sm font-medium text-gray-500 mb-4">
-              <strong className="block text-gray-700">Email:</strong>
+              <strong className="block ">Email:</strong>
               {session.tutorEmail}
             </p>
             <p className="text-sm font-medium text-gray-500 mb-6">
-              <strong className="block text-gray-700">Status:</strong>
+              <strong className="block ">Status:</strong>
               <span
                 className={`inline-block py-1 px-3 text-sm font-medium rounded-lg text-white ${
                   session.status === "Accepted"
@@ -166,57 +166,57 @@ const axiosSecure=useAxiosSecure();
 
       {/* Modal for Session Fee Update */}
       {selectedSession && (
-        <div className="modal modal-open">
-          <div className="modal-box">
-            <h2 className="font-bold text-xl mb-4">
-              Set Registration Fee for: {selectedSession.sessionTitle}
-            </h2>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Is this session free?
-              </label>
-              <select
-                value={isFree ? "free" : "paid"}
-                onChange={(e) => setIsFree(e.target.value === "free")}
-                className="select select-bordered w-full"
-              >
-                <option value="free">Free</option>
-                <option value="paid">Paid</option>
-              </select>
-            </div>
-            {!isFree && (
-              <div className="mb-4">
-                <label htmlFor="fee" className="block text-sm font-medium text-gray-700">
-                  Registration Fee
-                </label>
-                <input
-                  type="number"
-                  id="fee"
-                  value={sessionFee}
-                  onChange={(e) => setSessionFee(Number(e.target.value))}
-                  className="input input-bordered w-full mt-2"
-                  placeholder="Enter fee"
-                />
-              </div>
-            )}
-            <div className="modal-action">
-              <button
-                className="btn bg-gray-500"
-                onClick={() => setSelectedSession(null)}
-              >
-                Cancel
-              </button>
-              <button
-                className="btn bg-blue-600 text-white"
-                onClick={() => handleFeeUpdate(selectedSession._id)}
-              >
-                Confirm
-              </button>
-            </div>
-          </div>
-          
+  <div className="fixed inset-0 top-0 justify-center items-center flex max-h-screen text-white bg-black bg-opacity-50 z-50">
+    <div className="bg-neutral-900  p-6 rounded-lg shadow-lg w-96">
+      <h2 className="font-bold text-xl mb-4">
+        Set Registration Fee for: {selectedSession.sessionTitle}
+      </h2>
+      <div className="mb-4">
+        <label className="block text-sm font-medium   mb-2">
+          Is this session free?
+        </label>
+        <select
+          value={isFree ? "free" : "paid"}
+          onChange={(e) => setIsFree(e.target.value === "free")}
+          className="select select-bordered w-full"
+        >
+          <option value="free">Free</option>
+          <option value="paid">Paid</option>
+        </select>
+      </div>
+      {!isFree && (
+        <div className="mb-4">
+          <label htmlFor="fee" className="block text-sm font-medium ">
+            Registration Fee
+          </label>
+          <input
+            type="number"
+            id="fee"
+            value={sessionFee}
+            onChange={(e) => setSessionFee(Number(e.target.value))}
+            className="input input-bordered w-full mt-2"
+            placeholder="Enter fee"
+          />
         </div>
       )}
+      <div className="flex justify-end space-x-2">
+        <button
+          className="btn bg-gray-500 text-white"
+          onClick={() => setSelectedSession(null)}
+        >
+          Cancel
+        </button>
+        <button
+          className="btn bg-blue-600 text-white"
+          onClick={() => handleFeeUpdate(selectedSession._id)}
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };

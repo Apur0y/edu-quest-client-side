@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useSecure";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const MaterialsList = () => {
 
   const {user} = useAuth();
-  const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxiosPublic();
 
   const {
     data: allmaterials,
