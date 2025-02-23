@@ -18,7 +18,7 @@ const Collaborate = () => {
               We make a good learning platform collaborate with the best. Together make the learning more delightful.
             </p>
             
-            <div className="flex justify-between mt-12">
+            <div className="flex w-10/12 gap-4 my-5 md:my-1 md:w-11/12 mx-auto flex-col md:flex-row justify-between mt-12">
                 <img src="/c1.png" alt="" className="h-28 rounded-lg"/>
                 <img src="/khan2.jpg" alt="" className="h-28 rounded-lg"/>
                 <img src="/cou2.png" alt="" className="h-28 rounded-lg"/>

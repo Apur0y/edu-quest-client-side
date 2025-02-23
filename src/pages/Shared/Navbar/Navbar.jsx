@@ -89,7 +89,7 @@ const Navbar = () => {
         <h1 className="text-xl font-semibold ml-2 hidden md:flex">EduQuest</h1>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+        <ul className="menu menu-horizontal text-base px-1">{links}</ul>
       </div>
       <div className="navbar-end ">
         {user ? (
