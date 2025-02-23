@@ -7,16 +7,16 @@ const StudyCard = ({ session }) => {
 
 
   return (
-    <div className="max-w-md mx-auto w-80 bg-[#1B3B39] text-white shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
-      <div className="p-6 flex flex-col justify-between ">
+    <div className="max-w-md mx-auto  w-80 bg-[#1B3B39] text-white shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
+      <div className="p-6 flex h-64 flex-col justify-between ">
         <h2 className="text-2xl font-semibold  mb-4">
-          {session.sessionTitle}
+          {session.sessionTitle.split(" ").slice(0,3).join(" ")}
         </h2>
         <p className=" mb-2">
           <span className="font-medium">Tutor Name:</span> {session.tutorName}
         </p>
         <p className=" mb-4">
-          <span className="font-medium">Description:</span> {session.sessionDescription}
+          <span className="font-medium">Description:</span> {session.sessionDescription.split(" ").slice(0,9).join(" ") + "..."}
         </p>
         <div className="flex items-center justify-between">
         <button

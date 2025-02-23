@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import { IoMdHome } from "react-icons/io";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import img from "../../public/pic/dashboard.jpg";
-import { FaBookmark, FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6";
+import { FaBookmark, FaCircleArrowLeft, FaCircleArrowRight, FaUsersRectangle } from "react-icons/fa6";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import { CgProfile  } from "react-icons/cg";
-import { IoBookmarkOutline } from "react-icons/io5";
-import { LuNotebook, LuNotebookPen } from "react-icons/lu";
+import { IoBookmarkOutline, IoBookOutline } from "react-icons/io5";
+import { LuNotebook, LuNotebookPen, LuServer } from "react-icons/lu";
 import { GiBookshelf } from "react-icons/gi";
+import { FiBook } from "react-icons/fi";
+import { SlBookOpen } from "react-icons/sl";
+import { SiBookstack, SiWikibooks } from "react-icons/si";
+import { CiUser } from "react-icons/ci";
+import { RiBookShelfLine } from "react-icons/ri";
 
 const DashboardLayout = () => {
   const { user, student, setStudent } = useAuth();
@@ -126,7 +131,7 @@ const DashboardLayout = () => {
                     className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                     to="createsession"
                   >
-                    Create Session
+                  <IoBookOutline className="size-6" />  Create Session
                   </NavLink>
                 </li>
                 <li>
@@ -134,7 +139,7 @@ const DashboardLayout = () => {
                     className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                     to="createdsession"
                   >
-                    All Sessions
+                    <FiBook className="size-6" />All Sessions
                   </NavLink>
                 </li>
                 <li>
@@ -142,7 +147,7 @@ const DashboardLayout = () => {
                     className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                     to="uploadmaterials"
                   >
-                    Upload Materials
+                  <SiWikibooks className="size-6" />  Upload Materials
                   </NavLink>
                 </li>
                 <li>
@@ -150,7 +155,7 @@ const DashboardLayout = () => {
                     className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                     to="uploadedmaterials"
                   >
-                    View All Materials
+                   <SlBookOpen className="size-6" /> View All Materials
                   </NavLink>
                 </li>
               </ul>
@@ -171,7 +176,8 @@ const DashboardLayout = () => {
                     className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                     to="viewalluser"
                   >
-                    View All Users
+                  <FaUsersRectangle  className="size-6" />
+                  View All Users
                   </NavLink>
                 </li>
                 <li>
@@ -179,7 +185,7 @@ const DashboardLayout = () => {
                     className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                     to="viewallsession"
                   >
-                    View All Sessions
+                   <SiBookstack  className="size-6" /> View All Sessions
                   </NavLink>
                 </li>
                 <li>
@@ -187,7 +193,7 @@ const DashboardLayout = () => {
                     className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                     to="viewallmaterials"
                   >
-                    View All Materials
+                  <RiBookShelfLine  className="size-6" />  View All Materials
                   </NavLink>
                 </li>
               </ul>

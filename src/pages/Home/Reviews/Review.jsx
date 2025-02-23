@@ -30,7 +30,7 @@ const Review = () => {
 
     return (
         <div className=" mx-auto p-6">
-            <h1 className="text-2xl md:text-4xl font-bold text-white my-8 text-center mb-6">Top Reviews</h1>
+            <h1 className="text-2xl md:text-4xl font-bold text-white my-8 text-center mb-6">What Our Customer Says</h1>
 
             <div className="grid md:grid-cols-2 gap-6">
                 {paginatedReviews.map((review) => (
