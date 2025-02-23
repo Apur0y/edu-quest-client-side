@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import { IoMdHome } from "react-icons/io";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import img from "../../public/pic/dashboard.jpg";
-import { FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6";
+import { FaBookmark, FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
+import { CgProfile  } from "react-icons/cg";
+import { IoBookmarkOutline } from "react-icons/io5";
+import { LuNotebook, LuNotebookPen } from "react-icons/lu";
+import { GiBookshelf } from "react-icons/gi";
 
 const DashboardLayout = () => {
   const { user, student, setStudent } = useAuth();
@@ -69,7 +73,7 @@ const DashboardLayout = () => {
                     className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                     to="profile"
                   >
-                    Profile
+                    <CgProfile className="size-6"  />Profile
                   </NavLink>
                 </li>
                 <li>
@@ -77,7 +81,7 @@ const DashboardLayout = () => {
                     className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                     to="bookedsession"
                   >
-                    Booked Session
+                   <IoBookmarkOutline className="size-6" /> Booked Session
                   </NavLink>
                 </li>
                 <li>
@@ -85,7 +89,7 @@ const DashboardLayout = () => {
                     className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                     to="createnote"
                   >
-                    Create Notes
+                    <LuNotebookPen className="size-6"  /> Create Notes
                   </NavLink>
                 </li>
                 <li>
@@ -93,7 +97,7 @@ const DashboardLayout = () => {
                     className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                     to="managenote"
                   >
-                    Manage Notes
+                   <LuNotebook className="size-6"  /> Manage Notes
                   </NavLink>
                 </li>
                 <li>
@@ -101,7 +105,7 @@ const DashboardLayout = () => {
                     className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                     to="materials"
                   >
-                    All Materials
+                   <GiBookshelf className="size-6"  /> All Materials
                   </NavLink>
                 </li>
               </ul>
@@ -114,7 +118,7 @@ const DashboardLayout = () => {
                     className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                     to="profile"
                   >
-                    Profile
+                    <CgProfile className="size-6"  />Profile
                   </NavLink>
                 </li>
                 <li>
@@ -159,7 +163,7 @@ const DashboardLayout = () => {
                     className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
                     to="profile"
                   >
-                    Profile
+                    <CgProfile className="size-6"  />Profile
                   </NavLink>
                 </li>
                 <li>

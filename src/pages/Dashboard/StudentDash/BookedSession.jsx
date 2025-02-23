@@ -34,7 +34,12 @@ const {user} = useAuth()
   
 
     return (
-        <div className='grid w-11/12 mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-14'>
+      <div>
+        <h1 className="text-3xl font-bold text-black underline text-center my-8">
+       Booked Session
+      </h1>
+   <div className='grid w-11/12 mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-14'>
+               
            {
             bookedSession.map(session=>(
             
@@ -46,6 +51,8 @@ const {user} = useAuth()
           )
            }
         </div>
+      </div>
+     
     );
 };
 
