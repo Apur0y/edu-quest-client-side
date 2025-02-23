@@ -6,6 +6,7 @@ import Collaborate from '../Collaborate/Collaborate';
 import Review from '../Reviews/Review';
 import Contact from '../Contact/Contact';
 import Service from '../Service/Service';
+import Success from '../Success/Success';
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
            <Service></Service>
            <Collaborate></Collaborate>
            <Review></Review>
+           <Success></Success>
            <Contact></Contact>
         </div>
     );

@@ -2,7 +2,7 @@ import React from 'react';
 
 const ServiceCard = ({ value }) => {
   return (
-    <div className="max-w-lg w-full flex items-center bg-[#c8fffb] text-black shadow-lg rounded-lg overflow-hidden">
+    <div className="max-w-lg w-full flex items-center bg-[#ffffff] text-black shadow-lg rounded-lg overflow-hidden">
       {/* Left Side - Image */}
       <img
         className="w-1/3 h-full object-cover"
