@@ -1,18 +1,28 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { user, logOut } = useContext(AuthContext);
+  const location = useLocation();
 
+  // const isHomePage= location.pathname ==='/'
 
 
   const handleLogOut = () => {
     logOut();
   };
 
+
   useEffect(() => {
+
+    // if (!isHomePage) {
+    //   setIsScrolled(true);
+    //   return;
+    // }
+
+
     const handleScroll = () => {
       if (window.scrollY > 0) {
         setIsScrolled(true);
@@ -47,7 +57,7 @@ const Navbar = () => {
   return (
     <div
       className={`navbar fixed top-0 z-10 text-white py-4 md:px-14 transition-all duration-300 ${
-        isScrolled ? "bg-gray-800 shadow-lg" : "bg-transparent"
+        isScrolled ? "bg-teal-900 shadow-lg" : "bg-transparent"
       }`}
     >
       <div className="navbar-start">

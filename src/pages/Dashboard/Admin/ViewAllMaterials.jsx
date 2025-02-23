@@ -3,8 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import useAxiosSecure from "../../../hooks/useSecure";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { MdDeleteForever } from "react-icons/md";
 
 const ViewAllMaterials = () => {
   const axiosSecure = useAxiosPublic()
@@ -31,7 +31,7 @@ const ViewAllMaterials = () => {
       }).then((result) => {
         if (result.isConfirmed) {
           axiosSecure
-            .delete(`http://localhost:5000/materials/${id}`)
+            .delete(`https://eduquest-server-side.vercel.app/materials/${id}`)
             .then((res) => {
               Swal.fire({
                 title: "Deleted!",
@@ -61,23 +61,23 @@ const ViewAllMaterials = () => {
       {materials.map((material) => (
         <div
           key={material._id}
-          className=" w-72 mx-auto bg-white shadow-lg rounded-xl overflow-hidden border border-gray-200"
+          className=" w-72 mx-auto bg-[#008869] text-[#ffffff] shadow-lg rounded-xl overflow-hidden border bo"
         >
           <div className="p-6">
-            <h3 className="text-xl font-semibold text-gray-900">{material.title || "Untitled"}</h3>
+            <h3 className="text-xl font-semibold ">{material.title || "Untitled"}</h3>
             <div className="mt-4">
-              <p className="text-sm font-medium text-gray-600">
-                <strong className="text-gray-800">Tutor Email:</strong> {material.tutorEmail}
+              <p className="text-sm font-medium ">
+                <strong className="">Tutor Email:</strong> {material.tutorEmail}
               </p>
             </div>
             <div className="mt-4">
-              <p className="text-sm font-medium text-gray-600">
-                <strong className="text-gray-800">Link:</strong>{" "}
+              <p className="text-sm font-medium ">
+                <strong className="">Link:</strong>{" "}
                 <a
                   href={material.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800"
+                  className="text-teal-200 hover:text-blue-800"
                 >
                   {material.link}
                 </a>
@@ -86,11 +86,11 @@ const ViewAllMaterials = () => {
             <div className="flex justify-between items-center mt-6 space-x-4">
               <button 
               onClick={()=>handleDelete(material._id)}
-              className="w-1/2 py-2 px-4 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition-all duration-200">
-                Remove
+              className="  text-white font-medium rounded-lg hover:scale-125 transition-all duration-200">
+                <MdDeleteForever className="text-rose-600 size-8" />
               </button>
              <Link to={`${material.link}`}>
-             <button className=" py-2 px-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-200">
+             <button className=" py-2 px-4 bg-[#ff9742] text-white font-medium rounded-lg hover:bg-[] transition-all duration-200">
                 View
               </button>
              </Link>

@@ -45,7 +45,7 @@ const DashboardLayout = () => {
       <div
         className={`w-64 ${
           sidebar ? "hidden" : "flex"
-        } min-h-screen bg-slate-700  md:flex flex-col`}
+        } min-h-screen bg-[#0D3B37] md:flex flex-col`}
       >
         <div className="fixed w-64">
           {/* Logo Section */}
@@ -203,17 +203,17 @@ const DashboardLayout = () => {
 
       <div
         style={{
-          backgroundImage: `url(${img})`,
+          // backgroundImage: `url(${img})`,
           backgroundSize: "cover", // Ensures the image covers the entire div
           backgroundPosition: "center", // Centers the image
           backgroundRepeat: "no-repeat",
           position: "relative", // Allows overlaying content
         }}
-        className="flex-1  min-h-screen bg-zinc-500 backdrop-blur-xl"
+        className="flex-1  min-h-screen bg-[#1B3B39] backdrop-blur-xl"
       >
         <div
           style={{
-            backgroundColor: "rgba(72, 77, 87, 0.90)", // Adjust opacity herergb(72, 77, 87)
+            backgroundColor: "rgba(248, 249, 250, 0.95)", // Adjust opacity herergb(72, 77, 87)
             position: "absolute",
             top: 0,
             left: 0,
@@ -221,6 +221,7 @@ const DashboardLayout = () => {
             height: "100%",
             zIndex: 1, // Keeps the overlay behind the child content
           }}
+          // className="backdrop-blur-sm"
         >
           <button onClick={handleSidebar}>
             {sidebar ? (

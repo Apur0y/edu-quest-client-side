@@ -60,10 +60,10 @@ const ViewAllUser = () => {
 
   return (
     <div className="w-11/12 mx-auto">
-      <h1 className="text-4xl font-bold text-white text-center mb-6">All Users</h1>
+ 
 
       {/* Search Bar */}
-      <div className="mb-6 ml-6 mx-auto">
+      <div className="my-6   mx-auto">
         <input
           type="text"
           placeholder="Search by name"
@@ -74,20 +74,20 @@ const ViewAllUser = () => {
       </div>
 
       {/* Table Headings */}
-      <div className="flex items-center justify-between bg-gray-100 px-4 py-3 rounded-t-lg w-full">
-        <p className="flex-grow text-gray-800 font-bold text-center">Photo</p>
-        <p className="flex-grow text-gray-800 font-bold text-center">Name</p>
-        <p className="flex-grow text-gray-800 font-bold text-center">Email</p>
-        <p className="flex-grow text-gray-800 font-bold text-center">Role</p>
-        <p className="flex-grow text-gray-800 font-bold text-center">Action</p>
+      <div className="flex items-center justify-between bg-teal-900 text-white px-4 py-3 rounded-t-lg w-full">
+        <p className="flex-grow  font-bold text-center">Photo</p>
+        <p className="flex-grow  font-bold text-center">Name</p>
+        <p className="flex-grow  font-bold text-center">Email</p>
+        <p className="flex-grow  font-bold text-center">Role</p>
+        <p className="flex-grow  font-bold text-center">Action</p>
       </div>
 
       {/* User Rows */}
-      <div className="w-full">
+      <div className="w-full bg-[#008869]">
         {filteredUsers.map((user) => (
           <div
             key={user._id}
-            className="flex items-center justify-between bg-transparent font-bold text-white shadow-sm p-4 border-b border-gray-100 w-full"
+            className="flex justify-evenly  bg-transparent font-bold text-white shadow-sm p-4 border-b border-gray-100 w-full"
           >
             <div className="flex-grow flex justify-center">
               <img
@@ -103,14 +103,14 @@ const ViewAllUser = () => {
               <p className="text-white">{user.email}</p>
             </div>
             <div className="flex-grow text-center">
-              <p className="text-white rounded-full bg-pink-600 py-1 font-medium">
+              <p className="text-white rounded-full bg-[#134E4A] py-1 font-medium">
                 {user.role}
               </p>
             </div>
             <div className="flex-grow flex justify-center">
               <button
                 onClick={() => handleUserUpdate(user)}
-                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                className="bg-[#f59241] text-white py-2 px-4 rounded hover:bg-[#ce762d]"
               >
                 Update
               </button>

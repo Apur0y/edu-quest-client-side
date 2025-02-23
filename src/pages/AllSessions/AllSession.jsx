@@ -3,7 +3,7 @@ import StudySession from '../Home/studySession/studySession';
 
 const AllSession = () => {
     return (
-        <div className='mt-24'>
+        <div className='pt-24'>
             <StudySession all={true}></StudySession>
         </div>
     );

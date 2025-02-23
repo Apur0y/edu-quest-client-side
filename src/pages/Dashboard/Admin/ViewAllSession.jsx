@@ -19,7 +19,7 @@ const ViewAllSession = () => {
   } = useQuery({
     queryKey: ["sessions"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/sessions");
+      const res = await fetch("https://eduquest-server-side.vercel.app/sessions");
       if (!res.ok) throw new Error("Failed to fetch sessions");
       return res.json();
     },
@@ -98,21 +98,21 @@ const axiosSecure=useAxiosSecure();
       {sessions.map((session) => (
         <div
           key={session._id}
-          className="max-w-md mx-auto h-full w-11/12 bg-white shadow-lg rounded-xl  border border-gray-200"
+          className="max-w-md mx-auto h-full w-11/12 bg-[#008869] text-[#ffffff] shadow-lg rounded-xl  "
         >
-          <div className="p-6 text-gray-800">
-            <h2 className="text-2xl font-semibold mb-4 text-center text-gray-900">
+          <div className="p-6 ">
+            <h2 className="text-2xl font-semibold mb-4 text-center ">
               {session.sessionTitle}
             </h2>
-            <p className="text-sm font-medium text-gray-500 mb-4">
+            <p className="text-sm font-medium  mb-4">
               <strong className="block ">Tutor Name:</strong>
               {session.tutorName}
             </p>
-            <p className="text-sm font-medium text-gray-500 mb-4">
+            <p className="text-sm font-medium  mb-4">
               <strong className="block ">Email:</strong>
               {session.tutorEmail}
             </p>
-            <p className="text-sm font-medium text-gray-500 mb-6">
+            <p className="text-sm font-medium  mb-6">
               <strong className="block ">Status:</strong>
               <span
                 className={`inline-block py-1 px-3 text-sm font-medium rounded-lg text-white ${
@@ -131,7 +131,7 @@ const axiosSecure=useAxiosSecure();
               {session.status === "Approved" ? (
                 <>
                   <button
-                    className="w-1/2 py-2 px-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-200"
+                    className="w-1/2 py-2 px-4 bg-[#ff9742] text-white font-medium rounded-lg hover:bg-[#e28131] transition-all duration-200"
                     onClick={() => setSelectedSession(session)}
                   >
                     Update
@@ -167,7 +167,7 @@ const axiosSecure=useAxiosSecure();
       {/* Modal for Session Fee Update */}
       {selectedSession && (
   <div className="fixed inset-0 top-0 justify-center items-center flex max-h-screen text-white bg-black bg-opacity-50 z-50">
-    <div className="bg-neutral-900  p-6 rounded-lg shadow-lg w-96">
+    <div className="bg-[#134E4A] p-6 rounded-lg shadow-lg w-96">
       <h2 className="font-bold text-xl mb-4">
         Set Registration Fee for: {selectedSession.sessionTitle}
       </h2>
@@ -201,7 +201,7 @@ const axiosSecure=useAxiosSecure();
       )}
       <div className="flex justify-end space-x-2">
         <button
-          className="btn bg-gray-500 text-white"
+          className="bt text-white"
           onClick={() => setSelectedSession(null)}
         >
           Cancel

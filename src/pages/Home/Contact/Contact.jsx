@@ -3,7 +3,7 @@ import React from "react";
 const Contact = () => {
   return (
     <div className="max-w-6xl mx-auto p-8">
-      <div className="grid md:grid-cols-2 gap-12 items-center bg-neutral-900  text-white shadow-lg rounded-lg p-8">
+      <div className="grid md:grid-cols-2 gap-12 items-center bg-[#1B3B39]  text-white shadow-lg rounded-lg p-8">
         {/* Left Side */}
         <div>
           <h1 className="text-3xl md:text-4xl font-bold te">
@@ -18,7 +18,7 @@ const Contact = () => {
         </div>
 
         {/* Right Side - Contact Form */}
-        <form className="space-y-6  p-6 rounded-lg shadow-md">
+        <form className="space-y-6  p-6 rounded-lg ">
           <div>
             <label className="block te font-medium">Name</label>
             <input

@@ -7,7 +7,7 @@ const StudyCard = ({ session }) => {
 
 
   return (
-    <div className="max-w-md mx-auto w-80 bg-neutral-900 text-white shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
+    <div className="max-w-md mx-auto w-80 bg-[#1B3B39] text-white shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
       <div className="p-6 flex flex-col justify-between ">
         <h2 className="text-2xl font-semibold  mb-4">
           {session.sessionTitle}
@@ -28,7 +28,7 @@ const StudyCard = ({ session }) => {
             {isOngoing ? "Ongoing" : "Closed"}
           </button>
           <Link to={`/sessions/${session._id}`}
-            className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-medium rounded-md transition-colors duration-300"
+            className="px-4 py-2 bg-[#f48c37] hover:bg-yellow-600 text-white text-sm font-medium rounded-md transition-colors duration-300"
           >
             Details
           </Link>

@@ -17,7 +17,7 @@ const Payment = () => {
   const handleSSLPayment=()=>{
     console.log("ssl com", postSession);
 
-    axios.post('http://localhost:5000/create-ssl-payment', postSession)
+    axios.post('https://eduquest-server-side.vercel.app/create-ssl-payment', postSession)
     .then((res)=>console.log(res.data))
 
   }
