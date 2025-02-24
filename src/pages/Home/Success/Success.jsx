@@ -20,10 +20,12 @@ const Success = () => {
   return (
     <div className="max-w mx-auto my-12 flex flex-col bg-white p-6 md:flex-row items-center gap-8">
       {/* Left Section */}
+
       <div className="w-full md:w-1/2 space-y-6">
         {/* Title */}
+        <h1 className="text-2xl md:text-4xl text-black font-bold">Success Story</h1>
         <h2 className="text-2xl font-bold text-gray-800">
-          Start Up | Company | Job
+          Science | Commerce | Arts 
         </h2>
         
         {/* Description */}

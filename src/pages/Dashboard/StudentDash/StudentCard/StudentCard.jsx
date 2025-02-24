@@ -31,6 +31,7 @@ const StudentDetailsCard = () => {
       id: Date.now(),
       sessionID:session.sessionID // Unique ID for each review
     };
+    console.log("Her is the rev",newReview);
     axios.post("https://eduquest-server-side.vercel.app/reviews",newReview)
 
     setReviews((prevReviews) => [...prevReviews, newReview]);

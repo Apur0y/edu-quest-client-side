@@ -16,7 +16,7 @@ const ServiceCard = ({ value }) => {
         <p className="font-semibold mb-2">
           Tutors:{" "}
           <span className="font-normal">
-            {value.tutors.map((tutor) => tutor.split(" ").slice(0, 2).join(" ")).join(", ")}
+            {value.tutors.map((tutor) => tutor.split(" ").slice(0, 2).join(" ")).join(" ")}
           </span>
         </p>
         <p className="font-semibold">

@@ -1,19 +1,85 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
-import useAxiosSecure from '../../../hooks/useSecure';
-import { FcRating } from 'react-icons/fc';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
-import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { FcRating } from "react-icons/fc";
+import { Rating } from "@smastrom/react-rating";
+import ReactPaginate from "react-paginate";
+import { motion, AnimatePresence } from "framer-motion"; // ✅ Import Framer Motion
+
+import "@smastrom/react-rating/style.css";
+
+const PaginatedReviews = ({ itemsPerPage, reviews }) => {
+    const [itemOffset, setItemOffset] = useState(0);
+    const [direction, setDirection] = useState(1); // 🔥 Track navigation direction
+
+    const endOffset = itemOffset + itemsPerPage;
+    const currentReviews = reviews.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(reviews.length / itemsPerPage);
+
+    const handlePageClick = (event) => {
+        const newOffset = (event.selected * itemsPerPage) % reviews.length;
+        setDirection(newOffset > itemOffset ? 1 : -1); // 🔥 Determine slide direction
+        setItemOffset(newOffset);
+    };
+
+    return (
+        <>
+            <div className="overflow-hidden ">
+                <AnimatePresence mode="wait" custom={direction}>
+                    <motion.div
+                        key={itemOffset} // 🔥 Ensures new page triggers animation
+                        initial={{ x: direction * 100, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: -direction * 100, opacity: 0 }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                        className="grid md:grid-cols-3  gap-6"
+                    >
+                        {currentReviews.map((review) => (
+                            <motion.div
+                                key={review.id}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                transition={{ duration: 0.3 }}
+                                className="bg-white bg-opacity-80 backdrop-blur-lg shadow-lg border border-gray-200 rounded-xl flex flex-col items-center p-6 text-center transition hover:scale-105"
+                            >
+                                
+                                <Rating style={{ maxWidth: 250 }} value={review.rating} readOnly />
+                                <p className="text-gray-600 mt-2">{review.text}</p>
+                                <h2 className="text-lg font-semibold mt-2">{review.name || "User Name"}</h2>
+                                <img src={review.photo || "/human.jpg"} alt={review.name} className="w-20 h-20 rounded-full mt-3 border-2 border-gray-300 shadow-md" />
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </AnimatePresence>
+            </div>
+
+            {/* Pagination Controls */}
+            {pageCount > 1 && (
+                <ReactPaginate
+                    pageCount={pageCount}
+                    onPageChange={handlePageClick}
+                    containerClassName="flex justify-center items-center mt-6 space-x-4"
+                    previousLabel="←"
+                    nextLabel="→"
+                    breakLabel="..."
+                    pageClassName="px-3 py-2 border rounded-md  hover:bg-yellow-500 hover:text-white"
+                    activeClassName="bg-yellow-500 text-white"
+                    disabledClassName="opacity-50 cursor-not-allowed"
+                    previousClassName="px-3 py-2  text-white rounded-md hover:bg-yellow-500 "
+                    nextClassName="px-3 py-2  text-white rounded-md hover:bg-yellow-500 "
+                />
+            )}
+        </>
+    );
+};
 
 const Review = () => {
     const axiosSecure = useAxiosPublic();
-    const [currentPage, setCurrentPage] = useState(1);
-    const reviewsPerPage = 2; // Show 2 reviews per page
-
-    const { data: reviews, isLoading, error } = useQuery({
+    const { data: reviews = [], isLoading, error } = useQuery({
         queryKey: ["review"],
         queryFn: async () => {
-            const result = await axiosSecure.get('/reviews');
+            const result = await axiosSecure.get("/reviews");
             return result.data;
         }
     });
@@ -21,54 +87,12 @@ const Review = () => {
     if (isLoading) return <p className="text-center text-lg font-semibold">Loading reviews...</p>;
     if (error) return <p className="text-center text-red-500">Failed to load reviews</p>;
 
-    const topReviews = reviews?.filter(rev => rev.rating === 5) || [];
-    
-    // Pagination Logic
-    const totalPages = Math.ceil(topReviews.length / reviewsPerPage);
-    const startIndex = (currentPage - 1) * reviewsPerPage;
-    const paginatedReviews = topReviews.slice(startIndex, startIndex + reviewsPerPage);
+    const topReviews = reviews.filter((rev) => rev.rating === 5);
 
     return (
-        <div className=" mx-auto p-6">
-            <h1 className="text-2xl md:text-4xl font-bold text-white my-8 text-center mb-6">What Our Customer Says</h1>
-
-            <div className="grid md:grid-cols-2 gap-6">
-                {paginatedReviews.map((review) => (
-                    <div key={review.id} className="bg-white shadow-lg rounded-xl flex p-4">
-                        <div className='w-24 pr-8 border-r-2'>
-                            <img src={review.photo || "/human.jpg"} alt={review.name} className="w-16 h-16 rounded-full mx-auto" />
-                        </div>
-                        <div className='ml-5'>
-                            <h2 className="text-lg font-semibold text-center mt-2">{review.name}</h2>
-                            <p className="text-gray-600 text-center mt-1">{review.text}</p>
-                            <p className="flex justify-center items-center gap-1 text-yellow-500 mt-2">
-                                <FcRating className="text-xl" /> {review.rating}
-                            </p>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            {/* Pagination Controls */}
-            {totalPages > 1 && (
-                <div className="flex justify-center items-center mt-6 space-x-4">
-                    <button
-                        className={`px-4 py-2 bg-blue-500 text-white rounded-md ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'}`}
-                        disabled={currentPage === 1}
-                        onClick={() => setCurrentPage(prev => prev - 1)}
-                    >
-                        <FaArrowLeft />
-                    </button>
-                    <span className="text-lg font-semibold">{currentPage} / {totalPages}</span>
-                    <button
-                        className={`px-4 py-2 bg-blue-500 text-white rounded-md ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'}`}
-                        disabled={currentPage === totalPages}
-                        onClick={() => setCurrentPage(prev => prev + 1)}
-                    >
-                       <FaArrowRight />
-                    </button>
-                </div>
-            )}
+        <div className="mx-auto p-6 my-32">
+            <h1 className="text-2xl md:text-4xl font-bold text-teal-50 my-8 text-center ">What Our Customer Says</h1>
+            <PaginatedReviews itemsPerPage={3} reviews={topReviews} />
         </div>
     );
 };
