@@ -22,14 +22,8 @@ const Navbar = () => {
 
   useEffect(() => {
 
-    if (!isHomePage) {
-      setIsScrolled(true);
-      return;
-    }
-
-
     const handleScroll = () => {
-      if (window.scrollY > 0) {
+      if (window.scrollY > 0 || !isHomePage) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -37,11 +31,11 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
+    handleScroll();
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isHomePage]);
 
   const links = (
     <>
