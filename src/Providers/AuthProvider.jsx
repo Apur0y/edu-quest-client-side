@@ -14,6 +14,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [student, setStudent] = useState(false);
+  const [theme, setTheme] = useState(false)
 
     const {data:allUsers} =useQuery({
     queryKey:["userData"],
@@ -89,7 +90,9 @@ const profileInfo = (updatedData) => {
     googleSign,
     student,
     setStudent,
-    allUsers
+    allUsers,
+    theme,
+    setTheme
   };
 
   return (

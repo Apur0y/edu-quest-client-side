@@ -46,8 +46,8 @@ const Service = () => {
       
 
     return (
-        <div className='w-11/12 mx-auto my-9'>
-              <h1 className="text-3xl text-center md:text-5xl font-bold text-[#c6fefe] underline py-6 ">Explore Your Field</h1>
+        <div className='w-11/12 mx-auto mb-24'>
+              <h1 className="text-3xl text-center md:text-5xl font-bold  underline py-6 ">Explore Your Field</h1>
              
                
               <div  className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 '>

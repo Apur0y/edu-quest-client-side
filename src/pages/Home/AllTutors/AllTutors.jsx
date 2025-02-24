@@ -33,8 +33,8 @@ const AllTutors = () => {
 
 
   return( 
-  <div className=" w-11/12 mx-auto my-9">
-        <h1 className="text-3xl md:text-5xl font-bold text-[#EAEDED] text-center underline py-6 ">Check Out Tutors!</h1>
+  <div className=" w-11/12 mx-auto mb-24">
+        <h1 className="text-3xl md:text-5xl font-bold text-center underline py-6 ">Check Out Tutors!</h1>
 <div className="grid grid-cols-3 gap-5">
     {
         tutors.map(tutor=><TutorCard key={tutor._id} tutor={tutor}></TutorCard>)

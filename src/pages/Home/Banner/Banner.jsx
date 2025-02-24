@@ -11,7 +11,7 @@ import "./banner.css";
 
 const Banner = () => {
   return (
-    <div className="bg-black">
+    <div className="bg-black mb-20">
       <Swiper
         pagination={{
           dynamicBullets: true,

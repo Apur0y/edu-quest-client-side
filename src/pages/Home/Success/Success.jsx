@@ -18,7 +18,7 @@ const Success = () => {
   };
 
   return (
-    <div className="max-w mx-auto my-12 flex flex-col bg-white p-6 md:flex-row items-center gap-8">
+    <div className="max-w mx-auto mb-24 flex flex-col bg-white p-6 md:flex-row items-center gap-8">
       {/* Left Section */}
 
       <div className="w-full md:w-1/2 space-y-6">

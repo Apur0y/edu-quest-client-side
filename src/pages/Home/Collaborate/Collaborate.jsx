@@ -2,7 +2,7 @@ import React from "react";
 
 const Collaborate = () => {
   return (
-    <div>
+    <div className="mb-24">
       <div
         className="hero min-h-screen "
         style={{

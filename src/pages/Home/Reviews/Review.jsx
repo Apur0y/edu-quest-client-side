@@ -90,8 +90,8 @@ const Review = () => {
     const topReviews = reviews.filter((rev) => rev.rating === 5);
 
     return (
-        <div className="mx-auto p-6 my-32">
-            <h1 className="text-2xl md:text-4xl font-bold text-teal-50 my-8 text-center ">What Our Customer Says</h1>
+        <div className="mx-auto w-11/12 mb-24">
+            <h1 className="text-2xl md:text-4xl font-bold  my-8 text-center ">What Our Customer Says</h1>
             <PaginatedReviews itemsPerPage={3} reviews={topReviews} />
         </div>
     );

@@ -1,14 +1,19 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import { CiLight } from "react-icons/ci";
+import { MdOutlineDarkMode } from "react-icons/md";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut,theme, setTheme } = useContext(AuthContext);
   const location = useLocation();
 
-  // const isHomePage= location.pathname ==='/'
+  const isHomePage= location.pathname ==='/'
 
+  const handleTheme =()=>{
+    setTheme(!theme)
+  }
 
   const handleLogOut = () => {
     logOut();
@@ -17,10 +22,10 @@ const Navbar = () => {
 
   useEffect(() => {
 
-    // if (!isHomePage) {
-    //   setIsScrolled(true);
-    //   return;
-    // }
+    if (!isHomePage) {
+      setIsScrolled(true);
+      return;
+    }
 
 
     const handleScroll = () => {
@@ -91,7 +96,22 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal text-base px-1">{links}</ul>
       </div>
+      
       <div className="navbar-end ">
+        <div>
+          <button onClick={handleTheme}>
+
+          {
+           theme?  <CiLight className="size-6 mr-9 my-auto" /> : <MdOutlineDarkMode className="size-6 mr-9" />
+          }
+       
+          </button>
+
+        
+        </div>
+   
+
+
         {user ? (
           <>
             <img src={user?.photoURL} alt="User" className="w-14 h-14 rounded-full mr-2" />

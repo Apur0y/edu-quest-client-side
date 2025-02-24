@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import img from "../../../public/pic/login.jpg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { auth, AuthContext } from "../../Providers/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
@@ -11,6 +11,9 @@ const Login = () => {
   const location = useNavigate();
   const provider = new GoogleAuthProvider();
   const gprovider = new GithubAuthProvider();
+  const navigate = useLocation();
+
+  const from = navigate.state?.from?.pathname || "/";
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -19,7 +22,7 @@ const Login = () => {
     const password = form.password.value;
 
     signIn(email, password).then((res) => {
-      location("/");
+      location(from, { replace: true });
     });
   };
 
