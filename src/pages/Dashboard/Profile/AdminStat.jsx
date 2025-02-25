@@ -30,7 +30,7 @@ const AdminStat = () => {
   const students = users.filter((user) => user.role === "student");
 
   return (
-    <div className="mt-14 flex justify-center gap-10">
+    <div className="mt-14 flex flex-col md:flex-row justify-center gap-10">
       {/* Tutors Section */}
       <div className="flex flex-col items-center bg-green-100 p-6 rounded-lg shadow-lg w-48">
         <FaChalkboardTeacher className="text-green-600 text-5xl mb-2" />

@@ -79,7 +79,7 @@ const ViewAllUser = () => {
         <p className="flex-grow  font-bold ">Name</p>
         <p className="flex-grow  font-bold text-center  md:block hidden">Email</p>
         <p className="flex-grow  font-bold text-center">Role</p>
-        <p className="flex-grow  font-bold text-center">Action</p>
+        <p className="flex-grow  font-bold text-end mr-6">Action</p>
       </div>
 
       {/* User Rows */}
@@ -108,7 +108,7 @@ const ViewAllUser = () => {
           {user.role}
         </p>
       </div>
-      <div className="flex-grow flex justify-center">
+      <div className="flex-grow flex justify-end">
         <button
           onClick={() => handleUserUpdate(user)}
           className="bg-[#f59241] text-white py-2 px-4 rounded hover:bg-[#ce762d]"

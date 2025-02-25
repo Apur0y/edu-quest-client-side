@@ -61,7 +61,7 @@ const ViewAllMaterials = () => {
       {materials.map((material) => (
         <div
           key={material._id}
-          className=" w-72 mx-auto bg-[#008869] text-[#ffffff] shadow-lg rounded-xl overflow-hidden border bo"
+          className="w-48 md:w-72 mx-auto bg-[#008869] text-[#ffffff] shadow-lg rounded-xl overflow-hidden border bo"
         >
           <div className="p-6">
             <h3 className="text-xl font-semibold ">{material.title || "Untitled"}</h3>

@@ -30,7 +30,7 @@ const DashboardLayout = () => {
   const [admin, setAdmin] = useState(false);
   const [tutor, setTutor] = useState(false);
 
-  const [sidebar, setSidebar] = useState(true);
+  const [sidebar, setSidebar] = useState(false); // Sidebar starts hidden on mobile
   const [active, setActive] = useState(true);
 
   useEffect(() => {
@@ -51,20 +51,14 @@ const DashboardLayout = () => {
 
   return (
     <div className="flex">
+      {/* Sidebar - Hidden on mobile and collapsible */}
       <div
-        className={`w-64 ${
-          sidebar ? "hidden" : "flex"
-        } min-h-screen z-50 bg-[#ffffff] md:flex flex-col`}
+        className={`md:w-64 ${sidebar ? "block " : "hidden"} min-h-screen z-50 bg-[#0D3B37] relative md:flex flex-col`}
       >
-        <div className="fixed  bg-[#0D3B37] mt-10">
-          {/* Logo Section */}
+        <div className=" mt-10">
           <Link to="/">
-            <div className=" flex flex-col justify-center items-center gap-5  text-white font-semibold m-5">
-              <img
-                src="../../../../public/logo.png"
-                className="w-20"
-                alt="Logo"
-              />
+            <div className="flex flex-col justify-center items-center gap-5 text-white font-semibold m-5">
+              <img src="../../../../public/logo.png" className="w-20" alt="Logo" />
               <h1 className="text-xl">EduQuest</h1>
             </div>
           </Link>
@@ -74,43 +68,28 @@ const DashboardLayout = () => {
             {student && (
               <ul className="menu text-white gap-5">
                 <li>
-                  <NavLink
-                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                    to="profile"
-                  >
-                    <CgProfile className="size-6"  />Profile
+                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="profile">
+                    <CgProfile className="size-6" /> Profile
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                    to="bookedsession"
-                  >
-                   <IoBookmarkOutline className="size-6" /> Booked Session
+                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="bookedsession">
+                    <IoBookmarkOutline className="size-6" /> Booked Session
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                    to="createnote"
-                  >
-                    <LuNotebookPen className="size-6"  /> Create Notes
+                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="createnote">
+                    <LuNotebookPen className="size-6" /> Create Notes
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                    to="managenote"
-                  >
-                   <LuNotebook className="size-6"  /> Manage Notes
+                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="managenote">
+                    <LuNotebook className="size-6" /> Manage Notes
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                    to="materials"
-                  >
-                   <GiBookshelf className="size-6"  /> All Materials
+                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="materials">
+                    <GiBookshelf className="size-6" /> All Materials
                   </NavLink>
                 </li>
               </ul>
@@ -118,44 +97,29 @@ const DashboardLayout = () => {
 
             {tutor && (
               <ul className="menu text-white gap-5">
-                  <li>
-                  <NavLink
-                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                    to="profile"
-                  >
-                    <CgProfile className="size-6"  />Profile
+                <li>
+                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="profile">
+                    <CgProfile className="size-6" /> Profile
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                    to="createsession"
-                  >
-                  <IoBookOutline className="size-6" />  Create Session
+                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="createsession">
+                    <IoBookOutline className="size-6" /> Create Session
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                    to="createdsession"
-                  >
-                    <FiBook className="size-6" />All Sessions
+                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="createdsession">
+                    <FiBook className="size-6" /> All Sessions
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                    to="uploadmaterials"
-                  >
-                  <SiWikibooks className="size-6" />  Upload Materials
+                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="uploadmaterials">
+                    <SiWikibooks className="size-6" /> Upload Materials
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                    to="uploadedmaterials"
-                  >
-                   <SlBookOpen className="size-6" /> View All Materials
+                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="uploadedmaterials">
+                    <SlBookOpen className="size-6" /> View All Materials
                   </NavLink>
                 </li>
               </ul>
@@ -163,37 +127,24 @@ const DashboardLayout = () => {
 
             {admin && (
               <ul className="menu text-white gap-5">
-                  <li>
-                  <NavLink
-                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                    to="profile"
-                  >
-                    <CgProfile className="size-6"  />Profile
+                <li>
+                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="profile">
+                    <CgProfile className="size-6" /> Profile
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                    to="viewalluser"
-                  >
-                  <FaUsersRectangle  className="size-6" />
-                  View All Users
+                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="viewalluser">
+                    <FaUsersRectangle className="size-6" /> View All Users
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                    to="viewallsession"
-                  >
-                   <SiBookstack  className="size-6" /> View All Sessions
+                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="viewallsession">
+                    <SiBookstack className="size-6" /> View All Sessions
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className=" hover:bg-green-600 text-white px-4 py-2 font-semibold"
-                    to="viewallmaterials"
-                  >
-                  <RiBookShelfLine  className="size-6" />  View All Materials
+                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="viewallmaterials">
+                    <RiBookShelfLine className="size-6" /> View All Materials
                   </NavLink>
                 </li>
               </ul>
@@ -202,48 +153,45 @@ const DashboardLayout = () => {
         </div>
         {/* Home Button - Stays at the Bottom */}
         <div className="fixed bottom-0 w-64 ">
-          <NavLink
-            className=" hover:bg-green-600 text-white px-4 py-2 font-semibold flex mb-6"
-            to="/"
-          >
-            <IoMdHome className="my-auto size-6 mr-3 " /> Home
+          <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold flex mb-6" to="/">
+            <IoMdHome className="my-auto size-6 mr-3" /> Home
           </NavLink>
         </div>
       </div>
 
+      {/* Main Content Area */}
       <div
         style={{
-          // backgroundImage: `url(${img})`,
-          backgroundSize: "cover", // Ensures the image covers the entire div
-          backgroundPosition: "center", // Centers the image
-          backgroundRepeat: "no-repeat",
-          position: "relative", // Allows overlaying content
+          backgroundSize: "cover", 
+          backgroundPosition: "center", 
+          backgroundRepeat: "no-repeat", 
+          position: "relative",
         }}
-        className="flex-1  min-h-screen bg-[#1B3B39] backdrop-blur-xl"
+        className="flex-1 min-h-screen bg-[#1B3B39] backdrop-blur-xl"
       >
-        <div
-        className="fixed top-0"
-          style={{
-            backgroundColor: "rgba(248, 249, 250, 0.95)", // Adjust opacity herergb(72, 77, 87)
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            zIndex: 1, // Keeps the overlay behind the child content
-          }}
-          // className="backdrop-blur-sm"
-        >
-          <button
-          
-          onClick={handleSidebar}>
+        {/* Sidebar Toggle Button */}
+        <div className="md:hidden absolute top-4 left-4 z-10">
+          <button onClick={handleSidebar}>
             {sidebar ? (
-              <FaCircleArrowRight className="text-yellow-500 md:hidden" />
+              <FaCircleArrowLeft className="text-yellow-500" />
             ) : (
-              <FaCircleArrowLeft className="text-yellow-500 md:hidden" />
+              <FaCircleArrowRight className="text-yellow-500" />
             )}
           </button>
         </div>
+
+        {/* Content Overlay */}
+        <div
+          style={{
+            backgroundColor: "rgba(248, 249, 250, 0.95)", 
+            position: "absolute", 
+            top: 0, 
+            left: 0, 
+            width: "100%", 
+            height: "100%", 
+            zIndex: 1,
+          }}
+        />
         <div style={{ position: "relative", zIndex: 2 }}>
           <Outlet />
         </div>
@@ -251,5 +199,6 @@ const DashboardLayout = () => {
     </div>
   );
 };
+
 
 export default DashboardLayout;

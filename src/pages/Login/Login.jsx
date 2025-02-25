@@ -49,15 +49,15 @@ const Login = () => {
   return (
     <div>
       <div
-        className="hero min-h-screen"
+        className="hero min-h-screen "
         style={{
           backgroundImage: `url(${img})`,
         }}
       >
-        <div className="hero-overlay bg-opacity-60"></div>
-        <div className="hero-content text-neutral-content text-center">
+        <div className="hero-overlay bg-opacity-60 "></div>
+        <div className="hero-content text-neutral-content text-center pt-20">
           <div className="hero  min-h-screen">
-            <div className="hero-content flex-col lg:flex-row-reverse">
+            <div className="hero-content flex-col-reverse lg:flex-row-reverse">
               <div className=" bg-emerald-900 text-white w-full max-w-sm shrink-0 shadow-2xl">
                 <h1 className="text-2xl font-semibold mt-7">Log In Here</h1>
                 <form onSubmit={handleLogin} className=" px-8">
