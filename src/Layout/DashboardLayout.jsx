@@ -54,12 +54,12 @@ const DashboardLayout = () => {
       <div
         className={`w-64 ${
           sidebar ? "hidden" : "flex"
-        } min-h-screen bg-[#0D3B37] md:flex flex-col`}
+        } min-h-screen z-50 bg-[#ffffff] md:flex flex-col`}
       >
-        <div className="fixed w-64">
+        <div className="fixed  bg-[#0D3B37] mt-10">
           {/* Logo Section */}
           <Link to="/">
-            <div className=" flex flex-col justify-center items-center gap-5 mt6 text-white font-semibold m-5">
+            <div className=" flex flex-col justify-center items-center gap-5  text-white font-semibold m-5">
               <img
                 src="../../../../public/logo.png"
                 className="w-20"
@@ -201,7 +201,7 @@ const DashboardLayout = () => {
           </div>
         </div>
         {/* Home Button - Stays at the Bottom */}
-        <div className="fixed bottom-0 w-full">
+        <div className="fixed bottom-0 w-64 ">
           <NavLink
             className=" hover:bg-green-600 text-white px-4 py-2 font-semibold flex mb-6"
             to="/"
@@ -222,6 +222,7 @@ const DashboardLayout = () => {
         className="flex-1  min-h-screen bg-[#1B3B39] backdrop-blur-xl"
       >
         <div
+        className="fixed top-0"
           style={{
             backgroundColor: "rgba(248, 249, 250, 0.95)", // Adjust opacity herergb(72, 77, 87)
             position: "absolute",
@@ -233,11 +234,13 @@ const DashboardLayout = () => {
           }}
           // className="backdrop-blur-sm"
         >
-          <button onClick={handleSidebar}>
+          <button
+          
+          onClick={handleSidebar}>
             {sidebar ? (
-              <FaCircleArrowRight className="text-white md:hidden" />
+              <FaCircleArrowRight className="text-yellow-500 md:hidden" />
             ) : (
-              <FaCircleArrowLeft className="text-white md:hidden" />
+              <FaCircleArrowLeft className="text-yellow-500 md:hidden" />
             )}
           </button>
         </div>

@@ -75,49 +75,51 @@ const ViewAllUser = () => {
 
       {/* Table Headings */}
       <div className="flex items-center justify-between bg-teal-900 text-white px-4 py-3 rounded-t-lg w-full">
-        <p className="flex-grow  font-bold text-center">Photo</p>
-        <p className="flex-grow  font-bold text-center">Name</p>
-        <p className="flex-grow  font-bold text-center">Email</p>
+        <p className="flex-grow  font-bold   md:block hidden">Photo</p>
+        <p className="flex-grow  font-bold ">Name</p>
+        <p className="flex-grow  font-bold text-center  md:block hidden">Email</p>
         <p className="flex-grow  font-bold text-center">Role</p>
         <p className="flex-grow  font-bold text-center">Action</p>
       </div>
 
       {/* User Rows */}
       <div className="w-full bg-[#008869]">
-        {filteredUsers.map((user) => (
-          <div
-            key={user._id}
-            className="flex justify-evenly  bg-transparent font-bold text-white shadow-sm p-4 border-b border-gray-100 w-full"
-          >
-            <div className="flex-grow flex justify-center">
-              <img
-                src={user.photoUrl}
-                alt="Profile"
-                className="w-12 h-12 rounded-full"
-              />
-            </div>
-            <div className="flex-grow text-center">
-              <h3 className="text-lg font-medium">{user.name}</h3>
-            </div>
-            <div className="flex-grow text-center">
-              <p className="text-white">{user.email}</p>
-            </div>
-            <div className="flex-grow text-center">
-              <p className="text-white rounded-full bg-[#134E4A] py-1 font-medium">
-                {user.role}
-              </p>
-            </div>
-            <div className="flex-grow flex justify-center">
-              <button
-                onClick={() => handleUserUpdate(user)}
-                className="bg-[#f59241] text-white py-2 px-4 rounded hover:bg-[#ce762d]"
-              >
-                Update
-              </button>
-            </div>
-          </div>
-        ))}
+  {filteredUsers.map((user) => (
+    <div
+      key={user._id}
+      className="flex justify-evenly bg-transparent font-bold text-white shadow-sm p-4 border-b border-gray-100 w-full"
+    >
+      {/* Hide the photo column on mobile devices */}
+      <div className="flex-grow flex justify-center md:block hidden">
+        <img
+          src={user.photoUrl}
+          alt="Profile"
+          className="w-12 h-12 rounded-full"
+        />
       </div>
+      <div className="flex-grow ">
+        <h3 className="text-lg font-medium">{user.name}</h3>
+      </div>
+      <div className="flex-grow text-center md:block hidden">
+        <p className="text-white">{user.email}</p>
+      </div>
+      <div className="flex-grow text-center">
+        <p className="text-white rounded-full bg-[#134E4A] py-1 font-medium">
+          {user.role}
+        </p>
+      </div>
+      <div className="flex-grow flex justify-center">
+        <button
+          onClick={() => handleUserUpdate(user)}
+          className="bg-[#f59241] text-white py-2 px-4 rounded hover:bg-[#ce762d]"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
+
 
       {/* Modal */}
       {modalVisible && selectedUser && (

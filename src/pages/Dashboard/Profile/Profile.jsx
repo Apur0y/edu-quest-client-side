@@ -6,7 +6,7 @@ import { LuBookOpenCheck } from "react-icons/lu";
 import StudentStat from "./studentStat";
 import axios from "axios";
 import AdminStat from "./AdminStat";
-import TutorStat from "./tutorStat";
+import TutorStat from "./TutorStat";
 
 const Profile = () => {
   const { user } = useAuth();
