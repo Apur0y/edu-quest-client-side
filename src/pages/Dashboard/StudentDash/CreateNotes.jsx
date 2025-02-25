@@ -107,7 +107,7 @@ const CreateNotes = ({ userEmail }) => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all duration-200"
+          className="w-full py-2 px-4 bg-yellow-600 text-white font-bold rounded-lg hover:bg-yellow-500 transition-all duration-200"
         >
           Create Note
         </button>

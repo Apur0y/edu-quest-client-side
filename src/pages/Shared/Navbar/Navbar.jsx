@@ -9,7 +9,7 @@ const Navbar = () => {
   const { user, logOut,theme, setTheme } = useContext(AuthContext);
   const location = useLocation();
 
-  const isHomePage= location.pathname ==='/'
+  const isHomePage= location.pathname ==='/' || location.pathname==='/login' || location.pathname==='/register'
 
   const handleTheme =()=>{
     setTheme(!theme)

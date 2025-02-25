@@ -107,7 +107,7 @@ const ManageNotes = () => {
             <p className="text-gray-600 mb-4">{note.description}</p>
             <div className="flex flex-col md:flex-row gap-2 justify-between">
               <button
-                className="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all"
+                className="py-2 px-4 bg-yellow-600 text-white rounded-lg hover:bg-yellow-500 transition-all"
                 onClick={() => {
                   setEditingNote(note);
                   setUpdatedNote({

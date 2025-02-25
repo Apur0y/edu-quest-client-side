@@ -35,7 +35,7 @@ const MaterialsList = () => {
 
   return (
     <div>
-      <h1 className="text-2xl text-center text-white font-bold mb-4">Uploaded Materials</h1>
+      <h1 className="text-2xl text-center font-bold mb-4">Uploaded Materials</h1>
       <div className="grid  w-11/12 mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {materials.map((material) => (
           <div
@@ -43,7 +43,7 @@ const MaterialsList = () => {
             className="bg-white shadow-lg rounded-lg p-4 border"
           >
             <h2 className="text-xl font-semibold">{material.title}</h2>
-            <p className="text-gray-600">Session ID: {material.sessionId}</p>
+            <p className="text-gray-700">Session ID: {material.sessionId}</p>
             <p className="text-gray-600">Tutor Email: {material.tutorEmail}</p>
             <a
               href={material.link}

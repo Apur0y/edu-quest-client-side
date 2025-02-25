@@ -195,7 +195,7 @@ const CreateSession = () => {
 
                     <button
                         type="submit"
-                        className="w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-300"
+                        className="w-full bg-yellow-600 text-white py-2 px-4 rounded-lg hover:bg-yelow-700 transition duration-300"
                     >
                         Create Session
                     </button>

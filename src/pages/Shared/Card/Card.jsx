@@ -59,7 +59,7 @@ const Card = ({ session, handleRequestSession }) => {
         {session.status === "Rejected" && (
           <button
             onClick={() => handleRequestSession(session)}
-            className="mt-6 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+            className="mt-6 w-full bg-yellow-600 text-white py-2 px-4 rounded hover:bg-yellow-500 transition duration-300"
           >
             Send Request
           </button>
