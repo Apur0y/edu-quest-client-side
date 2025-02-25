@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [student, setStudent] = useState(false);
-  const [theme, setTheme] = useState(false)
+  const [theme, setTheme] = useState(true)
 
     const {data:allUsers} =useQuery({
     queryKey:["userData"],

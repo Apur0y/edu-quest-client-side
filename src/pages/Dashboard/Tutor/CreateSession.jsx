@@ -1,200 +1,205 @@
 import React, { useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
-import axios from 'axios';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useSecure';
 
 const CreateSession = () => {
-
     const axiosSecure = useAxiosSecure();
-    const {user} = useAuth()
+    const { user } = useAuth();
+
     const [formData, setFormData] = useState({
         sessionTitle: '',
-        tutorName: user.displayName, // Example logged-in user name
-        tutorEmail: user.email, // Example logged-in user email
+        tutorName: user.displayName, 
+        tutorEmail: user.email, 
         sessionDescription: '',
         registrationStartDate: '',
         registrationEndDate: '',
         classStartDate: '',
         classEndDate: '',
         sessionDuration: 1,
-        registrationFee: 0, // Default 0, only admin can modify
-        status: 'Pending', // Default pending
+        registrationFee: 0, 
+        status: 'Pending', 
     });
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        setFormData({ ...formData, [name]: name === "sessionDuration" ? Number(value): value });
+        setFormData({ ...formData, [name]: name === "sessionDuration" ? Number(value) : value });
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('Form Data:', formData);
-        axiosSecure.post("/sessions",formData)
-        .then(res=>{
-            
-            console.log(res.data)
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Session has been created",
-                showConfirmButton: false,
-                timer: 1500
-              });})
+        axiosSecure.post("/sessions", formData)
+            .then(res => {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Session has been created",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                setFormData({
+                    sessionTitle: '',
+                    tutorName: user.displayName, 
+                    tutorEmail: user.email, 
+                    sessionDescription: '',
+                    registrationStartDate: '',
+                    registrationEndDate: '',
+                    classStartDate: '',
+                    classEndDate: '',
+                    sessionDuration: 1,
+                    registrationFee: 0, 
+                    status: 'Pending', 
+                });
+    
+            });
+       
     };
 
     return (
-        <div className="bg-[#008869] p-8 w-11/12 rounded-lg shadow-md my-6 max-w-lg mx-auto">
-            <h2 className="text-2xl font-bold mb-6 text-gray-800">Create Study Session</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-4">
-                    <label htmlFor="sessionTitle" className="block text-gray-700 font-medium mb-2">
-                        Session Title
-                    </label>
-                    <input
-                        type="text"
-                        id="sessionTitle"
-                        name="sessionTitle"
-                        value={formData.sessionTitle}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-300"
-                        required
-                    />
-                </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700 font-medium mb-2">Tutor Name</label>
-                    <input
-                        type="text"
-                        value={formData.tutorName}
-                        readOnly
-                        className="w-full px-4 py-2 border rounded-lg bg-gray-100 cursor-not-allowed"
-                    />
-                </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700 font-medium mb-2">Tutor Email</label>
-                    <input
-                        type="email"
-                        value={formData.tutorEmail}
-                        readOnly
-                        className="w-full px-4 py-2 border rounded-lg bg-gray-100 cursor-not-allowed"
-                    />
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="sessionDescription" className="block text-gray-700 font-medium mb-2">
-                        Session Description
-                    </label>
-                    <textarea
-                        id="sessionDescription"
-                        name="sessionDescription"
-                        value={formData.sessionDescription}
-                        onChange={handleInputChange}
-                        rows="4"
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-300"
-                        required
-                    ></textarea>
-                </div>
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div>
-                        <label htmlFor="registrationStartDate" className="block text-gray-700 font-medium mb-2">
-                            Registration Start Date
-                        </label>
+        <div className="bg-[#147b5c] p-8 w-11/12 max-w-4xl mx-auto rounded-lg shadow-md my-6">
+            <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Create Study Session</h2>
+
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Left Side: Prefilled Fields */}
+                <div className=" p-6 rounded-lg shadow-sm">
+                    <h3 className="text-lg font-semibold mb-4">Tutor Details</h3>
+
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-medium">Tutor Name</label>
                         <input
-                            type="date"
-                            id="registrationStartDate"
-                            name="registrationStartDate"
-                            value={formData.registrationStartDate}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-300"
-                            required
+                            type="text"
+                            value={formData.tutorName}
+                            readOnly
+                            className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor-not-allowed"
                         />
                     </div>
-                    <div>
-                        <label htmlFor="registrationEndDate" className="block text-gray-700 font-medium mb-2">
-                            Registration End Date
-                        </label>
+
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-medium">Tutor Email</label>
                         <input
-                            type="date"
-                            id="registrationEndDate"
-                            name="registrationEndDate"
-                            value={formData.registrationEndDate}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-300"
-                            required
+                            type="email"
+                            value={formData.tutorEmail}
+                            readOnly
+                            className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor-not-allowed"
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-medium">Registration Fee</label>
+                        <input
+                            type="number"
+                            value={formData.registrationFee}
+                            readOnly
+                            className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor-not-allowed"
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-medium">Status</label>
+                        <input
+                            type="text"
+                            value={formData.status}
+                            readOnly
+                            className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor-not-allowed"
                         />
                     </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div>
-                        <label htmlFor="classStartDate" className="block text-gray-700 font-medium mb-2">
-                            Class Start Date
-                        </label>
+
+                {/* Right Side: Input Fields */}
+                <div className='bg-gray-100 p-6 rounded-lg'>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-medium">Session Title</label>
                         <input
-                            type="date"
-                            id="classStartDate"
-                            name="classStartDate"
-                            value={formData.classStartDate}
+                            type="text"
+                            name="sessionTitle"
+                            value={formData.sessionTitle}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-300"
+                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
                             required
                         />
                     </div>
-                    <div>
-                        <label htmlFor="classEndDate" className="block text-gray-700 font-medium mb-2">
-                            Class End Date
-                        </label>
-                        <input
-                            type="date"
-                            id="classEndDate"
-                            name="classEndDate"
-                            value={formData.classEndDate}
+
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-medium">Session Description</label>
+                        <textarea
+                            name="sessionDescription"
+                            value={formData.sessionDescription}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-300"
+                            rows="4"
+                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label className="block text-gray-700 font-medium">Registration Start Date</label>
+                            <input
+                                type="date"
+                                name="registrationStartDate"
+                                value={formData.registrationStartDate}
+                                onChange={handleInputChange}
+                                className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-gray-700 font-medium">Registration End Date</label>
+                            <input
+                                type="date"
+                                name="registrationEndDate"
+                                value={formData.registrationEndDate}
+                                onChange={handleInputChange}
+                                className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label className="block text-gray-700 font-medium">Class Start Date</label>
+                            <input
+                                type="date"
+                                name="classStartDate"
+                                value={formData.classStartDate}
+                                onChange={handleInputChange}
+                                className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-gray-700 font-medium">Class End Date</label>
+                            <input
+                                type="date"
+                                name="classEndDate"
+                                value={formData.classEndDate}
+                                onChange={handleInputChange}
+                                className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-medium">Session Duration (hours)</label>
+                        <input
+                            type="number"
+                            name="sessionDuration"
+                            value={formData.sessionDuration}
+                            onChange={handleInputChange}
+                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
                             required
                         />
                     </div>
+
+                    <button
+                        type="submit"
+                        className="w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-300"
+                    >
+                        Create Session
+                    </button>
                 </div>
-                <div className="mb-4">
-                    <label htmlFor="sessionDuration" className="block text-gray-700 font-medium mb-2">
-                        Session Duration(hour)
-                    </label>
-                    <input
-                        type="number"
-                        id="sessionDuration"
-                        name="sessionDuration"
-                        value={formData.sessionDuration}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-300"
-                        required
-                    />
-                </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700 font-medium mb-2">Registration Fee</label>
-                    <input
-                        type="number"
-                        value={formData.registrationFee}
-                        readOnly
-                        className="w-full px-4 py-2 border rounded-lg bg-gray-100 cursor-not-allowed"
-                    />
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="status" className="block text-gray-700 font-medium mb-2">
-                        Status
-                    </label>
-                    <input
-                        type="text"
-                        id="status"
-                        name="status"
-                        value={formData.status}
-                        readOnly
-                        className="w-full px-4 py-2 border rounded-lg bg-gray-100 cursor-not-allowed"
-                    />
-                </div>
-                <button
-                    type="submit"
-                    className="w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-300"
-                >
-                    Create Session
-                </button>
             </form>
         </div>
     );
