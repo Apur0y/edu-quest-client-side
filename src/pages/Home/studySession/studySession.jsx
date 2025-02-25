@@ -15,7 +15,7 @@ const StudySession = ({ all }) => {
   } = useQuery({
     queryKey: ["bookedSessions"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/sessions?filter=Rejected");
+      const res = await axiosPublic.get("/sessions?filter=Rejected,Pending");
       return res.data;
     },
   });

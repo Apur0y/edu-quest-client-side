@@ -54,7 +54,7 @@ const Payment = () => {
             text: "Your session is booked!",
             icon: "success",
           });
-          navigate('/')
+          navigate('/allsession')
         });
       });
   };

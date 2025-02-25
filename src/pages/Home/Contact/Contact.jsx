@@ -2,7 +2,7 @@ import React from "react";
 
 const Contact = () => {
   return (
-    <div className="max-w-8xl mx-auto w-11/12 ">
+    <div className="max-w-8xl mx-auto w-11/12 mb-24">
       <div className="grid md:grid-cols-2 gap-12 items-center bg-[#1B3B39]  text-white shadow-lg rounded-lg p-8">
         {/* Left Side */}
         <div>
