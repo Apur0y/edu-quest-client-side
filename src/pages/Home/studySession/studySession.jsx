@@ -73,7 +73,7 @@ const StudySession = ({ all }) => {
       <div className="">
         {all ? (
           <>
-            <div className="flex justify-end gap-5 pr-16">
+            <div className="flex justify-center md:justify-end gap-5 md:pr-16">
               <button
                 onClick={handleDateSort}
                 className="btn bg-yellow-600 text-white hover:bg-yellow-500"

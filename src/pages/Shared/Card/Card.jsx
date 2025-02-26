@@ -8,7 +8,7 @@ const Card = ({ session, handleRequestSession }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto h-full w-72 bg-green-100 shadow-lg rounded-lg">
+    <div className="max-w-md mx-auto h-full w-40 md:w-72 bg-green-100 shadow-lg rounded-lg">
       <div className="p-6 text-black">
         <h2 className="text-xl font-bold mb-4">{session.sessionTitle}</h2>
 
