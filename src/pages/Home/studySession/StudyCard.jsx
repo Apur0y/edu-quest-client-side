@@ -1,23 +1,30 @@
 import React from "react";
-import { MdOutlinePersonPin } from "react-icons/md";
+import { BsFillFilePersonFill, BsFillPersonBadgeFill, BsPersonBadgeFill } from "react-icons/bs";
+import { CgFlagAlt } from "react-icons/cg";
+import { GiMoneyStack } from "react-icons/gi";
+import { MdOutlinePersonPin, MdPerson } from "react-icons/md";
+import { SiWebmoney } from "react-icons/si";
 import { Link } from "react-router-dom";
 
 const StudyCard = ({ session }) => {
   const isOngoing = new Date() < new Date(session.registrationEndDate);
+  console.log(session);
 
   return (
-    <div className="max-w-md mx-auto  w-80 bg-zinc-800/70 text-white shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
+    <div className="max-w-md scale-90 mx-auto  w-80 bg-zinc-800/70 text-white shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
       <div className="p-6 flex h-full flex-col justify-between ">
         <img
           src="https://cdn-bfiho.nitrocdn.com/zzpmBMsOKhwaececAhGHncOFbbwatBIq/assets/images/optimized/rev-eca6dce/integrallife.com/wp-content/uploads/2021/06/Build-Your-Integral-Life-Branding-Graphic-1.jpg"
           alt=""
         />
-        <h2 className="text-2xl font-semibold  mb-4">
+        <h1 className="absolute bg-teal-900 px-2 mt-2 rounded-r-xl font-bold flex">{session.registrationFee==0? "Free":session.registrationFee }<CgFlagAlt className="my-auto" /></h1>
+        <h2 className="text-xl font-semibold mb-2">
           {session.sessionTitle.split(" ").slice(0, 3).join(" ")}
         </h2>
         <p className=" mb-2 flex">
-          <MdOutlinePersonPin className="my-auto mr-1 size-6" />{" "}
-          <span className="font-medium">{session.tutorName}</span>
+          {/* <MdOutlinePersonPin className="my-auto mr-1 size-6" />{" "} */}
+          <MdPerson className="my-auto mr-1 size-5" />
+          <span className="font-medium text-neutral-400">{session.tutorName}</span>
         </p>
         <p className=" mb-4">
           <span className="font-medium">Description:</span>{" "}

@@ -4,6 +4,7 @@ import StudyCard from "./StudyCard";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { LuArrowUpDown } from "react-icons/lu";
 import { div } from "framer-motion/client";
+import { Link } from "react-router-dom";
 
 const StudySession = ({ all }) => {
   const axiosPublic = useAxiosPublic();
@@ -24,6 +25,7 @@ const StudySession = ({ all }) => {
   const [sortedSessions, setSortedSessions] = useState([]);
   const [isDateAscending, setIsDateAscending] = useState(true);
   const [isPriceAscending, setIsPriceAscending] = useState(true);
+  const goingNow= sortedSessions.filter(session => new Date(session.registrationEndDate) > new Date())
 
   // Set initial sessions when fetched
   useEffect(() => {
@@ -98,13 +100,22 @@ const StudySession = ({ all }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-5">
             {
-  sortedSessions
+  goingNow
             .slice(0, 6)
             .map((session) => <StudyCard key={session._id} session={session} />)
         }
           </div>
         
         )}
+      </div>
+
+
+      <div className="flex justify-center mt-5">
+        <Link to='/allsession'>
+        <button className="btn ">See All Course</button>
+        </Link>
+    
+
       </div>
     </div>
   );
