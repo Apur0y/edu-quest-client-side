@@ -10,7 +10,7 @@ import Success from '../Success/Success';
 
 const Home = () => {
     return (
-        <div>
+        <div className='bg-gradient-to-br from-teal-900 via-[#1A2226] to-[#1A2226] '>
 
             <Banner></Banner>
    
