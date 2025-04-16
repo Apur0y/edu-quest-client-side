@@ -8,7 +8,14 @@ import { RxCross2 } from "react-icons/rx";
 const Register = () => {
   const { createUser, profileInfo } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  const [formData, setFormData] = useState({
+    name: "", 
+    email: "",
+    photoUrl: '',
+    password: '',
+    role: '',
+  })
+console.log(formData.role);
   const [error, setError] = useState("");
 
   const handleRegister = (event) => {
@@ -20,6 +27,14 @@ const Register = () => {
     const photoUrl = form.photo.value;
     const password = form.password.value;
     const role = form.role.value;
+    setFormData({
+      name: name, 
+      email: email,
+      photoUrl: photoUrl,
+      password: password,
+      role: role,
+    })
+
 
     createUser(email, password)
       .then((res) => {
@@ -31,6 +46,7 @@ const Register = () => {
               email,
               photoUrl,
               role,
+              password,
             };
 
             // Post user data to the backend
@@ -152,6 +168,20 @@ const Register = () => {
                       <option value="admin">Admin</option>
                     </select>
                   </div>
+
+                  <div className={`${formData.role} form-control`}>
+                    <label className="label">
+                      <span className="label-text text-white">Photo URL</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="designation"
+                      placeholder="Enter Designation"
+                      className="input input-bordered"
+                      required
+                    />
+                  </div>
+
 
                   {/* Submit Button */}
                   <div className="form-control mt-6">

@@ -7,10 +7,16 @@ import Review from '../Reviews/Review';
 import Contact from '../Contact/Contact';
 import Service from '../Service/Service';
 import Success from '../Success/Success';
+import useAuth from '../../../hooks/useAuth';
 
 const Home = () => {
+
+    const {theme}=useAuth();
+
+
+
     return (
-        <div className='bg-gradient-to-br from-teal-900 via-[#1A2226] to-[#1A2226] '>
+        <div className={`${theme? " bg-gradient-to-br from-teal-900 via-[#1A2226] to-[#1A2226]":"bg-white"} `}>
 
             <Banner></Banner>
    

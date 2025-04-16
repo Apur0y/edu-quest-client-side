@@ -3,10 +3,11 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useSecure";
 import { useQuery } from "@tanstack/react-query";
 import { LuBookOpenCheck } from "react-icons/lu";
-import StudentStat from "./studentStat";
+
 import axios from "axios";
 import AdminStat from "./AdminStat";
 import TutorStat from "./TutorStat";
+import StudentStat from "./StudentStat";
 
 const Profile = () => {
   const { user } = useAuth();

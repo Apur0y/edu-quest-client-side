@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import useAxiosSecure from '../../../hooks/useSecure';
+
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useAuth from '../../../hooks/useAuth';
 import { LuBookOpenCheck } from 'react-icons/lu';

@@ -9,8 +9,9 @@ const TutorCard = ({ tutor }) => {
         alt={`${tutor.name}'s profile`}
       />
       <div className="px-6 py-4">
-        <h2 className="text-xl font-bold mb-2">{tutor.name}</h2>
-        <p className="">{tutor.email}</p>
+        <h2 className="text-xl font-bold ">{tutor.name}</h2>
+        <p>Software Engineer</p>
+        <p className="mt-2">Email: {tutor.email}</p>
       </div>
       
     </div>

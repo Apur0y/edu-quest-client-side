@@ -26,6 +26,13 @@ const Login = () => {
     });
   };
 
+  const handleRole=(e,p)=>{
+    console.log(e,p);
+     signIn(e,p).then((res) => {
+      location(from, { replace: true });
+    });
+  }
+
   const handleGoogleSignIn = () => {
     signInWithPopup(auth,provider);
     setStudent(true)
@@ -108,6 +115,14 @@ const Login = () => {
                     </Link>
                   </div>
                 </form>
+                <div className="divider">TEST AS</div>
+                <div className="flex gap-2 justify-center">
+                <button onClick={()=>handleRole("student@gmail.com","123456")} className="btn bg-slate-950 text-white">User</button>
+                <button onClick={()=>handleRole("tutor@gmail.com","123456")} className="btn bg-slate-950 text-white">Tutor</button>
+                <button onClick={()=>handleRole("admin@gmail.com","123456")} className="btn bg-slate-950 text-white">Admin</button>
+                </div>
+                
+
                 <div className="divider">OR</div>
                 <div className="flex flex-col gap-5 w-10/12 mx-auto pb-4">
                   <button
