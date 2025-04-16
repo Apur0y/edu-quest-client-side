@@ -1,4 +1,5 @@
 import React from 'react';
+import { MdOutlinePersonPin } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
 const StudyCard = ({ session }) => {
@@ -8,12 +9,13 @@ const StudyCard = ({ session }) => {
 
   return (
     <div className="max-w-md mx-auto  w-80 bg-[#1B3B39] text-white shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
-      <div className="p-6 flex h-64 flex-col justify-between ">
+      <div className="p-6 flex h- flex-col justify-between ">
+        <img src="https://cdn-bfiho.nitrocdn.com/zzpmBMsOKhwaececAhGHncOFbbwatBIq/assets/images/optimized/rev-eca6dce/integrallife.com/wp-content/uploads/2021/06/Build-Your-Integral-Life-Branding-Graphic-1.jpg" alt="" />
         <h2 className="text-2xl font-semibold  mb-4">
           {session.sessionTitle.split(" ").slice(0,3).join(" ")}
         </h2>
-        <p className=" mb-2">
-          <span className="font-medium">Tutor Name:</span> {session.tutorName}
+        <p className=" mb-2 flex">
+        <MdOutlinePersonPin /> <span className="font-medium">{session.tutorName}</span>
         </p>
         <p className=" mb-4">
           <span className="font-medium">Description:</span> {session.sessionDescription.split(" ").slice(0,9).join(" ") + "..."}
