@@ -60,7 +60,8 @@ const ViewAllUser = () => {
 
   return (
     <div className="w-11/12 mx-auto">
- 
+ <h1 className="text-4xl mb-2 text-center font-bold text-green-950 underline">All Users</h1>
+
 
       {/* Search Bar */}
       <div className="my-6   mx-auto">
@@ -74,50 +75,88 @@ const ViewAllUser = () => {
       </div>
 
       {/* Table Headings */}
-      <div className="flex items-center justify-between bg-teal-900 text-white px-4 py-3 rounded-t-lg w-full">
+      {/* <div className="flex items-center justify-between bg-teal-900 text-white px-4 py-3 rounded-t-lg w-full">
         <p className="flex-grow  font-bold   md:block hidden">Photo</p>
         <p className="flex-grow  font-bold ">Name</p>
-        <p className="flex-grow  font-bold text-center  md:block hidden">Email</p>
-        <p className="flex-grow  font-bold text-center">Role</p>
+        <p className="flex-grow  font-bold text-left  md:block hidden">Email</p>
+        <p className="flex-grow  font-bold text-left">Role</p>
         <p className="flex-grow  font-bold text-end mr-6">Action</p>
-      </div>
-
+      </div> */}
       {/* User Rows */}
-      <div className="w-full bg-[#008869]">
+      <div className="w-full bg-neutral-800">
+
+      <table className="min-w-full border-none ">
+    <thead className="bg-[#163830] text-left">
+      <tr>
+        <th className="p-2 border">Photo</th>
+        <th className="p-2 border">Name</th>
+        <th className="p-2 border">Email</th>
+        <th className="p-2 border">Role</th>
+        <th className="p-2 border">Action</th>
+      </tr>
+    </thead>
+    <tbody>
   {filteredUsers.map((user) => (
-    <div
-      key={user._id}
-      className="flex justify-evenly bg-transparent font-bold text-white shadow-sm p-4 border-b border-gray-100 w-full"
-    >
-      {/* Hide the photo column on mobile devices */}
-      <div className="flex-grow flex justify-center md:block hidden">
-        <img
-          src={user.photoUrl}
-          alt="Profile"
-          className="w-12 h-12 rounded-full"
-        />
-      </div>
-      <div className="flex-grow ">
-        <h3 className="text-lg font-medium">{user.name}</h3>
-      </div>
-      <div className="flex-grow text-center md:block hidden">
-        <p className="text-white">{user.email}</p>
-      </div>
-      <div className="flex-grow text-center">
-        <p className="text-white rounded-full bg-[#134E4A] py-1 font-medium">
-          {user.role}
-        </p>
-      </div>
-      <div className="flex-grow flex justify-end">
-        <button
-          onClick={() => handleUserUpdate(user)}
-          className="bg-[#f59241] text-white py-2 px-4 rounded hover:bg-[#ce762d]"
-        >
-          Update
-        </button>
-      </div>
-    </div>
-  ))}
+    // <div
+    //   key={user._id}
+    //   className="flex justify-evenly bg-transparent font-bold text-white shadow-sm p-4 border-b border-gray-100 w-full"
+    // >
+    //   {/* Hide the photo column on mobile devices */}
+    //   <div className="flex-grow flex justify-center md:block ">
+    //     <img
+    //       src={user.photoUrl}
+    //       alt="Profile"
+    //       className="w-12 h-12 rounded-full"
+    //     />
+    //   </div>
+    //   <div className="flex-grow ">
+    //     <h3 className="text-lg font-medium">{user.name}</h3>
+    //   </div>
+    //   <div className="flex-grow text-center md:block hidden">
+    //     <p className="text-white">{user.email}</p>
+    //   </div>
+    //   <div className="flex-grow text-left">
+    //     <p className="text-white rounded-full  py-1 font-medium">
+    //       {user.role}
+    //     </p>
+    //   </div>
+    //   <div className="flex-grow flex justify-end">
+    //     <button
+    //       onClick={() => handleUserUpdate(user)}
+    //       className="bg-[#f59241] text-white py-2 px-4 rounded hover:bg-[#ce762d]"
+    //     >
+    //       Update
+    //     </button>
+    //   </div>
+    // </div>
+    
+  
+    
+        <tr key={user.id} className="">
+          <td className="p-2 border">
+            <img
+              src={user.photoUrl}
+              alt={user.name}
+              className="w-10 h-10 rounded-full"
+            />
+          </td>
+          <td className="p-2 border">{user.name}</td>
+          <td className="p-2 border">{user.email}</td>
+          <td className="p-2 border">{user.role}</td>
+          <td className="p-2 border">
+            <button
+              onClick={() => handleUserUpdate(user)}
+              className="px-3 py-1 bg-zinc-700 text-white rounded hover:bg-zinc-900"
+            >
+              View
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  
 </div>
 
 

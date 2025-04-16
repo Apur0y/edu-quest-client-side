@@ -2,17 +2,17 @@ import React from 'react';
 
 const ServiceCard = ({ value }) => {
   return (
-    <div className="max-w-lg w-full flex items-center h-60  text-black shadow-lg rounded-lg overflow-hidden">
+    <div className="max-w-lg w-ful relative flex items-center h-60  text-black shadow-lg rounded-lg overflow-hidden">
       {/* Left Side - Image */}
       <img
         className=""
         src={value.picture}
         alt={`${value.title} image`}
       />
-      <div></div>
+      <div className='bg-gradient-to-l from-black/50 to-black/95  absolute inset-0 z-10'></div>
 
       {/* Right Side - Content */}
-      <div className="w-2/3 p-4 absolute  text-white">
+      <div className="w-2/3 p-4 absolute z-20  text-white">
         <h2 className="text-2xl font-bold mb-2">{value.title}</h2>
         <p className="font-semibold mb-2">
           Tutors:{" "}

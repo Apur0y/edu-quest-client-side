@@ -97,71 +97,73 @@ const axiosSecure=useAxiosSecure();
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-6">
       {sessions.map((session) => (
         <div
-          key={session._id}
-          className="max-w-md mx-auto h-full w-11/12 bg-[#008869] text-[#ffffff] shadow-lg rounded-xl  "
-        >
-          <div className="p-6 ">
-            <h2 className="text-2xl font-semibold mb-4 text-center ">
-              {session.sessionTitle}
-            </h2>
-            <p className="text-sm font-medium  mb-4">
-              <strong className="block ">Tutor Name:</strong>
-              {session.tutorName}
-            </p>
-            <p className="text-sm font-medium  mb-4">
-              <strong className="block ">Email:</strong>
-              {session.tutorEmail}
-            </p>
-            <p className="text-sm font-medium  mb-6">
-              <strong className="block ">Status:</strong>
-              <span
-                className={`inline-block py-1 px-3 text-sm font-medium rounded-lg text-white ${
-                  session.status === "Accepted"
-                    ? "bg-green-500"
-                    : session.status === "Rejected"
-                    ? "bg-red-500"
-                    : "bg-purple-500"
-                }`}
-              >
-                {session.status}
-              </span>
-            </p>
+  key={session._id}
+  className="max-w-md mx-auto w-11/12 bg-white text-gray-800 shadow-xl rounded-2xl overflow-hidden"
+>
+  <div className="p-6">
+    <h2 className="text-xl font-bold text-center text-gray-900 mb-4">
+      {session.sessionTitle}
+    </h2>
 
-            <div className="flex justify-between items-center mt-8 space-x-4">
-              {session.status === "Approved" ? (
-                <>
-                  <button
-                    className="w-1/2 py-2 px-4 bg-[#ff9742] text-white font-medium rounded-lg hover:bg-[#e28131] transition-all duration-200"
-                    onClick={() => setSelectedSession(session)}
-                  >
-                    Update
-                  </button>
-                  <button
-                    onClick={() => handleDelete(session._id)}
-                    className="w-1/2 py-2 px-4 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition-all duration-200"
-                  >
-                    Delete
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button
-                    className="w-1/2 py-2 px-4 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-all duration-200"
-                    onClick={() => handleAccept(session)}
-                  >
-                    Accept
-                  </button>
-                  <button
-                    className="w-1/2 py-2 px-4 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition-all duration-200"
-                    onClick={() => handleStatusUpdate(session._id, "Rejected")}
-                  >
-                    Reject
-                  </button>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
+    <div className="space-y-3 text-sm text-gray-700">
+      <div>
+        <span className="font-semibold">Tutor Name:</span> {session.tutorName}
+      </div>
+      <div>
+        <span className="font-semibold">Email:</span> {session.tutorEmail}
+      </div>
+      <div>
+        <span className="font-semibold">Status:</span>{" "}
+        <span
+          className={`inline-block px-3 py-1 rounded-full text-xs font-medium text-white ${
+            session.status === "Accepted"
+              ? "bg-green-500"
+              : session.status === "Rejected"
+              ? "bg-red-500"
+              : "bg-purple-500"
+          }`}
+        >
+          {session.status}
+        </span>
+      </div>
+    </div>
+
+    <div className="mt-6 flex gap-4">
+      {session.status === "Approved" ? (
+        <>
+          <button
+            onClick={() => setSelectedSession(session)}
+            className="flex-1 py-2 bg-neutral-700 hover:bg-neutral-600 text-white rounded-lg text-sm font-medium transition duration-200"
+          >
+            Update
+          </button>
+          <button
+            onClick={() => handleDelete(session._id)}
+            className="flex-1 py-2 text-red-600 bg-zinc-100 hover:bg-zinc-200  border-2 rounded-lg text-sm font-bold transition duration-200"
+          >
+            Delete
+          </button>
+        </>
+      ) : (
+        <>
+          <button
+            onClick={() => handleAccept(session)}
+            className="flex-1 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition duration-200"
+          >
+            Review
+          </button>
+          <button
+            onClick={() => handleStatusUpdate(session._id, "Rejected")}
+            className="flex-1 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm font-medium transition duration-200"
+          >
+            Reject
+          </button>
+        </>
+      )}
+    </div>
+  </div>
+</div>
+
       ))}
 
       {/* Modal for Session Fee Update */}
@@ -192,7 +194,7 @@ const axiosSecure=useAxiosSecure();
           <input
             type="number"
             id="fee"
-            value={sessionFee}
+            value={selectedSession.sessionFee}
             onChange={(e) => setSessionFee(Number(e.target.value))}
             className="input input-bordered w-full mt-2"
             placeholder="Enter fee"

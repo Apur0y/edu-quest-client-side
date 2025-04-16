@@ -24,7 +24,7 @@ const PaginatedReviews = ({ itemsPerPage, reviews }) => {
 
     return (
         <>
-            <div className="overflow-hidden ">
+            <div className="overflow-hidden scale-75">
                 <AnimatePresence mode="wait" custom={direction}>
                     <motion.div
                         key={itemOffset} // 🔥 Ensures new page triggers animation
