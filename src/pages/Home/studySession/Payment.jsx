@@ -5,22 +5,26 @@ import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 
 const Payment = () => {
-  const {user}=useAuth()
+  const { user } = useAuth();
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const { session} = location.state || {}; // Safely access state
+  const { session } = location.state || {}; // Safely access state
   const { _id, ...others } = session;
 
-  const postSession = { ...others, sessionID: _id,studentEmail: user.email };
+  const postSession = { ...others, sessionID: _id, studentEmail: user?.email };
 
-  const handleSSLPayment=()=>{
+  const handleSSLPayment = async() => {
     console.log("ssl com", postSession);
-
-    axios.post('https://eduquest-server-side.vercel.app/create-ssl-payment', postSession)
-    .then((res)=>console.log(res.data))
-
-  }
+    try {
+      const res =await axios.post("http://localhost:5000/order", postSession);
+      if (res.data.url) {
+        window.location.href = res.data.url; // Redirect to SSLCOMMERZ
+      }
+    } catch (err) {
+      console.error("Payment init error", err);
+    }
+  };
 
   const handlePayPalPayment = () => {
     Swal.fire({
@@ -28,15 +32,17 @@ const Payment = () => {
       text: "Redirecting to confirm your booking...",
       icon: "success",
     }).then(() => {
-      axios.post("https://eduquest-server-side.vercel.app/booked", postSession).then((res) => {
-        console.log("Booking saved:", res.data);
-        Swal.fire({
-          title: "Booked",
-          text: "Your session is booked!",
-          icon: "success",
+      axios
+        .post("https://eduquest-server-side.vercel.app/booked", postSession)
+        .then((res) => {
+          console.log("Booking saved:", res.data);
+          Swal.fire({
+            title: "Booked",
+            text: "Your session is booked!",
+            icon: "success",
+          });
+          navigate("/");
         });
-        navigate('/')
-      });
     });
   };
 
@@ -47,16 +53,18 @@ const Payment = () => {
       icon: "success",
       confirmButtonText: "OK",
     }).then(() => {
-        axios.post("https://eduquest-server-side.vercel.app/booked", postSession).then((res) => {
+      axios
+        .post("https://eduquest-server-side.vercel.app/booked", postSession)
+        .then((res) => {
           console.log("Booking saved:", res.data);
           Swal.fire({
             title: "Booked",
             text: "Your session is booked!",
             icon: "success",
           });
-          navigate('/allsession')
+          navigate("/allsession");
         });
-      });
+    });
   };
 
   return (
@@ -88,7 +96,7 @@ const Payment = () => {
         </div>
 
         <div className="space-y-4">
-        <button
+          <button
             onClick={handleSSLPayment}
             className="w-full px-5 py-3 bg-yellow-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-green-700 transition-all"
           >
@@ -106,7 +114,6 @@ const Payment = () => {
           >
             Pay with Google Pay
           </button>
-      
         </div>
 
         <p className="mt-6 text-sm text-gray-500 text-center">

@@ -28,6 +28,7 @@ import MaterialsCard from "../pages/Dashboard/StudentDash/StudentCard/MaterialsC
 import AllSession from "../pages/AllSessions/AllSession";
 import ErrorPage from "../pages/Error";
 import Profile from "../pages/Dashboard/Profile/Profile";
+import PaymentSuccess from "../pages/Home/PaymentStatus/PaymentSuccess";
 
   
   
@@ -64,6 +65,10 @@ import Profile from "../pages/Dashboard/Profile/Profile";
         {
           path:'/*',
           element:<ErrorPage></ErrorPage>
+        },
+        {
+          path:"/payment/success/got",
+          element:<PaymentSuccess></PaymentSuccess>
         }
    
       ]

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const StudyCard = ({ session }) => {
   const isOngoing = new Date() < new Date(session.registrationEndDate);
-  console.log(session);
+
 
   return (
     <div className="max-w-md scale-90 mx-auto  w-80 bg-zinc-800/70 text-white shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
