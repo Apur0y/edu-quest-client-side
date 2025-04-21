@@ -44,20 +44,26 @@ const Navbar = () => {
       </li>
   
       <li>
-        <Link to="/allsession">All Session</Link>
+        <Link to="/allsession">Courses</Link>
       </li>
   
       <li>
         <Link to="/dashboard/profile">Dashboard</Link>
+      </li>
+  
+      <li>
+        <Link to="/constactus">Contact Us</Link>
       </li>
     </>
   );
 
   return (
     <div
-      className={`navbar fixed top-0 z-10 text-white py- md:px-14 transition-all duration-300 ${
+      className={`navbar fixed top-0 z-10  py- md:px-14 transition-all duration-300 ${
         isScrolled ? "bg-teal-900 shadow-lg" : "bg-transparent"
-      }`}
+      }
+    ${theme?"":" bg-white text-black"}
+    `}
     >
       <div className="navbar-start">
         <div className="dropdown">

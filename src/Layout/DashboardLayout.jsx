@@ -14,6 +14,7 @@ import { SlBookOpen } from "react-icons/sl";
 import { SiBookstack, SiWikibooks } from "react-icons/si";
 import { CiUser } from "react-icons/ci";
 import { RiBookShelfLine } from "react-icons/ri";
+import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
 
 const DashboardLayout = () => {
   const { user, student, setStudent } = useAuth();
@@ -49,47 +50,86 @@ const DashboardLayout = () => {
     setSidebar(!sidebar);
   };
 
+  const closeSidebar = () => {
+    if (window.innerWidth < 768) {
+      setSidebar(false);
+    }
+  };
+  
+
   return (
-    <div className="flex">
+    <div className="relative flex">
       {/* Sidebar - Hidden on mobile and collapsible */}
       <div
-        className={`md:w-64 ${sidebar ? "block " : "hidden"} min-h-screen z-50 bg-[#0D3B37] relative md:flex flex-col`}
-      >
-        <div className=" mt-10">
+  className={`md:w-64 fixed md:relative z-50 bg-[#0D3B37] md:flex flex-col transform transition-transform duration-300 ease-in-out ${
+    sidebar ? "translate-x-0" : "-translate-x-full"
+  } md:translate-x-0`}
+>
+
+
+        <div className=" md:mt-10">
           <Link to="/">
-            <div className="flex flex-col justify-center items-center gap-5 text-white font-semibold m-5">
+            <div className="md:flex flex-col justify-center items-center gap-5 hidden text-white font-semibold m-5">
               <img src="../../../../public/logo.png" className="w-20" alt="Logo" />
               <h1 className="text-xl">EduQuest</h1>
             </div>
           </Link>
 
+          <div className=" flex justify-between">
+          <NavLink
+          onClick={closeSidebar}
+          className=" text-white p-2 font-semibold flex md:hidden" to="/">
+            <IoMdHome className="my-auto  md:size-6 " />
+          </NavLink>
+
+          <div className="md:hidden  right-0 p-2 z-10">
+          <button onClick={handleSidebar}>
+            {sidebar ? (
+              <MdKeyboardDoubleArrowLeft className="text-green-500  size-5 " />
+            ) : (
+              <MdKeyboardDoubleArrowRight className="text-green-500  md:size-7" />
+            )}
+          </button>
+        </div>
+        </div>
+
           {/* Menu Items - Stays at the Top */}
-          <div className="flex-grow">
+          <div className="">
             {student && (
-              <ul className="menu text-white gap-5">
+              <ul className="menu text-white text-xs md:text-sm gap-2 md:gap-5">
                 <li>
-                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="profile">
-                    <CgProfile className="size-6" /> Profile
+                  <NavLink
+                    onClick={closeSidebar}
+                  className="hover:bg-green-600  text-white px-4 py-2 font-semibold" to="profile">
+                    <CgProfile className=" md:size-6 " /> Profile
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="bookedsession">
-                    <IoBookmarkOutline className="size-6" /> Booked Session
+                  <NavLink
+                  onClick={closeSidebar}
+                  className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="bookedsession">
+                    <IoBookmarkOutline className=" md:size-6" /> Booked Session
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="createnote">
-                    <LuNotebookPen className="size-6" /> Create Notes
+                  <NavLink
+                  onClick={closeSidebar}
+                  className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="createnote">
+                    <LuNotebookPen className=" md:size-6" /> Create Notes
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="managenote">
-                    <LuNotebook className="size-6" /> Manage Notes
+                  <NavLink
+                  onClick={closeSidebar}
+                  className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="managenote">
+                    <LuNotebook className=" md:size-6" /> Manage Notes
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="materials">
-                    <GiBookshelf className="size-6" /> All Materials
+                  <NavLink
+                  onClick={closeSidebar}
+                  className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="materials">
+                    <GiBookshelf className=" md:size-6" /> All Materials
                   </NavLink>
                 </li>
               </ul>
@@ -98,28 +138,38 @@ const DashboardLayout = () => {
             {tutor && (
               <ul className="menu text-white gap-5">
                 <li>
-                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="profile">
-                    <CgProfile className="size-6" /> Profile
+                  <NavLink
+                  onClick={closeSidebar}
+                  className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="profile">
+                    <CgProfile className=" md:size-6" /> Profile
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="createsession">
-                    <IoBookOutline className="size-6" /> Create Session
+                  <NavLink
+                  onClick={closeSidebar}
+                  className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="createsession">
+                    <IoBookOutline className=" md:size-6" /> Create Session
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="createdsession">
-                    <FiBook className="size-6" /> All Sessions
+                  <NavLink
+                  onClick={closeSidebar}
+                  className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="createdsession">
+                    <FiBook className=" md:size-6" /> All Sessions
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="uploadmaterials">
-                    <SiWikibooks className="size-6" /> Upload Materials
+                  <NavLink
+                  onClick={closeSidebar}
+                  className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="uploadmaterials">
+                    <SiWikibooks className=" md:size-6" /> Upload Materials
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="uploadedmaterials">
-                    <SlBookOpen className="size-6" /> View All Materials
+                  <NavLink
+                  onClick={closeSidebar}
+                  className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="uploadedmaterials">
+                    <SlBookOpen className=" md:size-6" /> View All Materials
                   </NavLink>
                 </li>
               </ul>
@@ -128,33 +178,44 @@ const DashboardLayout = () => {
             {admin && (
               <ul className="menu text-white gap-5">
                 <li>
-                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="profile">
-                    <CgProfile className="size-6" /> Profile
+                  <NavLink
+                  onClick={closeSidebar}
+                  className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="profile">
+                    <CgProfile className=" md:size-6" /> Profile
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="viewalluser">
-                    <FaUsersRectangle className="size-6" /> View All Users
+                  <NavLink
+                  onClick={closeSidebar}
+                  className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="viewalluser">
+                    <FaUsersRectangle className=" md:size-6" /> View All Users
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="viewallsession">
-                    <SiBookstack className="size-6" /> View All Sessions
+                  <NavLink
+                  onClick={closeSidebar}
+                  className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="viewallsession">
+                    <SiBookstack className=" md:size-6" /> View All Sessions
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="viewallmaterials">
-                    <RiBookShelfLine className="size-6" /> View All Materials
+                  <NavLink
+                  onClick={closeSidebar}
+                  className="hover:bg-green-600 text-white px-4 py-2 font-semibold" to="viewallmaterials">
+                    <RiBookShelfLine className=" md:size-6" /> View All Materials
                   </NavLink>
                 </li>
               </ul>
             )}
           </div>
+       
         </div>
         {/* Home Button - Stays at the Bottom */}
-        <div className="fixed bottom-0 w-64 ">
-          <NavLink className="hover:bg-green-600 text-white px-4 py-2 font-semibold flex mb-6" to="/">
-            <IoMdHome className="my-auto size-6 mr-3" /> Home
+        <div className="fixed hidden md:flex bottom-0 w-64 ">
+          <NavLink
+          onClick={closeSidebar}
+          className="hover:text-green-600 text-white px-4 py-2 font-semibold flex mb-6" to="/">
+            <IoMdHome className="my-auto  md:size-6 mr-3" /> Home
           </NavLink>
         </div>
       </div>
@@ -170,12 +231,12 @@ const DashboardLayout = () => {
         className="flex-1 min-h-screen bg-[#1B3B39] backdrop-blur-xl"
       >
         {/* Sidebar Toggle Button */}
-        <div className="md:hidden absolute top-4 left-4 z-10">
+        <div className="md:hidden fixed top-0  z-10">
           <button onClick={handleSidebar}>
             {sidebar ? (
-              <FaCircleArrowLeft className="text-yellow-500" />
+              <MdKeyboardDoubleArrowLeft className="text-green-500  md:size-6" />
             ) : (
-              <FaCircleArrowRight className="text-yellow-500" />
+              <MdKeyboardDoubleArrowRight className="text-green-500 bg-green-900 rounded-lg m-2   md:size-6" />
             )}
           </button>
         </div>
