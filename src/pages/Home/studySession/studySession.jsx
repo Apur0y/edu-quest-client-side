@@ -68,6 +68,12 @@ const StudySession = ({ all }) => {
 
   return (
     <div className="w-11/12 mx-auto mb-24">
+<div className="flex items-center justify-center gap-2">
+  <span className="h-px w-20 bg-gray-400"></span>
+  <h1 className="text-xl text-center">Top Courses</h1>
+  <span className="h-px w-20 bg-gray-400"></span>
+</div>
+
       <h1 className="text-3xl md:text-5xl font-bold text-center underline py-6">
         Book Your Session Now!
       </h1>

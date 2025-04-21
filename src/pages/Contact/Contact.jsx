@@ -15,6 +15,7 @@ import {
 import { AlertCircle, Mail, Phone, MapPin } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -225,6 +226,7 @@ export default function Contact() {
           </Card>
         </div>
       </div>
+      
     </div>
   );
 }
