@@ -19,6 +19,7 @@ const CreateSession = () => {
         sessionDuration: 1,
         registrationFee: 0, 
         status: 'Pending', 
+        image:""
     });
 
     const handleInputChange = (event) => {
@@ -109,6 +110,17 @@ const CreateSession = () => {
                 <div className='bg-gray-100 p-6 rounded-lg'>
                     <div className="mb-4">
                         <label className="block text-gray-700 font-medium">Session Title</label>
+                        <input
+                            type="text"
+                            name="sessionTitle"
+                            value={formData.sessionTitle}
+                            onChange={handleInputChange}
+                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
+                            required
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-medium">Course Image </label>
                         <input
                             type="text"
                             name="sessionTitle"

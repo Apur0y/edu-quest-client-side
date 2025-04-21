@@ -1,15 +1,20 @@
 import React, { useState } from "react";
+import { FiEdit } from "react-icons/fi";
 
 const Card = ({ session, handleRequestSession }) => {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleDescription = () => {
     setIsExpanded(!isExpanded);
   };
 
   return (
-    <div className="max-w-md mx-auto h-full w-40 md:w-72 bg-green-100 shadow-lg rounded-lg">
-      <div className="p-6 text-black">
+    <div className="max-w-md relative mx-auto h-full  md:w-72 bg-green-100 shadow-lg rounded-lg">
+      <div className="absolute right-0 m-2">
+      <FiEdit className="size-5 cursor-pointer"/>
+      </div>
+      <div className="p-6  text-black">
+      
         <h2 className="text-xl font-bold mb-4">{session.sessionTitle}</h2>
 
         <p>
@@ -64,7 +69,9 @@ const Card = ({ session, handleRequestSession }) => {
             Send Request
           </button>
         )}
+        
       </div>
+     
     </div>
   );
 };

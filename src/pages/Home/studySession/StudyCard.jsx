@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BsFillFilePersonFill,
   BsFillPersonBadgeFill,
@@ -10,18 +10,22 @@ import { IoLockClosedOutline } from "react-icons/io5";
 import { MdOutlinePersonPin, MdPerson } from "react-icons/md";
 import { SiWebmoney } from "react-icons/si";
 import { Link } from "react-router-dom";
+import Rating from "@mui/material/Rating";
+import Stack from "@mui/material/Stack";
 
 const StudyCard = ({ session }) => {
   const isOngoing = new Date() < new Date(session.registrationEndDate);
+  // const [rating, setRating] = useState(0);
+  console.log(session);
 
   return (
     <div className="max-w-md scale-90 mx-auto w-80 backdrop-blur-sm  shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden group">
       <div className="flex h-full flex-col justify-between">
         <img
-          src="https://cdn-bfiho.nitrocdn.com/zzpmBMsOKhwaececAhGHncOFbbwatBIq/assets/images/optimized/rev-eca6dce/integrallife.com/wp-content/uploads/2021/06/Build-Your-Integral-Life-Branding-Graphic-1.jpg"
+          src={session?.image||"https://cdn-bfiho.nitrocdn.com/zzpmBMsOKhwaececAhGHncOFbbwatBIq/assets/images/optimized/rev-eca6dce/integrallife.com/wp-content/uploads/2021/06/Build-Your-Integral-Life-Branding-Graphic-1.jpg"}
           alt=""
           className="group-hover:scale-105 transition-transform duration-300"
-        />
+          />
         <button
           className={`px-3 absolute py-1 m-2 text-white text-sm font-medium rounded-md transition-colors duration-300 ${
             isOngoing
@@ -58,15 +62,18 @@ const StudyCard = ({ session }) => {
           </p>
           <p className="mb-4">
             <span className="font-medium">Description:</span>{" "}
-            {session.sessionDescription.split(" ").slice(0, 9).join(" ") + "..."}
+            {session.sessionDescription.split(" ").slice(0, 9).join(" ") +
+              "..."}
           </p>
-          <p className="mb-4">
+          <p className="mb-4 flex gap-1">
             <span className="font-medium">Rating: </span>
-          
+            <Stack spacing={1}>
+              <Rating name="half-rating" readOnly defaultValue={2.5} precision={0.5} />
+            </Stack>
           </p>
           <div className="divider"></div>
           <div className="flex items-center justify-between">
-            <h1 className="bg-teal-900 px-2 rounded-r-xl font-bold flex">
+            <h1 className="bg-teal-900 text-white px-2 rounded-r-xl font-bold flex">
               {session.registrationFee == 0 ? "Free" : session.registrationFee}
               <CgFlagAlt className="my-auto" />
             </h1>
