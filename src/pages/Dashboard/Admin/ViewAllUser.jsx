@@ -60,7 +60,7 @@ const ViewAllUser = () => {
 
   return (
     <div className="w-11/12 mx-auto">
- <h1 className="text-4xl mb-2 text-center font-bold text-green-950 underline">All Users</h1>
+ <h1 className="text-4xl mb-2 text-center font-bold text-white underline">All Users</h1>
 
 
       {/* Search Bar */}
@@ -83,10 +83,10 @@ const ViewAllUser = () => {
         <p className="flex-grow  font-bold text-end mr-6">Action</p>
       </div> */}
       {/* User Rows */}
-      <div className="w-full bg-neutral-800">
+      <div className="w-full bg-white">
 
       <table className="min-w-full border-none ">
-    <thead className="bg-[#163830] text-left">
+    <thead className="bg-white text-left">
       <tr>
         <th className="p-2 border">Photo</th>
         <th className="p-2 border">Name</th>

@@ -9,6 +9,7 @@ const CreateSession = () => {
 
     const [formData, setFormData] = useState({
         sessionTitle: '',
+        sessionImage:"",
         tutorName: user.displayName, 
         tutorEmail: user.email, 
         sessionDescription: '',
@@ -58,7 +59,7 @@ const CreateSession = () => {
 
     return (
         <div className="bg-[#147b5c] p-8 w-11/12 max-w-4xl mx-auto rounded-lg shadow-md my-6">
-            <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Create Study Session</h2>
+            <h2 className="text-2xl font-bold text-center text-white mb-6">Create Study Session</h2>
 
             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Left Side: Prefilled Fields */}
@@ -66,7 +67,7 @@ const CreateSession = () => {
                     <h3 className="text-lg font-semibold mb-4">Tutor Details</h3>
 
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-medium">Tutor Name</label>
+                        <label className="block text-white font-medium">Tutor Name</label>
                         <input
                             type="text"
                             value={formData.tutorName}
@@ -76,7 +77,7 @@ const CreateSession = () => {
                     </div>
 
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-medium">Tutor Email</label>
+                        <label className="block text-white font-medium">Tutor Email</label>
                         <input
                             type="email"
                             value={formData.tutorEmail}
@@ -86,7 +87,7 @@ const CreateSession = () => {
                     </div>
 
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-medium">Registration Fee</label>
+                        <label className="block text-white font-medium">Registration Fee</label>
                         <input
                             type="number"
                             value={formData.registrationFee}
@@ -96,7 +97,7 @@ const CreateSession = () => {
                     </div>
 
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-medium">Status</label>
+                        <label className="block text-white font-medium">Status</label>
                         <input
                             type="text"
                             value={formData.status}
@@ -107,62 +108,62 @@ const CreateSession = () => {
                 </div>
 
                 {/* Right Side: Input Fields */}
-                <div className='bg-gray-100 p-6 rounded-lg'>
+                <div className=' p-6 rounded-lg'>
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-medium">Session Title</label>
+                        <label className="block text-white font-medium">Session Title</label>
                         <input
                             type="text"
                             name="sessionTitle"
                             value={formData.sessionTitle}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
+                            className="w-full px-4 py-2 border bg-white  rounded-lg focus:ring focus:ring-indigo-300"
                             required
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-medium">Course Image </label>
+                        <label className="block text-white font-medium">Course Image </label>
                         <input
                             type="text"
-                            name="sessionTitle"
-                            value={formData.sessionTitle}
+                            name="sessionImage"
+                            value={formData.sessionImage}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
+                            className="w-full px-4 py-2  rounded-lg  bg-white"
                             required
                         />
                     </div>
 
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-medium">Session Description</label>
+                        <label className="block text-white font-medium">Session Description</label>
                         <textarea
                             name="sessionDescription"
                             value={formData.sessionDescription}
                             onChange={handleInputChange}
                             rows="4"
-                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
+                            className="w-full px-4 py-2 border bg-white rounded-lg focus:ring focus:ring-indigo-300"
                             required
                         ></textarea>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4 mb-4">
                         <div>
-                            <label className="block text-gray-700 font-medium">Registration Start Date</label>
+                            <label className="block text-white font-medium">Registration Start Date</label>
                             <input
                                 type="date"
                                 name="registrationStartDate"
                                 value={formData.registrationStartDate}
                                 onChange={handleInputChange}
-                                className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
+                                className="w-full px-4 py-2 border rounded-lg bg-white focus:ring focus:ring-indigo-300"
                                 required
                             />
                         </div>
                         <div>
-                            <label className="block text-gray-700 font-medium">Registration End Date</label>
+                            <label className="block text-white font-medium">Registration End Date</label>
                             <input
                                 type="date"
                                 name="registrationEndDate"
                                 value={formData.registrationEndDate}
                                 onChange={handleInputChange}
-                                className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
+                                className="w-full px-4 py-2 bg-white border rounded-lg focus:ring focus:ring-indigo-300"
                                 required
                             />
                         </div>
@@ -170,37 +171,37 @@ const CreateSession = () => {
 
                     <div className="grid grid-cols-2 gap-4 mb-4">
                         <div>
-                            <label className="block text-gray-700 font-medium">Class Start Date</label>
+                            <label className="block text-white font-medium">Class Start Date</label>
                             <input
                                 type="date"
                                 name="classStartDate"
                                 value={formData.classStartDate}
                                 onChange={handleInputChange}
-                                className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
+                                className="w-full px-4 py-2 bg-white  border rounded-lg focus:ring focus:ring-indigo-300"
                                 required
                             />
                         </div>
                         <div>
-                            <label className="block text-gray-700 font-medium">Class End Date</label>
+                            <label className="block text-white font-medium">Class End Date</label>
                             <input
                                 type="date"
                                 name="classEndDate"
                                 value={formData.classEndDate}
                                 onChange={handleInputChange}
-                                className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
+                                className="w-full px-4 py-2 border rounded-lg bg-white focus:ring focus:ring-indigo-300"
                                 required
                             />
                         </div>
                     </div>
 
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-medium">Session Duration (hours)</label>
+                        <label className="block text-white font-medium">Session Duration (hours)</label>
                         <input
                             type="number"
                             name="sessionDuration"
                             value={formData.sessionDuration}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
+                            className="w-full px-4 py-2 bg-white  border rounded-lg focus:ring focus:ring-indigo-300"
                             required
                         />
                     </div>

@@ -3,11 +3,17 @@ import img from "../../../public/pic/login.jpg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { auth, AuthContext } from "../../Providers/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
-import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { FaChalkboardTeacher, FaGithub, FaUserGraduate } from "react-icons/fa";
+import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { RiAdminFill } from "react-icons/ri";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
-  const { signIn,setStudent } = useContext(AuthContext);
+  const { signIn, setStudent } = useContext(AuthContext);
   const location = useNavigate();
   const provider = new GoogleAuthProvider();
   const gprovider = new GithubAuthProvider();
@@ -22,20 +28,43 @@ const Login = () => {
     const password = form.password.value;
 
     signIn(email, password).then((res) => {
-      location(from, { replace: true });
+      location(from, { replace: true })
+      toast.success('Login Successful', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        })
     });
   };
 
-  const handleRole=(e,p)=>{
-    console.log(e,p);
-     signIn(e,p).then((res) => {
+  const handleRole = (e, p) => {
+
+    signIn(e, p).then((res) => {
+       toast.success('Login Successful', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        })
       location(from, { replace: true });
+     
     });
-  }
+  };
 
   const handleGoogleSignIn = () => {
-    signInWithPopup(auth,provider);
-    setStudent(true)
+    signInWithPopup(auth, provider);
+    setStudent(true);
   };
 
   const handleGithubSignIn = () => {
@@ -44,6 +73,17 @@ const Login = () => {
         // User successfully signed in
         console.log("GitHub User:", result.user);
         setStudent(true);
+        toast.success('Login Successful', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+          })
         location("/"); // Redirect after successful login
       })
       .catch((error) => {
@@ -51,7 +91,11 @@ const Login = () => {
         Swal.fire("Error!", "GitHub login failed.", "error");
       });
   };
-  
+
+  const handleTestLogin = () => {
+    document.getElementById("my_modal_3").showModal();
+
+  };
 
   return (
     <div>
@@ -102,6 +146,15 @@ const Login = () => {
                       Login
                     </button>
                   </div>
+                  <div className=" mt-6">
+                    <button
+                      type="button"
+                      onClick={() => handleTestLogin()}
+                      className="btn w-full bg-slate-950 text-white"
+                    >
+                      Test Login
+                    </button>
+                  </div>
                   <div className="flex gap-2">
                     <span className="text-gray-400">
                       {" "}
@@ -115,13 +168,12 @@ const Login = () => {
                     </Link>
                   </div>
                 </form>
-                <div className="divider">TEST AS</div>
+                {/* <div className="divider">TEST AS</div>
                 <div className="flex gap-2 justify-center">
                 <button onClick={()=>handleRole("student@gmail.com","123456")} className="btn bg-slate-950 text-white">User</button>
                 <button onClick={()=>handleRole("tutor@gmail.com","123456")} className="btn bg-slate-950 text-white">Tutor</button>
                 <button onClick={()=>handleRole("admin@gmail.com","123456")} className="btn bg-slate-950 text-white">Admin</button>
-                </div>
-                
+                </div> */}
 
                 <div className="divider">OR</div>
                 <div className="flex flex-col gap-5 w-10/12 mx-auto pb-4">
@@ -132,7 +184,10 @@ const Login = () => {
                     <FcGoogle className="size-6" />
                     Continue with Google
                   </button>
-                  <button onClick={handleGithubSignIn} className="btn bg-slate-950 text-white">
+                  <button
+                    onClick={handleGithubSignIn}
+                    className="btn bg-slate-950 text-white"
+                  >
                     <FaGithub className="size-6" />
                     Continue with Github
                   </button>
@@ -148,7 +203,52 @@ const Login = () => {
             </div>
           </div>
         </div>
+       
       </div>
+
+      {/* modal */}
+      {/* You can open the modal using document.getElementById('ID').showModal() method */}
+
+      <dialog id="my_modal_3" className="modal">
+        <div className="modal-box">
+          
+          <div className="divider">TEST AS</div>
+          <div className="flex gap-5 justify-center">
+            <div className="flex flex-col justify-center">
+              <FaUserGraduate className="size-20 md:size-32 p-4" />
+              <button
+                onClick={() => handleRole("student@gmail.com", "123456")}
+                className="py-1 rounded-md bg-slate-950 text-white"
+              >
+                Student
+              </button>
+            </div>
+
+            <div className="flex flex-col justify-center">
+              <FaChalkboardTeacher className="size-20 p-2 md:size-32" />
+              <button
+                onClick={() => handleRole("tutor@gmail.com", "123456")}
+                className="py-1 rounded-md bg-slate-950 text-white"
+              >
+                Tutor
+              </button>
+            </div>
+
+            <div className="flex flex-col justify-center">
+              <RiAdminFill className="size-20 p-3 md:size-32" />
+              <button
+                onClick={() => handleRole("admin@gmail.com", "123456")}
+                className="py-1 rounded-md bg-slate-950 text-white"
+              >
+                Admin
+              </button>
+            </div>
+          </div>
+        </div>
+        <form method="dialog" className="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
     </div>
   );
 };

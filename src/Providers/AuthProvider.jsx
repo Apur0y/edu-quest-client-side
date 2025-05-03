@@ -56,18 +56,22 @@ const profileInfo = (updatedData) => {
         if(currentUser){
          
           const userInfo = {email: currentUser.email};
-          axios.post('https://eduquest-server-side.vercel.app/jwt', userInfo)
+          axios.post('http://localhost:5000/jwt', userInfo,{
+            withCredentials:true
+          })
           .then(res=>{
-            if(res.data.token){
-              localStorage.setItem('access-token', res.data.token)
-            }
+            console.log(res)
+            // if(res.data.token){
+              
+            //   localStorage.setItem('access-token', res.data.token)
+            // }
           })
 
         }
-        else{
-          localStorage.removeItem('access-token')
+        // else{
+        //   localStorage.removeItem('access-token')
 
-        }
+        // }
         setLoading(false)
       ;
     })

@@ -61,7 +61,7 @@ const DashboardLayout = () => {
     <div className="relative flex">
       {/* Sidebar - Hidden on mobile and collapsible */}
       <div
-  className={`md:w-64 fixed md:relative z-50 bg-[#0D3B37] md:flex flex-col transform transition-transform duration-300 ease-in-out ${
+  className={`md:w-64 fixed md:relative z-50 bg-[#11645d] max-h-screen md:flex flex-col transform transition-transform duration-300 ease-in-out ${
     sidebar ? "translate-x-0" : "-translate-x-full"
   } md:translate-x-0`}
 >
@@ -222,13 +222,8 @@ const DashboardLayout = () => {
 
       {/* Main Content Area */}
       <div
-        style={{
-          backgroundSize: "cover", 
-          backgroundPosition: "center", 
-          backgroundRepeat: "no-repeat", 
-          position: "relative",
-        }}
-        className="flex-1 min-h-screen bg-[#1B3B39] backdrop-blur-xl"
+        
+        className="flex-1 h-screen overflow-auto bg-[#1B3B39] backdrop-blur-xl"
       >
         {/* Sidebar Toggle Button */}
         <div className="md:hidden fixed top-0  z-10">
@@ -241,19 +236,8 @@ const DashboardLayout = () => {
           </button>
         </div>
 
-        {/* Content Overlay */}
-        <div
-          style={{
-            backgroundColor: "rgba(248, 249, 250, 0.95)", 
-            position: "absolute", 
-            top: 0, 
-            left: 0, 
-            width: "100%", 
-            height: "100%", 
-            zIndex: 1,
-          }}
-        />
-        <div style={{ position: "relative", zIndex: 2 }}>
+       
+        <div>
           <Outlet />
         </div>
       </div>

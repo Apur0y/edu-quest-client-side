@@ -34,12 +34,15 @@ const AllTutors = () => {
 
   return( 
   <div className="scale-95 w-11/12 mx-auto mb-24">
-    <div className="flex items-center justify-center gap-2">
-      <span className="h-px w-20 bg-gray-400"></span>
-      <h1 className="text-xl text-center"> Learn From Best</h1>
-      <span className="h-px w-20 bg-gray-400"></span>
-    </div>
-        <h1 className="text-3xl md:text-5xl font-bold text-center underline py-6 ">Check Out Tutors</h1>
+   <div className="flex items-center text-xl md:text-4xl justify-center gap-2">
+     <span className="h-px w-20 bg-gray-400"></span>
+     <h1 className=" text-center font-bold">Find Your Tutors</h1>
+     <span className="h-px w-20 bg-gray-400"></span>
+   </div>
+   
+         <h1 className=" text-center text-gray-400 mt-2 mb-14">
+           Learn From The Best
+         </h1>
         
 <div className="grid grid-cols-5 gap-5">
     {

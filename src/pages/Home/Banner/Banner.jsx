@@ -19,7 +19,7 @@ const Banner = () => {
           disableOnInteraction: false,
         }}
         modules={[Pagination, Autoplay]}
-        className="mySwiper w-full h-screen max-h-[800px]"
+        className="mySwiper w-full h-[400px] md:h-screen max-h-[800px]"
       >
         {[
           { img: img2, title: "Eazy Effective Learning" },

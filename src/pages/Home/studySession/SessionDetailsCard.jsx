@@ -16,7 +16,9 @@ const SessionDetailsCard = () => {
     queryKey: ["reviews"],
     queryFn: async () => {
       const result = await axios.get(
-        "https://eduquest-server-side.vercel.app/reviews"
+        "https://eduquest-server-side.vercel.app/reviews",{
+          withCredentials:true
+        }
       );
       return result.data;
     },

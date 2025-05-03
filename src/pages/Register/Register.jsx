@@ -13,7 +13,7 @@ const Register = () => {
     email: "",
     photoUrl: '',
     password: '',
-    role: '',
+    role: 'student',
   })
 console.log(formData.role);
   const [error, setError] = useState("");
@@ -151,7 +151,7 @@ console.log(formData.role);
                   </div>
 
                   {/* Role Selection */}
-                  <div className="form-control">
+                  {/* <div className="form-control">
                     <label className="label">
                       <span className="label-text text-white">Role</span>
                     </label>
@@ -167,7 +167,7 @@ console.log(formData.role);
                       <option value="tutor">Tutor</option>
                       <option value="admin">Admin</option>
                     </select>
-                  </div>
+                  </div> */}
 
                   <div className={`${formData.role} form-control`}>
                     <label className="label">

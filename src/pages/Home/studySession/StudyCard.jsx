@@ -22,7 +22,7 @@ const StudyCard = ({ session }) => {
     <div className="max-w-md scale-90 mx-auto w-80 backdrop-blur-sm  shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden group">
       <div className="flex h-full flex-col justify-between">
         <img
-          src={session?.image||"https://cdn-bfiho.nitrocdn.com/zzpmBMsOKhwaececAhGHncOFbbwatBIq/assets/images/optimized/rev-eca6dce/integrallife.com/wp-content/uploads/2021/06/Build-Your-Integral-Life-Branding-Graphic-1.jpg"}
+          src={session?.image||"https://www.shutterstock.com/image-illustration/modern-dynamic-blue-neuron-plasma-600nw-2146957609.jpg"}
           alt=""
           className="group-hover:scale-105 transition-transform duration-300"
           />
