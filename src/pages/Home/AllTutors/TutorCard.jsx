@@ -2,7 +2,7 @@ import React from "react";
 
 const TutorCard = ({ tutor }) => {
   return (
-    <div className="max-w-sm  overflow-hidden shadow-lg bg-neutral-900/70 text-white rounded-lg">
+    <div className="w-64  overflow-hidden shadow-lg bg-neutral-900/70 text-white rounded-lg">
       <img
         className="w-full h-48 object-cover  "
         src={tutor.photoUrl}

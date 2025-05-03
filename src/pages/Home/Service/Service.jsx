@@ -46,8 +46,15 @@ const Service = () => {
       
 
     return (
-        <div className='w-11/12 mx-auto mb-24'>
-              <h1 className="text-3xl text-center md:text-5xl font-bold  underline py-6 ">Explore Your Field</h1>
+        <div className='w-11/12 mx-auto pt-3 mb-24'>
+              <div className="flex items-center text-xl md:text-4xl justify-center gap-2">
+        <span className="h-px w-20 bg-gray-400"></span>
+        <h1 className=" text-center font-bold">Explore Your Field</h1>
+        <span className="h-px w-20 bg-gray-400"></span>
+      </div>
+
+      <h1 className=" text-center text-gray-400 mt-2 mb-10">
+      </h1>
              
                
               <div  className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 '>

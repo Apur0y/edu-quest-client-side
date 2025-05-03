@@ -91,7 +91,17 @@ const Review = () => {
 
     return (
         <div className="mx-auto w-11/12 mb-24">
-            <h1 className="text-2xl md:text-4xl font-bold  my-8 text-center ">What Our Customer Says</h1>
+
+<div className="flex items-center text-xl md:text-4xl justify-center gap-2">
+        <span className="h-px w-20 bg-gray-400"></span>
+        <h1 className=" text-center font-bold">What Our Customer Says</h1>
+        <span className="h-px w-20 bg-gray-400"></span>
+      </div>
+
+      <h1 className=" text-center text-gray-400 mt-2 mb-10">
+        Hear From the Users
+      </h1>
+            
             <PaginatedReviews itemsPerPage={3} reviews={topReviews} />
         </div>
     );

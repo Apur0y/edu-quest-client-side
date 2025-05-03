@@ -9,10 +9,10 @@ const ServiceCard = ({ value }) => {
         src={value.picture}
         alt={`${value.title} image`}
       />
-      <div className='bg-gradient-to-l from-black/50 to-black/95  absolute inset-0 z-10'></div>
+      <div className='bg-gradient-to-l from-black/50 to-black/95  absolute inset-0 z-3'></div>
 
       {/* Right Side - Content */}
-      <div className="w-2/3 p-4 absolute z-20  text-white">
+      <div className="w-2/3 p-4 absolute z-4  text-white">
         <h2 className="text-2xl font-bold mb-2">{value.title}</h2>
         <p className="font-semibold mb-2">
           Tutors:{" "}
