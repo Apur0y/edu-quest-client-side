@@ -62,7 +62,7 @@ const Navbar = () => {
       className={`navbar fixed top-0 z-10  py- md:px-14 transition-all duration-300 ${
         isScrolled ? "bg-teal-900 shadow-lg" : "bg-transparent"
       }
-    ${theme?"":" bg-white text-black"}
+    ${theme?"":" bg-white "}
     `}
     >
       <div className="navbar-start">
@@ -85,7 +85,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content text-white bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             {links}
           </ul>
