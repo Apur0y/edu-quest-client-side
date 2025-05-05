@@ -311,7 +311,7 @@ const DashboardLayout = () => {
             className="hover:text-green-600 px-4 py-2 font-semibold flex "
             to="/"
           >
-            <IoMdHome className="my-auto  md:size-10 mr-3 text-white bg-[#11645d] rounded-full p-2 " />
+            <IoMdHome className="my-auto  size-10 mr-3 text-white bg-[#11645d] rounded-full p-2 " />
           </NavLink>
         </div>
             </div>

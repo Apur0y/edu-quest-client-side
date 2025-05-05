@@ -112,9 +112,7 @@ const UploadMaterials = () => {
 
     return (
         <div className="min-h-screen pb-10">
-            <h1 className="text-2xl my-9 font-bold underline md:text-6xl text-center">
-                Upload Materials
-            </h1>
+           <h1 className="text-2xl text-center font-bold mb-4">Upload Materials</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
                 {userSessions.map((session) => (
                     <div
@@ -124,13 +122,17 @@ const UploadMaterials = () => {
                         <h1 className="text-xl font-bold text-gray-800 mb-2">
                             {session.sessionTitle}
                         </h1>
-                        <p className="text-gray-600 mb-4">{session.sessionDescription}</p>
+                     
+                        {/* <p className="text-gray-600 mb-4">{session.sessionDescription}</p> */}
+                        <p className="text-gray-700 font-medium mb-4">
+                        Class Start: {session.classStartDate}
+                        </p>
                         <p className="text-gray-700 font-medium mb-4">
                             Duration: {session.sessionDuration} hours
                         </p>
                         <button
                             onClick={() => handleOpenModal(session)}
-                            className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded-lg  transition duration-300"
+                            className="w-full bg-teal-700 hover:bg-teal-800 text-white py-2 px-4 rounded-lg  transition duration-300"
                         >
                             Upload Materials
                         </button>
@@ -140,10 +142,10 @@ const UploadMaterials = () => {
 
             {isModalOpen && selectedSession && (
                 <div 
-                    className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
+                    className="sticky inset-0  backdrop-blur-md min-h-screen  z-50 flex items-center justify-center pointer-events-none"
                 >
                     <div 
-                        className="absolute inset-0 bg-black bg-opacity-50 pointer-events-auto"
+                        className="absolute inset-0  bg-opacity-50 pointer-events-auto"
                         onClick={handleCloseModal}
                     ></div>
                     <div 
@@ -221,7 +223,7 @@ const UploadMaterials = () => {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-3 px-4 rounded-lg  transition duration-300 font-medium"
+                                    className="w-full bg-teal-700 hover:bg-teal-00 text-white py-3 px-4 rounded-lg  transition duration-300 font-medium"
                                 >
                                     Upload
                                 </button>

@@ -40,7 +40,7 @@ const StudentStat = () => {
 
     return (
         <div>
-               <div className="mt-20 flex flex-col justify-center gap-6 mx-auto items-center">
+               <div className="mt-20 flex bg-white w-80 p-4 rounded-lg flex-col justify-center gap-6 mx-auto items-center">
         <h1 className="text-2xl flex font-bold text-black">
           <LuBookOpenCheck className="my-auto mr-2 text-green-600 size-9" />
           Booked sessions :
