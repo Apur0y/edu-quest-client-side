@@ -48,7 +48,7 @@ const Login = () => {
     signIn(e, p).then((res) => {
        toast.success('Login Successful', {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: false,
         pauseOnHover: true,
@@ -75,7 +75,7 @@ const Login = () => {
         setStudent(true);
         toast.success('Login Successful', {
           position: "top-center",
-          autoClose: 5000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: false,
           pauseOnHover: true,
