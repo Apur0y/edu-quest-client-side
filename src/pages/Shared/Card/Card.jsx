@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiEdit } from "react-icons/fi";
 
 const Card = ({ session, handleRequestSession }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [color,setColor]=useState("")
 
   const toggleDescription = () => {
     setIsExpanded(!isExpanded);
   };
+
+ useEffect(()=>{
+  if(session.status =="Approved"){
+    setColor("text-green-800");
+} else if (session.status == "Rejected") {
+  setColor("text-red-700");
+}else{
+  setColor("text-orange-500")
+}
+ },[])
+  
+  
+
 
   return (
     <div className=" relative mx-auto h-fit w-full bg-white p-5 shadow-lg rounded-lg flex flex-col lg:flex-row ">
@@ -62,7 +76,7 @@ const Card = ({ session, handleRequestSession }) => {
         <p>
           <strong>Registration Fee:</strong> ${session.registrationFee}
         </p>
-        <p>
+        <p className={`${color} font-bold`}>
           <strong>Status:</strong> {session.status}
         </p>
 
@@ -70,7 +84,7 @@ const Card = ({ session, handleRequestSession }) => {
         {session.status === "Rejected" && (
           <button
             onClick={() => handleRequestSession(session)}
-            className="mt-6 w-full bg-yellow-600 text-white py-2 px-4 rounded hover:bg-yellow-500 transition duration-300"
+            className="mt-6 w-full bg-teal-700 text-white py-2 px-4 rounded hover:bg-teal-900 transition duration-300"
           >
             Send Request
           </button>
