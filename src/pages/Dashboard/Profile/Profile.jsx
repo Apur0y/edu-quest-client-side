@@ -48,7 +48,9 @@ const handleFileChange = (e) => {
 
   return (
     <div className="w-11/12  mx-auto mt-10 p-6 text-black ">
-      <div className="flex flex-col  md:flex-row items-center gap-6">
+
+       <div>
+       <div className="flex flex-col  p-4 rounded-lg md:flex-row items-center gap-6">
         <div className="relative">
           <img
             src={image || user?.photoURL || "https://via.placeholder.com/100"}
@@ -102,6 +104,10 @@ const handleFileChange = (e) => {
       </button>
     </div>
 
+
+       </div>
+
+     
 
 
       <div>
