@@ -9,7 +9,7 @@ const Card = ({ session, handleRequestSession }) => {
   };
 
   return (
-    <div className=" relative mx-auto h-fit  bg-white p-5 shadow-lg rounded-lg flex flex-col lg:flex-row ">
+    <div className=" relative mx-auto h-fit w-full bg-white p-5 shadow-lg rounded-lg flex flex-col lg:flex-row ">
       <div className="absolute right-0 top-0 m-2">
       <FiEdit className="size-7 cursor-pointer bg-white p-1"/>
       </div>
