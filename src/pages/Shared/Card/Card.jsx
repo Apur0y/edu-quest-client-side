@@ -9,11 +9,17 @@ const Card = ({ session, handleRequestSession }) => {
   };
 
   return (
-    <div className="max-w-md relative mx-auto h-full  md:w-72 bg-green-100 shadow-lg rounded-lg">
-      <div className="absolute right-0 m-2">
-      <FiEdit className="size-5 cursor-pointer"/>
+    <div className=" relative mx-auto h-fit  bg-white p-5 shadow-lg rounded-lg flex flex-col lg:flex-row ">
+      <div className="absolute right-0 top-0 m-2">
+      <FiEdit className="size-7 cursor-pointer bg-white p-1"/>
       </div>
-      <div className="p-6  text-black">
+
+
+      <img src="https://www.shutterstock.com/image-illustration/modern-dynamic-blue-neuron-plasma-600nw-2146957609.jpg" alt="" className="h-44 md:h-72  my-auto object-cover rounded-md" />
+
+
+
+      <div className="px-6 pt-4 md:pt-0  text-black">
       
         <h2 className="text-xl font-bold mb-4">{session.sessionTitle}</h2>
 

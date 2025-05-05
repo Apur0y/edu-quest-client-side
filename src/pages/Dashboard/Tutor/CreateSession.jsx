@@ -58,59 +58,17 @@ const CreateSession = () => {
     };
 
     return (
-        <div className="bg-[#147b5c] p-8 w-11/12 max-w-4xl mx-auto rounded-lg shadow-md my-6">
-            <h2 className="text-2xl font-bold text-center text-white mb-6">Create Study Session</h2>
+        <div className=" p-8 w-11/12 text-black mx-auto rounded-lg  my-6">
+            <h2 className="text-2xl font-bold mb-6">Create Study Session</h2>
 
             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Left Side: Prefilled Fields */}
-                <div className=" p-6 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold mb-4">Tutor Details</h3>
-
-                    <div className="mb-4">
-                        <label className="block text-white font-medium">Tutor Name</label>
-                        <input
-                            type="text"
-                            value={formData.tutorName}
-                            readOnly
-                            className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor-not-allowed"
-                        />
-                    </div>
-
-                    <div className="mb-4">
-                        <label className="block text-white font-medium">Tutor Email</label>
-                        <input
-                            type="email"
-                            value={formData.tutorEmail}
-                            readOnly
-                            className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor-not-allowed"
-                        />
-                    </div>
-
-                    <div className="mb-4">
-                        <label className="block text-white font-medium">Registration Fee</label>
-                        <input
-                            type="number"
-                            value={formData.registrationFee}
-                            readOnly
-                            className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor-not-allowed"
-                        />
-                    </div>
-
-                    <div className="mb-4">
-                        <label className="block text-white font-medium">Status</label>
-                        <input
-                            type="text"
-                            value={formData.status}
-                            readOnly
-                            className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor-not-allowed"
-                        />
-                    </div>
-                </div>
+              
 
                 {/* Right Side: Input Fields */}
-                <div className=' p-6 rounded-lg'>
+                <div className='  rounded-lg'>
                     <div className="mb-4">
-                        <label className="block text-white font-medium">Session Title</label>
+                        <label className="block  font-medium">Session Title</label>
                         <input
                             type="text"
                             name="sessionTitle"
@@ -121,7 +79,7 @@ const CreateSession = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-white font-medium">Course Image </label>
+                        <label className="block  font-medium">Course Image </label>
                         <input
                             type="text"
                             name="sessionImage"
@@ -133,7 +91,7 @@ const CreateSession = () => {
                     </div>
 
                     <div className="mb-4">
-                        <label className="block text-white font-medium">Session Description</label>
+                        <label className="block  font-medium">Session Description</label>
                         <textarea
                             name="sessionDescription"
                             value={formData.sessionDescription}
@@ -146,7 +104,7 @@ const CreateSession = () => {
 
                     <div className="grid grid-cols-2 gap-4 mb-4">
                         <div>
-                            <label className="block text-white font-medium">Registration Start Date</label>
+                            <label className="block  font-medium">Registration Start Date</label>
                             <input
                                 type="date"
                                 name="registrationStartDate"
@@ -157,7 +115,7 @@ const CreateSession = () => {
                             />
                         </div>
                         <div>
-                            <label className="block text-white font-medium">Registration End Date</label>
+                            <label className="block  font-medium">Registration End Date</label>
                             <input
                                 type="date"
                                 name="registrationEndDate"
@@ -171,7 +129,7 @@ const CreateSession = () => {
 
                     <div className="grid grid-cols-2 gap-4 mb-4">
                         <div>
-                            <label className="block text-white font-medium">Class Start Date</label>
+                            <label className="block  font-medium">Class Start Date</label>
                             <input
                                 type="date"
                                 name="classStartDate"
@@ -182,7 +140,7 @@ const CreateSession = () => {
                             />
                         </div>
                         <div>
-                            <label className="block text-white font-medium">Class End Date</label>
+                            <label className="block  font-medium">Class End Date</label>
                             <input
                                 type="date"
                                 name="classEndDate"
@@ -195,7 +153,7 @@ const CreateSession = () => {
                     </div>
 
                     <div className="mb-4">
-                        <label className="block text-white font-medium">Session Duration (hours)</label>
+                        <label className="block  font-medium">Session Duration (hours)</label>
                         <input
                             type="number"
                             name="sessionDuration"
@@ -208,11 +166,59 @@ const CreateSession = () => {
 
                     <button
                         type="submit"
-                        className="w-full bg-yellow-600 text-white py-2 px-4 rounded-lg hover:bg-yelow-700 transition duration-300"
+                        className="w-full bg-teal-800 text-white  py-2 px-4 rounded-lg hover:bg-yelow-700 transition duration-300"
                     >
                         Create Session
                     </button>
                 </div>
+
+
+                <div className=" p-6 rounded-lg shadow-sm">
+                    <h3 className="text-lg font-semibold mb-4">Tutor Details</h3>
+
+                    <div className="mb-4">
+                        <label className="block  font-medium">Tutor Name</label>
+                        <input
+                            type="text"
+                            value={formData.tutorName}
+                            readOnly
+                            className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor-not-allowed"
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block  font-medium">Tutor Email</label>
+                        <input
+                            type="email"
+                            value={formData.tutorEmail}
+                            readOnly
+                            className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor-not-allowed"
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block  font-medium">Registration Fee</label>
+                        <input
+                            type="number"
+                            value={formData.registrationFee}
+                            readOnly
+                            className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor-not-allowed"
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block  font-medium">Status</label>
+                        <input
+                            type="text"
+                            value={formData.status}
+                            readOnly
+                            className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor-not-allowed"
+                        />
+                    </div>
+                </div>
+
+
+
             </form>
         </div>
     );

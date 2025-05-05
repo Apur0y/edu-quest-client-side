@@ -252,16 +252,7 @@ const DashboardLayout = () => {
             )}
           </div>
         </div>
-        {/* Home Button - Stays at the Bottom */}
-        <div className="fixed hidden md:flex bottom-0 w-64 ">
-          <NavLink
-            onClick={closeSidebar}
-            className="hover:text-green-600 text-white px-4 py-2 font-semibold flex mb-6"
-            to="/"
-          >
-            <IoMdHome className="my-auto  md:size-6 mr-3" /> Home
-          </NavLink>
-        </div>
+     
       </div>
 
       {/* Main Content Area */}
@@ -283,7 +274,7 @@ const DashboardLayout = () => {
         <div>
 
           {/* outlet navbar */}
-          <div className="navbar sticky md:relative top-0 md:py-4 z-20 bg-[#eaf9f7]  text-black w-lvw shadow-sm">
+          <div className="navbar sticky md:relative top-0 md:py-4 z-20 bg-[#eaf9f7]  text-black  shadow-sm">
             <div className="flex-none">
               <button   onClick={handleSidebar}  className="btn md:hidden btn-square btn-ghost">
                 <svg
@@ -313,22 +304,16 @@ const DashboardLayout = () => {
              
             </div>
             <div className="flex-none">
-              <button className="btn btn-square btn-ghost">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="inline-block h-5 w-5 stroke-current"
-                >
-                  {" "}
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                  ></path>{" "}
-                </svg>
-              </button>
+                {/* Home Button - Stays at the Bottom */}
+        <div className=" ">
+          <NavLink
+            onClick={closeSidebar}
+            className="hover:text-green-600 px-4 py-2 font-semibold flex "
+            to="/"
+          >
+            <IoMdHome className="my-auto  md:size-10 mr-3 text-white bg-[#11645d] rounded-full p-2 " />
+          </NavLink>
+        </div>
             </div>
           </div>
 

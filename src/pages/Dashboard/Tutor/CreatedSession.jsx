@@ -47,7 +47,7 @@ const CreatedSession = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 w-11/12 my-6 mx-auto">
+    <div className="grid grid-cols-1 gap-5 w-11/12 my-6 mx-auto">
       {tutorSessions.map((session) => (
         <Card
           key={session._id}
