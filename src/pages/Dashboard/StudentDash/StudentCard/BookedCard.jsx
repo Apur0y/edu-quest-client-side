@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const BookedCard = ({session, buttonName}) => {
   return (
-    <div className="max-w-md w-40 mx-auto md:w-72 bg-green-50 shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
+    <div className="max-w-md mx-auto w-72 bg-green-50 shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
       <div className="p-6">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">
           {session.sessionTitle}

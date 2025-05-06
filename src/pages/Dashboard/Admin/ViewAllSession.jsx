@@ -95,13 +95,21 @@ const ViewAllSession = () => {
   if (isError) return <p>Failed to load sessions</p>;
 
   return (
-    <div className="grid grid-cols-1 w-10/12 mx-auto lg:grid-cols-3 gap-5">
+    <div className="grid grid-cols-1 w-11/12 mx-auto gap-5 mt-7">
       {sessions.map((session) => (
         <div
           key={session._id}
-          className="max-w-md mx-auto w-11/12 bg-white text-gray-800 shadow-xl rounded-2xl overflow-hidden"
+          className=" mx-auto w-11/12 bg-white text-gray-800 shadow-xl rounded-2xl overflow-hidden "
         >
-          <div className="p-6">
+          <div className="p-6 flex md:flex-row flex-col justify-between items-center">
+            <img
+              src={
+                session?.image ||
+                "https://www.shutterstock.com/image-illustration/modern-dynamic-blue-neuron-plasma-600nw-2146957609.jpg"
+              }
+              alt=""
+              className="w-44 h-32 rounded-lg"
+            />
             <h2 className="text-xl font-bold text-center text-gray-900 mb-4">
               {session.sessionTitle}
             </h2>
@@ -131,37 +139,37 @@ const ViewAllSession = () => {
               </div>
             </div>
 
-            <div className="mt-6 flex gap-4">
+            <div className=" grid items-center justify-center mt-5 md:mt-0">
               {session.status === "Approved" ? (
-                <>
+                <div className="flex gap-4 ">
                   <button
                     onClick={() => setSelectedSession(session)}
-                    className="flex-1 py-2 bg-neutral-700 hover:bg-neutral-600 text-white rounded-lg text-sm font-medium transition duration-200"
+                    className="btn bg-neutral-700 hover:bg-neutral-600 text-white rounded-lg text-sm font-medium transition duration-200"
                   >
                     Update
                   </button>
                   <button
                     onClick={() => handleDelete(session._id)}
-                    className="flex-1 py-2 text-red-600 bg-zinc-100 hover:bg-zinc-200  border-2 rounded-lg text-sm font-bold transition duration-200"
+                    className="btn text-red-600 bg-zinc-100 hover:bg-zinc-200 border-none rounded-lg text-sm font-bold transition duration-200"
                   >
                     Delete
                   </button>
-                </>
+                </div>
               ) : (
-                <>
+                <div className="flex gap-4">
                   <button
                     onClick={() => handleAccept(session)}
-                    className="flex-1 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition duration-200"
+                    className="btn border-none bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition duration-200"
                   >
                     Review
                   </button>
                   <button
                     onClick={() => handleStatusUpdate(session._id, "Rejected")}
-                    className="flex-1 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm font-medium transition duration-200"
+                    className="btn border-none bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm font-medium transition duration-200"
                   >
                     Reject
                   </button>
-                </>
+                </div>
               )}
             </div>
           </div>
@@ -205,7 +213,7 @@ const ViewAllSession = () => {
             )}
             <div className="flex justify-end space-x-2">
               <button
-                className="bt text-white"
+                className="btn text-white"
                 onClick={() => setSelectedSession(null)}
               >
                 Cancel

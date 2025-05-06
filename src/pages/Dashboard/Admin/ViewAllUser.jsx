@@ -60,7 +60,7 @@ const ViewAllUser = () => {
 
   return (
     <div className="w-11/12 mx-auto">
- <h1 className="text-4xl mb-2 text-center font-bold text-white underline">All Users</h1>
+ <h1 className="text-4xl mb-2 text-center font-bold  underline">All Users</h1>
 
 
       {/* Search Bar */}
@@ -85,14 +85,14 @@ const ViewAllUser = () => {
       {/* User Rows */}
       <div className="w-full bg-white">
 
-      <table className="min-w-full border-none ">
+      <table className="min-w-full  overflow-auto">
     <thead className="bg-white text-left">
       <tr>
-        <th className="p-2 border">Photo</th>
-        <th className="p-2 border">Name</th>
-        <th className="p-2 border">Email</th>
-        <th className="p-2 border">Role</th>
-        <th className="p-2 border">Action</th>
+        <th className="p-2 border-b-2">Photo</th>
+        <th className="p-2 border-b-2">Name</th>
+        <th className="p-2 border-b-2">Email</th>
+        <th className="p-2 border-b-2">Role</th>
+        <th className="p-2 border-b-2">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -133,17 +133,21 @@ const ViewAllUser = () => {
   
     
         <tr key={user.id} className="">
-          <td className="p-2 border">
+          <td className="p-2 border-b-2">
             <img
               src={user.photoUrl}
               alt={user.name}
               className="w-10 h-10 rounded-full"
             />
           </td>
-          <td className="p-2 border">{user.name}</td>
-          <td className="p-2 border">{user.email}</td>
-          <td className="p-2 border">{user.role}</td>
-          <td className="p-2 border">
+          <td className="px-2 py-8 border-b-2 font-semibold">{user.name}</td>
+          <td className="p-2 border-b-2">{user.email}</td>
+          <td className="p-2 border-b-2 ">
+            <div className="bg-red-100 font-medium text-sm text-red-500 inline-block px-2 py-1 rounded-2xl">
+            {user.role}
+            </div>
+           </td>
+          <td className="p-2 border-b-2">
             <button
               onClick={() => handleUserUpdate(user)}
               className="px-3 py-1 bg-zinc-700 text-white rounded hover:bg-zinc-900"

@@ -210,7 +210,7 @@ const Login = () => {
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
 
       <dialog id="my_modal_3" className="modal">
-        <div className="modal-box">
+        <div className="modal-box text-white">
           
           <div className="divider">TEST AS</div>
           <div className="flex gap-5 justify-center">

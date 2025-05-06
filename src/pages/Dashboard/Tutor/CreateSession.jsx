@@ -163,6 +163,16 @@ const CreateSession = () => {
                             required
                         />
                     </div>
+                    <div className="mb-4">
+                        <label className="block  font-medium">Registration Fee</label>
+                        <input
+                            type="number"
+                            value={formData.registrationFee}
+                           name="registrationFee"
+                            className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor-not-allowed"
+                        />
+                    </div>
+
 
                     <button
                         type="submit"
@@ -196,16 +206,7 @@ const CreateSession = () => {
                         />
                     </div>
 
-                    <div className="mb-4">
-                        <label className="block  font-medium">Registration Fee</label>
-                        <input
-                            type="number"
-                            value={formData.registrationFee}
-                            readOnly
-                            className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor-not-allowed"
-                        />
-                    </div>
-
+               
                     <div className="mb-4">
                         <label className="block  font-medium">Status</label>
                         <input

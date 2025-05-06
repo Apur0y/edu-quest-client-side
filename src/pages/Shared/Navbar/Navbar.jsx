@@ -124,7 +124,7 @@ const Navbar = () => {
             {" "}
             <Link
               to="/login"
-              className="btn text-white bg-transparent border-none hover:border-b-2"
+              className={`btn ${theme? "text-white":"text-black shadow-lg"}  bg-transparent border-none hover:border-b-2`}
             >
               Log in
             </Link>

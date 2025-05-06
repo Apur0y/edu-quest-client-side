@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
@@ -17,6 +17,8 @@ const ViewAllMaterials = () => {
       return result.data;
     },
   });
+
+  const queryClient =useQueryClient();
 
   const handleDelete=(id)=>{
 
@@ -38,6 +40,11 @@ const ViewAllMaterials = () => {
                 text: "Session has been deleted.",
                 icon: "success",
               });
+
+              queryClient.setQueryData(["materials"], (oldData) => {
+                if (!oldData) return [];
+                return oldData.filter((material) => material._id !== id);
+              });
               console.log(res.data);
             })
             .catch((err) => {
@@ -57,14 +64,14 @@ const ViewAllMaterials = () => {
   if (isError) return <p>Failed to load materials</p>;
 
   return (
-    <div className="grid grid-cols-1 w-11/12 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-6">
+    <div className="flex flex-wrap w-11/12 gap-6 my-6">
       {materials.map((material) => (
         <div
           key={material._id}
-          className="w-48 md:w-72 mx-auto bg-[#008869] text-[#ffffff] shadow-lg rounded-xl overflow-hidden border bo"
+          className="w-72 mx-auto bg-white text-black shadow-lg rounded-xl overflow-auto border bo"
         >
           <div className="p-6">
-            <h3 className="text-xl font-semibold ">{material.title || "Untitled"}</h3>
+            <h3 className="text-xl font-semibold ">{material.title || "Tutor Programme"}</h3>
             <div className="mt-4">
               <p className="text-sm font-medium ">
                 <strong className="">Tutor Email:</strong> {material.tutorEmail}
@@ -77,7 +84,7 @@ const ViewAllMaterials = () => {
                   href={material.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-teal-200 hover:text-blue-800"
+                  className=""
                 >
                   {material.link}
                 </a>
@@ -90,7 +97,7 @@ const ViewAllMaterials = () => {
                 <MdDeleteForever className="text-rose-600 size-8" />
               </button>
              <Link to={`${material.link}`}>
-             <button className=" py-2 px-4 bg-[#ff9742] text-white font-medium rounded-lg hover:bg-[] transition-all duration-200">
+             <button className=" py-2 px-4 bg-teal-700 text-white font-medium rounded-lg hover:bg-[] transition-all duration-200">
                 View
               </button>
              </Link>
