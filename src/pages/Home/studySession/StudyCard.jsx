@@ -15,8 +15,7 @@ import Stack from "@mui/material/Stack";
 
 const StudyCard = ({ session }) => {
   const isOngoing = new Date() < new Date(session.registrationEndDate);
-  // const [rating, setRating] = useState(0);
-  console.log(session);
+
 
   return (
     <div className="max-w-md scale-90 mx-auto w-80 backdrop-blur-sm  shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden group">

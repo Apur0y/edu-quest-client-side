@@ -21,7 +21,7 @@ createRoot(document.getElementById("root")).render(
         <div className="max-w-screen mx-auto bg-[#0D1F1E]">
           <RouterProvider router={router} />
           <ToastContainer 
-          position="top-center"
+          position="top-right"
           autoClose={2000}
           hideProgressBar={false}
           newestOnTop={false}

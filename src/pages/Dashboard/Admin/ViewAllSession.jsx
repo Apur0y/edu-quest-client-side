@@ -1,15 +1,15 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import axios from "axios";
 import useAxiosSecure from "../../../hooks/useSecure";
 
 const ViewAllSession = () => {
-  const [selectedSession, setSelectedSession] = useState(null); // Modal state
-  const [isFree, setIsFree] = useState(true); // Track if session is free or paid
-  const [sessionFee, setSessionFee] = useState(0); // Registration Fee for paid session
+  const [editingSession, setEditingSession] = useState(null); // track which session is being edited
+  const [isFree, setIsFree] = useState(true);
+  const [sessionFee, setSessionFee] = useState(0);
 
   const queryClient = useQueryClient();
+  const axiosSecure = useAxiosSecure();
 
   // Fetch all sessions
   const {
@@ -28,8 +28,8 @@ const ViewAllSession = () => {
   });
 
   const sessions = allSessions.filter((res) => res.status !== "Rejected");
-  const axiosSecure = useAxiosSecure();
-  // Update session status
+
+  // Update status
   const handleStatusUpdate = async (id, status) => {
     try {
       await axiosSecure.put(`/sessions/${id}`, { status });
@@ -41,7 +41,7 @@ const ViewAllSession = () => {
     }
   };
 
-  // Update session fee
+  // Update fee inline
   const handleFeeUpdate = async (id) => {
     try {
       await axiosSecure.put(`/sessions/${id}`, {
@@ -50,7 +50,7 @@ const ViewAllSession = () => {
         amount: isFree ? 0 : sessionFee,
       });
       Swal.fire("Success!", "Session fee updated successfully", "success");
-      setSelectedSession(null);
+      setEditingSession(null);
       queryClient.invalidateQueries(["sessions"]);
     } catch (error) {
       console.error("Error updating session fee", error);
@@ -58,7 +58,7 @@ const ViewAllSession = () => {
     }
   };
 
-  // Delete a session
+  // Delete
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -84,11 +84,12 @@ const ViewAllSession = () => {
     });
   };
 
-  // Open modal for accepting session
+  // Accept (approve + open edit mode for fee)
   const handleAccept = (session) => {
-    setSelectedSession(session);
-    setIsFree(true); // Default to free session
-    setSessionFee(0); // Clear fee
+    handleStatusUpdate(session._id, "Approved");
+    setEditingSession(session._id);
+    setIsFree(true);
+    setSessionFee(0);
   };
 
   if (isLoading) return <p>Loading sessions...</p>;
@@ -99,7 +100,7 @@ const ViewAllSession = () => {
       {sessions.map((session) => (
         <div
           key={session._id}
-          className=" mx-auto w-11/12 bg-white text-gray-800 shadow-xl rounded-2xl overflow-hidden "
+          className="mx-auto w-11/12 bg-white text-gray-800 shadow-xl rounded-2xl overflow-hidden"
         >
           <div className="p-6 flex md:flex-row flex-col justify-between items-center">
             <img
@@ -110,24 +111,22 @@ const ViewAllSession = () => {
               alt=""
               className="w-44 h-32 rounded-lg"
             />
-            <h2 className="text-xl font-bold text-center text-gray-900 mb-4">
-              {session.sessionTitle}
-            </h2>
 
-            <div className="space-y-3 text-sm text-gray-700">
-              <div>
-                <span className="font-semibold">Tutor Name:</span>{" "}
-                {session.tutorName}
-              </div>
-              <div>
-                <span className="font-semibold">Email:</span>{" "}
-                {session.tutorEmail}
-              </div>
-              <div>
+            <div className="flex-1 ml-4">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">
+                {session.sessionTitle}
+              </h2>
+              <p className="text-sm text-gray-600">
+                <span className="font-semibold">Tutor:</span> {session.tutorName}
+              </p>
+              <p className="text-sm text-gray-600">
+                <span className="font-semibold">Email:</span> {session.tutorEmail}
+              </p>
+              <p className="text-sm mt-2">
                 <span className="font-semibold">Status:</span>{" "}
                 <span
-                  className={`inline-block px-3 py-1 rounded-full text-xs font-medium text-white ${
-                    session.status === "Accepted"
+                  className={`px-3 py-1 rounded-full text-xs font-medium text-white ${
+                    session.status === "Approved"
                       ? "bg-green-500"
                       : session.status === "Rejected"
                       ? "bg-red-500"
@@ -136,36 +135,78 @@ const ViewAllSession = () => {
                 >
                   {session.status}
                 </span>
-              </div>
+              </p>
             </div>
 
-            <div className=" grid items-center justify-center mt-5 md:mt-0">
-              {session.status === "Approved" ? (
-                <div className="flex gap-4 ">
+            {/* Actions */}
+            <div className="flex flex-col gap-3 mt-5 md:mt-0">
+              {editingSession === session._id ? (
+                <>
+                  {/* Inline edit fields */}
+                  <select
+                    value={isFree ? "free" : "paid"}
+                    onChange={(e) => setIsFree(e.target.value === "free")}
+                    className="select select-bordered w-full text-white"
+                  >
+                    <option value="free">Free</option>
+                    <option value="paid">Paid</option>
+                  </select>
+
+                  {!isFree && (
+                    <input
+                      type="number"
+                      value={sessionFee}
+                      onChange={(e) => setSessionFee(Number(e.target.value))}
+                      className="input input-bordered w-full text-white"
+                      placeholder="Enter fee"
+                    />
+                  )}
+
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => handleFeeUpdate(session._id)}
+                      className="btn bg-blue-600 text-white"
+                    >
+                      Save
+                    </button>
+                    <button
+                      onClick={() => setEditingSession(null)}
+                      className="btn"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </>
+              ) : session.status === "Approved" ? (
+                <div className="flex gap-2">
                   <button
-                    onClick={() => setSelectedSession(session)}
-                    className="btn bg-neutral-700 hover:bg-neutral-600 text-white rounded-lg text-sm font-medium transition duration-200"
+                    onClick={() => {
+                      setEditingSession(session._id);
+                      setIsFree(session.isFree);
+                      setSessionFee(session.amount || 0);
+                    }}
+                    className="btn bg-neutral-700 hover:bg-neutral-600 text-white"
                   >
                     Update
                   </button>
                   <button
                     onClick={() => handleDelete(session._id)}
-                    className="btn text-red-600 bg-zinc-100 hover:bg-zinc-200 border-none rounded-lg text-sm font-bold transition duration-200"
+                    className="btn text-red-600 bg-zinc-100 hover:bg-zinc-200 border-none font-bold"
                   >
                     Delete
                   </button>
                 </div>
               ) : (
-                <div className="flex gap-4">
+                <div className="flex gap-2">
                   <button
                     onClick={() => handleAccept(session)}
-                    className="btn border-none bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition duration-200"
+                    className="btn border-none bg-green-600 hover:bg-green-700 text-white"
                   >
-                    Review
+                    Approve
                   </button>
                   <button
                     onClick={() => handleStatusUpdate(session._id, "Rejected")}
-                    className="btn border-none bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm font-medium transition duration-200"
+                    className="btn border-none bg-red-500 hover:bg-red-600 text-white"
                   >
                     Reject
                   </button>
@@ -175,59 +216,6 @@ const ViewAllSession = () => {
           </div>
         </div>
       ))}
-
-      {/* Modal for Session Fee Update */}
-      {selectedSession && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-green-900/50 backdrop-blur-md overflow-y-auto">
-          <div className="bg-[#134E4A]/50 p-6 rounded-lg shadow-lg w-96">
-            <h2 className="font-bold text-xl mb-4">
-              Set Registration Fee for: {selectedSession.sessionTitle}
-            </h2>
-            <div className="mb-4">
-              <label className="block text-sm font-medium   mb-2">
-                Is this session free?
-              </label>
-              <select
-                value={isFree ? "free" : "paid"}
-                onChange={(e) => setIsFree(e.target.value === "free")}
-                className="select select-bordered w-full"
-              >
-                <option value="free">Free</option>
-                <option value="paid">Paid</option>
-              </select>
-            </div>
-            {!isFree && (
-              <div className="mb-4">
-                <label htmlFor="fee" className="block text-sm font-medium ">
-                  Registration Fee
-                </label>
-                <input
-                  type="number"
-                  id="fee"
-                  value={selectedSession.sessionFee}
-                  onChange={(e) => setSessionFee(Number(e.target.value))}
-                  className="input input-bordered w-full mt-2"
-                  placeholder="Enter fee"
-                />
-              </div>
-            )}
-            <div className="flex justify-end space-x-2">
-              <button
-                className="btn text-white"
-                onClick={() => setSelectedSession(null)}
-              >
-                Cancel
-              </button>
-              <button
-                className="btn bg-blue-600 text-white"
-                onClick={() => handleFeeUpdate(selectedSession._id)}
-              >
-                Confirm
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
